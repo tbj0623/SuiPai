@@ -41,6 +41,13 @@ $dirs = @(
 )
 foreach ($item in $files) { Copy-PublicPath $item }
 foreach ($item in $dirs) { Copy-PublicPath $item }
+# 商店长稿含内部路径；首次公开时用精简草稿。公开仓库再次导出时就复用它。
+$publicListing = Join-Path $sourceRoot "store/listing-public.md"
+if (Test-Path -LiteralPath $publicListing) {
+    Copy-Item -LiteralPath $publicListing -Destination (Join-Path $Destination "store/listing-zh.md")
+} else {
+    Copy-PublicPath "store/listing-zh.md"
+}
 Get-ChildItem -LiteralPath (Join-Path $sourceRoot "store/screens/phone2") -File |
     Where-Object { $_.Extension -eq ".png" } |
     ForEach-Object { Copy-PublicPath ("store/screens/phone2/" + $_.Name) }
