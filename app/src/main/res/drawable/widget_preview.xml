@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  小组件在 launcher 的「添加组件」列表里的预览图。
+
+  为什么是矢量 + 纯色块而不是一张真截图：`previewImage` 只支持位图
+  （系统会把 drawable 渲染成静态图），这张图的作用是"让人在列表里认出这是随拍的
+  四格印样"，不是"展示真实内容"。真截图在这里反而会误导（用户的照片不是这些）。
+
+  图形与 App 图标同一套线稿语言：暗房底 + 四张相纸 + 一条琥珀说明线。
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="80dp"
+    android:viewportWidth="160"
+    android:viewportHeight="80">
+    <!-- 暗房底 -->
+    <path
+        android:fillColor="#101413"
+        android:pathData="M0,0 h160 v80 h-160 z" />
+    <!-- 四张相纸（近直角，1dp 框线由浅色底自己示意） -->
+    <path
+        android:fillColor="#EDEBE4"
+        android:pathData="M12,12 h30 v40 h-30 z" />
+    <path
+        android:fillColor="#9AA39E"
+        android:pathData="M46,12 h30 v40 h-30 z" />
+    <path
+        android:fillColor="#EDEBE4"
+        android:pathData="M80,12 h30 v40 h-30 z" />
+    <path
+        android:fillColor="#9AA39E"
+        android:pathData="M114,12 h30 v40 h-30 z" />
+    <!-- 说明线：那一行「随拍 · N 张」的示意 -->
+    <path
+        android:fillColor="#E8A33D"
+        android:pathData="M12,60 h64 v6 h-64 z" />
+</vector>

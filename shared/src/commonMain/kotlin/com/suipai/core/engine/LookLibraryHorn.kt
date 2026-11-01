@@ -1,0 +1,635 @@
+package com.suipai.core.engine
+
+object LookLibraryHorn {
+    val haojiaomian = Look(
+        id = "haojiaomian",
+        name = "号角",
+        summary = "号角。角口阔，铜声发硬，高光发刺。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val niujiaohaohaojiao = Look(
+        id = "niujiaohaohaojiao",
+        name = "牛角号",
+        summary = "牛角号。角纹暖，油光发黏，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.14f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val luohaohaojiao = Look(
+        id = "luohaohaojiao",
+        name = "螺号",
+        summary = "螺号。螺纹旋，壳光发冷，高光发滑。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = -0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitShadowBlue = 0.08f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val hailuohaohaojiao = Look(
+        id = "hailuohaohaojiao",
+        name = "海螺号",
+        summary = "海螺号。口沿粉，海气发湿，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.06f,
+        temperature = 0.06f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val junhaohaojiao = Look(
+        id = "junhaohaojiao",
+        name = "军号",
+        summary = "军号。号身直，铜黄发闷，高光发硬。",
+        contrast = 0.18f,
+        saturation = 0.06f,
+        temperature = 0.10f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.05f,
+        vignette = 0.14f,
+        fade = 0.02f,
+        defaultIntensity = 0.58f,
+    )
+
+    val tonghaohaojiao = Look(
+        id = "tonghaohaojiao",
+        name = "铜号",
+        summary = "铜号。铜皮亮，锈斑发绿，高光发刺。",
+        contrast = 0.16f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val jiaodihaojiao = Look(
+        id = "jiaodihaojiao",
+        name = "角笛",
+        summary = "角笛。笛身短，角孔发暗，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val xianfenghaohaojiao = Look(
+        id = "xianfenghaohaojiao",
+        name = "先锋号",
+        summary = "先锋号。号声急，赤铜发燥，高光发硬。",
+        contrast = 0.18f,
+        saturation = 0.08f,
+        temperature = 0.12f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.06f,
+        vignette = 0.14f,
+        fade = 0.02f,
+        defaultIntensity = 0.58f,
+    )
+
+    val shoubinghaohaojiao = Look(
+        id = "shoubinghaohaojiao",
+        name = "收兵号",
+        summary = "收兵号。号音沉，暮色发灰，高光发哑。",
+        contrast = 0.14f,
+        saturation = -0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.04f,
+        grain = 0.07f,
+        vignette = 0.16f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val chenhaohaojiao = Look(
+        id = "chenhaohaojiao",
+        name = "晨号",
+        summary = "晨号。晨雾薄，铜光发冷，高光发纸。",
+        contrast = 0.12f,
+        saturation = -0.06f,
+        temperature = 0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.05f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val muhaohaojiao = Look(
+        id = "muhaohaojiao",
+        name = "暮号",
+        summary = "暮号。暮红沉，号影发长，高光发软。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.06f,
+        vignette = 0.16f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val genghaohaojiao = Look(
+        id = "genghaohaojiao",
+        name = "更号",
+        summary = "更号。夜号闷，更楼发暗，高光发哑。",
+        contrast = 0.16f,
+        saturation = -0.08f,
+        temperature = 0.04f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.02f,
+        grain = 0.07f,
+        vignette = 0.18f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val fenghaohaojiao = Look(
+        id = "fenghaohaojiao",
+        name = "烽号",
+        summary = "烽号。烽台高，烟尘发灰，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.08f,
+        vignette = 0.16f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val yinghaohaojiao = Look(
+        id = "yinghaohaojiao",
+        name = "营号",
+        summary = "营号。营门立，号身发旧，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val chenghaohaojiao = Look(
+        id = "chenghaohaojiao",
+        name = "城号",
+        summary = "城号。城头号，垛影发暗，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.02f,
+        temperature = 0.06f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.06f,
+        vignette = 0.16f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val guanhaohaojiao = Look(
+        id = "guanhaohaojiao",
+        name = "关号",
+        summary = "关号。关口号，风沙发干，高光发哑。",
+        contrast = 0.14f,
+        saturation = -0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val liehaohaojiao = Look(
+        id = "liehaohaojiao",
+        name = "猎号",
+        summary = "猎号。林间号，叶影发绿，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val muhaojiaohaojiao = Look(
+        id = "muhaojiaohaojiao",
+        name = "牧号",
+        summary = "牧号。草原号，风色发暖，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.06f,
+        temperature = 0.12f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.06f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val chuanhaohaojiao = Look(
+        id = "chuanhaohaojiao",
+        name = "船号",
+        summary = "船号。船头号，水汽发冷，高光发滑。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = -0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.08f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val wuhaohaojiao = Look(
+        id = "wuhaohaojiao",
+        name = "雾号",
+        summary = "雾号。雾中号，白气发薄，高光发纸。",
+        contrast = 0.08f,
+        saturation = -0.10f,
+        temperature = 0.02f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.12f,
+        softness = 0.10f,
+        defaultIntensity = 0.50f,
+    )
+
+    val haozuihaojiao = Look(
+        id = "haozuihaojiao",
+        name = "号嘴",
+        summary = "号嘴。嘴圈亮，唇印发暖，高光发滑。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.05f,
+        vignette = 0.08f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val haoshenhaojiao = Look(
+        id = "haoshenhaojiao",
+        name = "号身",
+        summary = "号身。管身长，铜皮发旧，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val haokouhaojiao = Look(
+        id = "haokouhaojiao",
+        name = "号口",
+        summary = "号口。喇叭口，边沿发亮，高光发刺。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.04f,
+        vignette = 0.10f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val haoshenghaojiao = Look(
+        id = "haoshenghaojiao",
+        name = "号绳",
+        summary = "号绳。绳辫旧，油色发暖，高光发干。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.09f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val haodaihaojiao = Look(
+        id = "haodaihaojiao",
+        name = "号袋",
+        summary = "号袋。布袋闷，尘色发灰，高光发哑。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val wanhaohaojiao = Look(
+        id = "wanhaohaojiao",
+        name = "弯号",
+        summary = "弯号。号身弯，弧光发软，高光发滑。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val zhihaohaojiao = Look(
+        id = "zhihaohaojiao",
+        name = "直号",
+        summary = "直号。号管直，铜线发硬，高光发干。",
+        contrast = 0.16f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val changhaotonghaojiao = Look(
+        id = "changhaotonghaojiao",
+        name = "长号筒",
+        summary = "长号筒。筒极长，影发细，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.05f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val duanhaohaojiao = Look(
+        id = "duanhaohaojiao",
+        name = "短号",
+        summary = "短号。号身短，音色发亮，高光发燥。",
+        contrast = 0.16f,
+        saturation = 0.06f,
+        temperature = 0.10f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val shuanghaohaojiao = Look(
+        id = "shuanghaohaojiao",
+        name = "双号",
+        summary = "双号。对号齐，铜影发双，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val haoyinhaojiao = Look(
+        id = "haoyinhaojiao",
+        name = "号音",
+        summary = "号音。音波散，空气发颤，高光发软。",
+        contrast = 0.10f,
+        saturation = -0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val haoshengyinhaojiao = Look(
+        id = "haoshengyinhaojiao",
+        name = "号声",
+        summary = "号声。声浪远，尘土发灰，高光发哑。",
+        contrast = 0.12f,
+        saturation = -0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val haochenhaojiao = Look(
+        id = "haochenhaojiao",
+        name = "号尘",
+        summary = "号尘。尘扬起，土黄发闷，高光发干。",
+        contrast = 0.12f,
+        saturation = 0.02f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.09f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val haoyinghaojiao = Look(
+        id = "haoyinghaojiao",
+        name = "号影",
+        summary = "号影。影细长，地面发暗，高光发纸。",
+        contrast = 0.14f,
+        saturation = -0.06f,
+        temperature = 0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.05f,
+        vignette = 0.14f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val haoguanghaojiao = Look(
+        id = "haoguanghaojiao",
+        name = "号光",
+        summary = "号光。铜反光，一点发亮，高光发刺。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.03f,
+        vignette = 0.10f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val haoxiuhaojiao = Look(
+        id = "haoxiuhaojiao",
+        name = "号锈",
+        summary = "号锈。铜绿斑，锈层发闷，高光发哑。",
+        contrast = 0.14f,
+        saturation = -0.04f,
+        temperature = -0.02f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitShadowBlue = 0.06f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val haotonghaojiao = Look(
+        id = "haotonghaojiao",
+        name = "号铜",
+        summary = "号铜。铜质纯，暖黄发亮，高光发滑。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.04f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val haoqihaojiao = Look(
+        id = "haoqihaojiao",
+        name = "号漆",
+        summary = "号漆。漆面亮，朱红发闷，高光发黏。",
+        contrast = 0.16f,
+        saturation = 0.08f,
+        temperature = 0.12f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.04f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val haosuihaojiao = Look(
+        id = "haosuihaojiao",
+        name = "号穗",
+        summary = "号穗。穗丝垂，红缨发软，高光发纸。",
+        contrast = 0.10f,
+        saturation = 0.10f,
+        temperature = 0.12f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.06f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val haokouyanhaojiao = Look(
+        id = "haokouyanhaojiao",
+        name = "号口沿",
+        summary = "号口沿。沿圈厚，边光发硬，高光发燥。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val all: List<Look> = listOf(
+        haojiaomian, niujiaohaohaojiao, luohaohaojiao, hailuohaohaojiao, junhaohaojiao, tonghaohaojiao, jiaodihaojiao, xianfenghaohaojiao, shoubinghaohaojiao, chenhaohaojiao,
+        muhaohaojiao, genghaohaojiao, fenghaohaojiao, yinghaohaojiao, chenghaohaojiao, guanhaohaojiao, liehaohaojiao, muhaojiaohaojiao, chuanhaohaojiao, wuhaohaojiao,
+        haozuihaojiao, haoshenhaojiao, haokouhaojiao, haoshenghaojiao, haodaihaojiao, wanhaohaojiao, zhihaohaojiao, changhaotonghaojiao, duanhaohaojiao, shuanghaohaojiao,
+        haoyinhaojiao, haoshengyinhaojiao, haochenhaojiao, haoyinghaojiao, haoguanghaojiao, haoxiuhaojiao, haotonghaojiao, haoqihaojiao, haosuihaojiao, haokouyanhaojiao,
+    )
+}

@@ -1,0 +1,638 @@
+package com.suipai.core.engine
+
+object LookLibraryCoral {
+    val hongshanhushanhu = Look(
+        id = "hongshanhushanhu",
+        name = "红珊瑚",
+        summary = "红珊瑚。枝红匀，蜡光发暖，高光发黏。",
+        contrast = 0.14f,
+        saturation = 0.12f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val baishanhushanhu = Look(
+        id = "baishanhushanhu",
+        name = "白珊瑚",
+        summary = "白珊瑚。骨白干，孔眼发灰，高光发纸。",
+        contrast = 0.10f,
+        saturation = -0.12f,
+        temperature = 0.04f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.06f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.04f,
+        defaultIntensity = 0.50f,
+    )
+
+    val heishanhushanhu = Look(
+        id = "heishanhushanhu",
+        name = "黑珊瑚",
+        summary = "黑珊瑚。枝黑沉，海影发冷，高光发硬。",
+        contrast = 0.18f,
+        saturation = -0.10f,
+        temperature = -0.04f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.02f,
+        splitShadowBlue = 0.08f,
+        grain = 0.05f,
+        vignette = 0.16f,
+        fade = 0.02f,
+        defaultIntensity = 0.58f,
+    )
+
+    val fenshanhushanhu = Look(
+        id = "fenshanhushanhu",
+        name = "粉珊瑚",
+        summary = "粉珊瑚。粉嫩匀，肤光发软，高光发纸。",
+        contrast = 0.10f,
+        saturation = 0.10f,
+        temperature = 0.10f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.04f,
+        vignette = 0.06f,
+        fade = 0.08f,
+        softness = 0.06f,
+        skinProtect = 0.16f,
+        defaultIntensity = 0.50f,
+    )
+
+    val lanshanhushanhu = Look(
+        id = "lanshanhushanhu",
+        name = "蓝珊瑚",
+        summary = "蓝珊瑚。蓝灰冷，水光发滑，高光发纸。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = -0.08f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.10f,
+        grain = 0.04f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val jinshanhushanhu = Look(
+        id = "jinshanhushanhu",
+        name = "金珊瑚",
+        summary = "金珊瑚。金枝亮，暖光发燥，高光发黏。",
+        contrast = 0.14f,
+        saturation = 0.10f,
+        temperature = 0.16f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.16f,
+        grain = 0.04f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val zhujieshanhu = Look(
+        id = "zhujieshanhu",
+        name = "竹节珊瑚",
+        summary = "竹节珊瑚。节段齐，孔纹发干，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val naoshanhushanhu = Look(
+        id = "naoshanhushanhu",
+        name = "脑珊瑚",
+        summary = "脑珊瑚。脑纹密，沟槽发暗，高光发干。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val lujiaoshanhu = Look(
+        id = "lujiaoshanhu",
+        name = "鹿角珊瑚",
+        summary = "鹿角珊瑚。枝杈疏，影发长，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.08f,
+        temperature = 0.10f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val liushanhushanhu = Look(
+        id = "liushanhushanhu",
+        name = "柳珊瑚",
+        summary = "柳珊瑚。枝细软，海影发冷，高光发纸。",
+        contrast = 0.10f,
+        saturation = 0.02f,
+        temperature = -0.04f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitShadowBlue = 0.08f,
+        grain = 0.05f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val haishanshanhu = Look(
+        id = "haishanshanhu",
+        name = "海扇",
+        summary = "海扇。扇面阔，纹放射，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.06f,
+        temperature = 0.06f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val haibianshanhu = Look(
+        id = "haibianshanhu",
+        name = "海鞭",
+        summary = "海鞭。鞭长直，节密发暗，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shanhujiaoshanhu = Look(
+        id = "shanhujiaoshanhu",
+        name = "珊瑚礁",
+        summary = "珊瑚礁。礁盘厚，水色发冷，高光发滑。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = -0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitShadowBlue = 0.10f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shanhuzhishanhu = Look(
+        id = "shanhuzhishanhu",
+        name = "珊瑚枝",
+        summary = "珊瑚枝。枝杈乱，断面发干，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shanhuheshanhu = Look(
+        id = "shanhuheshanhu",
+        name = "珊瑚核",
+        summary = "珊瑚核。核密实，切面发平，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val shanhufenshanhu = Look(
+        id = "shanhufenshanhu",
+        name = "珊瑚粉",
+        summary = "珊瑚粉。粉粒细，干白发纸，高光发哑。",
+        contrast = 0.10f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.08f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val shanhugushanhu = Look(
+        id = "shanhugushanhu",
+        name = "珊瑚骨",
+        summary = "珊瑚骨。骨孔疏，石灰发灰，高光发干。",
+        contrast = 0.12f,
+        saturation = -0.08f,
+        temperature = 0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val shanhucengshanhu = Look(
+        id = "shanhucengshanhu",
+        name = "珊瑚层",
+        summary = "珊瑚层。层理平，色带发齐，高光发哑。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val shanhuchongshanhu = Look(
+        id = "shanhuchongshanhu",
+        name = "珊瑚虫",
+        summary = "珊瑚虫。息肉软，水膜发亮，高光发滑。",
+        contrast = 0.10f,
+        saturation = 0.06f,
+        temperature = 0.04f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val huoshanhushanhu = Look(
+        id = "huoshanhushanhu",
+        name = "活珊瑚",
+        summary = "活珊瑚。色鲜湿，触手发软，高光发黏。",
+        contrast = 0.12f,
+        saturation = 0.10f,
+        temperature = 0.06f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val sishanhushanhu = Look(
+        id = "sishanhushanhu",
+        name = "死珊瑚",
+        summary = "死珊瑚。白骨干，藻斑发灰，高光发哑。",
+        contrast = 0.12f,
+        saturation = -0.10f,
+        temperature = 0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val shenhaishanhu = Look(
+        id = "shenhaishanhu",
+        name = "深海珊瑚",
+        summary = "深海珊瑚。色冷暗，水压发沉，高光发硬。",
+        contrast = 0.16f,
+        saturation = -0.06f,
+        temperature = -0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitShadowBlue = 0.12f,
+        grain = 0.05f,
+        vignette = 0.18f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val qianhaishanhu = Look(
+        id = "qianhaishanhu",
+        name = "浅海珊瑚",
+        summary = "浅海珊瑚。阳光透，水色发暖，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.08f,
+        temperature = 0.08f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val akashanhu = Look(
+        id = "akashanhu",
+        name = "阿卡珊瑚",
+        summary = "阿卡珊瑚。深红匀，油光发闷，高光发黏。",
+        contrast = 0.16f,
+        saturation = 0.12f,
+        temperature = 0.12f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.04f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val momoshanhu = Look(
+        id = "momoshanhu",
+        name = "莫莫珊瑚",
+        summary = "莫莫珊瑚。粉橙嫩，肤光发软，高光发纸。",
+        contrast = 0.10f,
+        saturation = 0.12f,
+        temperature = 0.12f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.04f,
+        vignette = 0.06f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val shadingshanhu = Look(
+        id = "shadingshanhu",
+        name = "沙丁珊瑚",
+        summary = "沙丁珊瑚。橙红亮，蜡层发暖，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.10f,
+        temperature = 0.14f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shanhupaoshanhu = Look(
+        id = "shanhupaoshanhu",
+        name = "珊瑚抛",
+        summary = "珊瑚抛。抛光亮，镜面发滑，高光发刺。",
+        contrast = 0.16f,
+        saturation = 0.08f,
+        temperature = 0.10f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.02f,
+        vignette = 0.08f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val shanhuqieshanhu = Look(
+        id = "shanhuqieshanhu",
+        name = "珊瑚切",
+        summary = "珊瑚切。切面平，刀口发亮，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.04f,
+        vignette = 0.10f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val shanhuyanshanhu = Look(
+        id = "shanhuyanshanhu",
+        name = "珊瑚眼",
+        summary = "珊瑚眼。孔眼圆，阴影发点，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shanhuxinshanhu = Look(
+        id = "shanhuxinshanhu",
+        name = "珊瑚芯",
+        summary = "珊瑚芯。芯色纯，断面发平，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shanhupishanhu = Look(
+        id = "shanhupishanhu",
+        name = "珊瑚皮",
+        summary = "珊瑚皮。皮壳糙，风化发灰，高光发哑。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.09f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val shanhumainshanhu = Look(
+        id = "shanhumainshanhu",
+        name = "珊瑚脉",
+        summary = "珊瑚脉。脉纹穿，缝隙发暗，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.02f,
+        temperature = 0.06f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.06f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val shanhuyunshanhu = Look(
+        id = "shanhuyunshanhu",
+        name = "珊瑚晕",
+        summary = "珊瑚晕。晕圈散，边缘发软，高光发纸。",
+        contrast = 0.10f,
+        saturation = 0.08f,
+        temperature = 0.10f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val shanhuwenshanhu = Look(
+        id = "shanhuwenshanhu",
+        name = "珊瑚纹",
+        summary = "珊瑚纹。纹路曲，对比发浅，高光发哑。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val shanhushashanhu = Look(
+        id = "shanhushashanhu",
+        name = "珊瑚砂",
+        summary = "珊瑚砂。砂面粗，颗粒发干，高光发纸。",
+        contrast = 0.12f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.10f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val shanhujiangshanhu = Look(
+        id = "shanhujiangshanhu",
+        name = "珊瑚浆",
+        summary = "珊瑚浆。浆色浑，脂层发黏，高光发软。",
+        contrast = 0.10f,
+        saturation = 0.06f,
+        temperature = 0.10f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val shanhudongshanhu = Look(
+        id = "shanhudongshanhu",
+        name = "珊瑚冻",
+        summary = "珊瑚冻。冻地透，水光发冷，高光发滑。",
+        contrast = 0.08f,
+        saturation = 0.04f,
+        temperature = 0.02f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        grain = 0.03f,
+        vignette = 0.06f,
+        fade = 0.10f,
+        softness = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val shanhugaoshanhu = Look(
+        id = "shanhugaoshanhu",
+        name = "珊瑚缟",
+        summary = "珊瑚缟。缟带细，粉白发平，高光发纸。",
+        contrast = 0.10f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val shanhuhuoshanhu = Look(
+        id = "shanhuhuoshanhu",
+        name = "珊瑚火彩",
+        summary = "珊瑚火彩。虹彩薄，火纹发燥，高光发刺。",
+        contrast = 0.16f,
+        saturation = 0.10f,
+        temperature = 0.12f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.04f,
+        vignette = 0.10f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val shanhuhongshanhu = Look(
+        id = "shanhuhongshanhu",
+        name = "珊瑚虹",
+        summary = "珊瑚虹。虹膜散，水色发冷，高光发滑。",
+        contrast = 0.12f,
+        saturation = 0.08f,
+        temperature = -0.02f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.06f,
+        splitHighlightWarm = 0.06f,
+        grain = 0.03f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val all: List<Look> = listOf(
+        hongshanhushanhu, baishanhushanhu, heishanhushanhu, fenshanhushanhu, lanshanhushanhu, jinshanhushanhu, zhujieshanhu, naoshanhushanhu, lujiaoshanhu, liushanhushanhu,
+        haishanshanhu, haibianshanhu, shanhujiaoshanhu, shanhuzhishanhu, shanhuheshanhu, shanhufenshanhu, shanhugushanhu, shanhucengshanhu, shanhuchongshanhu, huoshanhushanhu,
+        sishanhushanhu, shenhaishanhu, qianhaishanhu, akashanhu, momoshanhu, shadingshanhu, shanhupaoshanhu, shanhuqieshanhu, shanhuyanshanhu, shanhuxinshanhu,
+        shanhupishanhu, shanhumainshanhu, shanhuyunshanhu, shanhuwenshanhu, shanhushashanhu, shanhujiangshanhu, shanhudongshanhu, shanhugaoshanhu, shanhuhuoshanhu, shanhuhongshanhu,
+    )
+}

@@ -1,0 +1,635 @@
+package com.suipai.core.engine
+
+object LookLibraryBell {
+    val bianzhongjia = Look(
+        id = "bianzhongjia",
+        name = "编钟架",
+        summary = "编钟架。钟列齐，铜绿发冷，高光发硬。",
+        contrast = 0.16f,
+        saturation = -0.04f,
+        temperature = -0.04f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitShadowBlue = 0.08f,
+        grain = 0.05f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val tezhongqing = Look(
+        id = "tezhongqing",
+        name = "特钟",
+        summary = "特钟。单钟大，口沿发亮，高光发刺。",
+        contrast = 0.18f,
+        saturation = -0.06f,
+        temperature = 0.02f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        grain = 0.05f,
+        vignette = 0.14f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val bozhongqing = Look(
+        id = "bozhongqing",
+        name = "镈钟",
+        summary = "镈钟。钟腹阔，纹饰发暖，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.06f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.06f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val yongzhongqing = Look(
+        id = "yongzhongqing",
+        name = "甬钟",
+        summary = "甬钟。甬柱长，钟身发青，高光发哑。",
+        contrast = 0.14f,
+        saturation = -0.06f,
+        temperature = -0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitShadowBlue = 0.08f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val niuzhongqing = Look(
+        id = "niuzhongqing",
+        name = "钮钟",
+        summary = "钮钟。钮小圆，钟面发平，高光发硬。",
+        contrast = 0.16f,
+        saturation = -0.04f,
+        temperature = 0.02f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val lingzhongqing = Look(
+        id = "lingzhongqing",
+        name = "铃钟",
+        summary = "铃钟。铃口薄，铜声发亮，高光发滑。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.04f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val duozhongqing = Look(
+        id = "duozhongqing",
+        name = "铎钟",
+        summary = "铎钟。舌摆暗，口沿发冷，高光发干。",
+        contrast = 0.16f,
+        saturation = -0.08f,
+        temperature = -0.02f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitShadowBlue = 0.06f,
+        grain = 0.06f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val naozhongqing = Look(
+        id = "naozhongqing",
+        name = "铙钟",
+        summary = "铙钟。口朝上，铜面发亮，高光发燥。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val zhengzhongqing = Look(
+        id = "zhengzhongqing",
+        name = "钲钟",
+        summary = "钲钟。军钲沉，铜灰发闷，高光发硬。",
+        contrast = 0.18f,
+        saturation = -0.08f,
+        temperature = 0.02f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        grain = 0.06f,
+        vignette = 0.16f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val chunyuzhongqing = Look(
+        id = "chunyuzhongqing",
+        name = "錞于",
+        summary = "錞于。虎钮立，腹圆发暗，高光发哑。",
+        contrast = 0.14f,
+        saturation = -0.04f,
+        temperature = 0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.14f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val goudiaozhongqing = Look(
+        id = "goudiaozhongqing",
+        name = "句鑃",
+        summary = "句鑃。柄长斜，口沿发青，高光发干。",
+        contrast = 0.14f,
+        saturation = -0.06f,
+        temperature = -0.02f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitShadowBlue = 0.06f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val bianqingjia = Look(
+        id = "bianqingjia",
+        name = "编磬架",
+        summary = "编磬架。石片列，冷白发硬，高光发纸。",
+        contrast = 0.16f,
+        saturation = -0.12f,
+        temperature = -0.04f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitShadowBlue = 0.08f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val teqingzhongqing = Look(
+        id = "teqingzhongqing",
+        name = "特磬",
+        summary = "特磬。单石大，击点发亮，高光发刺。",
+        contrast = 0.18f,
+        saturation = -0.14f,
+        temperature = -0.02f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        grain = 0.04f,
+        vignette = 0.14f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val shiqingzhongqing = Look(
+        id = "shiqingzhongqing",
+        name = "石磬",
+        summary = "石磬。石灰冷，棱角发干，高光发哑。",
+        contrast = 0.14f,
+        saturation = -0.12f,
+        temperature = 0.02f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val yuqingzhongqing = Look(
+        id = "yuqingzhongqing",
+        name = "玉磬",
+        summary = "玉磬。玉质透，冷绿发软，高光发滑。",
+        contrast = 0.10f,
+        saturation = -0.04f,
+        temperature = -0.04f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitShadowBlue = 0.08f,
+        grain = 0.03f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val gezhongqing = Look(
+        id = "gezhongqing",
+        name = "歌钟",
+        summary = "歌钟。乐钟暖，铜面发亮，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val jinzhongqing = Look(
+        id = "jinzhongqing",
+        name = "金钟",
+        summary = "金钟。钟金亮，暖光发黏，高光发燥。",
+        contrast = 0.14f,
+        saturation = 0.08f,
+        temperature = 0.14f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.14f,
+        grain = 0.04f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val chaozhongqing = Look(
+        id = "chaozhongqing",
+        name = "朝钟",
+        summary = "朝钟。殿钟沉，铜锈发绿，高光发哑。",
+        contrast = 0.16f,
+        saturation = -0.04f,
+        temperature = -0.02f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitShadowBlue = 0.06f,
+        grain = 0.07f,
+        vignette = 0.16f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val siyuanzhongqing = Look(
+        id = "siyuanzhongqing",
+        name = "寺院钟",
+        summary = "寺院钟。钟楼暗，铜声发远，高光发干。",
+        contrast = 0.16f,
+        saturation = -0.08f,
+        temperature = 0.04f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.07f,
+        vignette = 0.18f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val jingzhongqing = Look(
+        id = "jingzhongqing",
+        name = "警钟",
+        summary = "警钟。钟口急，铜面发硬，高光发刺。",
+        contrast = 0.20f,
+        saturation = -0.06f,
+        temperature = 0.02f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.00f,
+        grain = 0.06f,
+        vignette = 0.16f,
+        fade = 0.02f,
+        defaultIntensity = 0.58f,
+    )
+
+    val fenglingzhongqing = Look(
+        id = "fenglingzhongqing",
+        name = "风铃钟",
+        summary = "风铃钟。铃薄亮，风影发冷，高光发纸。",
+        contrast = 0.10f,
+        saturation = -0.06f,
+        temperature = -0.06f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitShadowBlue = 0.10f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val malingzhongqing = Look(
+        id = "malingzhongqing",
+        name = "马铃",
+        summary = "马铃。铃圆小，铜黄发暖，高光发滑。",
+        contrast = 0.12f,
+        saturation = 0.06f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.05f,
+        vignette = 0.08f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val tuolingzhongqing = Look(
+        id = "tuolingzhongqing",
+        name = "驼铃",
+        summary = "驼铃。铃大闷，沙色发干，高光发哑。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = 0.14f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val chelingzhongqing = Look(
+        id = "chelingzhongqing",
+        name = "车铃",
+        summary = "车铃。铃脆亮，铜皮发冷，高光发硬。",
+        contrast = 0.16f,
+        saturation = -0.02f,
+        temperature = 0.02f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val duolingzhongqing = Look(
+        id = "duolingzhongqing",
+        name = "铎铃",
+        summary = "铎铃。舌击口，铜声发远，高光发干。",
+        contrast = 0.14f,
+        saturation = -0.04f,
+        temperature = 0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val penglingzhongqing = Look(
+        id = "penglingzhongqing",
+        name = "碰铃",
+        summary = "碰铃。对铃圆，铜亮发滑，高光发点。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val yunluojia = Look(
+        id = "yunluojia",
+        name = "云锣架",
+        summary = "云锣架。锣片密，铜黄发闪，高光发燥。",
+        contrast = 0.16f,
+        saturation = 0.06f,
+        temperature = 0.08f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val shimianluo = Look(
+        id = "shimianluo",
+        name = "十面锣",
+        summary = "十面锣。锣列十，音色发杂，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val suluozhongqing = Look(
+        id = "suluozhongqing",
+        name = "苏锣",
+        summary = "苏锣。锣心凹，铜面发暖，高光发滑。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val jingluozhongqing = Look(
+        id = "jingluozhongqing",
+        name = "京锣",
+        summary = "京锣。锣大声，铜黄发闷，高光发硬。",
+        contrast = 0.18f,
+        saturation = 0.06f,
+        temperature = 0.08f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.02f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.06f,
+        vignette = 0.14f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val xiaoluozhongqing = Look(
+        id = "xiaoluozhongqing",
+        name = "小锣",
+        summary = "小锣。锣心亮，边沿发薄，高光发刺。",
+        contrast = 0.16f,
+        saturation = 0.02f,
+        temperature = 0.06f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.04f,
+        vignette = 0.10f,
+        fade = 0.02f,
+        defaultIntensity = 0.54f,
+    )
+
+    val daluozhongqing = Look(
+        id = "daluozhongqing",
+        name = "大锣",
+        summary = "大锣。锣面阔，铜声发沉，高光发哑。",
+        contrast = 0.16f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.06f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val mangluozhongqing = Look(
+        id = "mangluozhongqing",
+        name = "铓锣",
+        summary = "铓锣。脐凸圆，铜绿发冷，高光发滑。",
+        contrast = 0.14f,
+        saturation = -0.02f,
+        temperature = -0.02f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitShadowBlue = 0.06f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val ruluozhongqing = Look(
+        id = "ruluozhongqing",
+        name = "乳锣",
+        summary = "乳锣。乳突亮，锣面发暖，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val baoluozhongqing = Look(
+        id = "baoluozhongqing",
+        name = "包锣",
+        summary = "包锣。锣心包，音色发闷，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val tangluozhongqing = Look(
+        id = "tangluozhongqing",
+        name = "汤锣",
+        summary = "汤锣。锣小脆，铜皮发亮，高光发燥。",
+        contrast = 0.16f,
+        saturation = 0.06f,
+        temperature = 0.10f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.04f,
+        vignette = 0.10f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val jiaozizhongqing = Look(
+        id = "jiaozizhongqing",
+        name = "铰子",
+        summary = "铰子。小钹对，铜边发薄，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.02f,
+        temperature = 0.04f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.02f,
+        defaultIntensity = 0.54f,
+    )
+
+    val bopianzhongqing = Look(
+        id = "bopianzhongqing",
+        name = "钹片",
+        summary = "钹片。片薄闪，铜光发冷，高光发刺。",
+        contrast = 0.18f,
+        saturation = -0.02f,
+        temperature = -0.02f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        splitShadowBlue = 0.06f,
+        grain = 0.04f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val naobozhongqing = Look(
+        id = "naobozhongqing",
+        name = "铙钹",
+        summary = "铙钹。钹心凹，铜声发炸，高光发硬。",
+        contrast = 0.18f,
+        saturation = 0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        grain = 0.05f,
+        vignette = 0.14f,
+        fade = 0.02f,
+        defaultIntensity = 0.58f,
+    )
+
+    val xingzizhongqing = Look(
+        id = "xingzizhongqing",
+        name = "星子",
+        summary = "星子。小铃对，铜点发亮，高光发滑。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val all: List<Look> = listOf(
+        bianzhongjia, tezhongqing, bozhongqing, yongzhongqing, niuzhongqing, lingzhongqing, duozhongqing, naozhongqing, zhengzhongqing, chunyuzhongqing,
+        goudiaozhongqing, bianqingjia, teqingzhongqing, shiqingzhongqing, yuqingzhongqing, gezhongqing, jinzhongqing, chaozhongqing, siyuanzhongqing, jingzhongqing,
+        fenglingzhongqing, malingzhongqing, tuolingzhongqing, chelingzhongqing, duolingzhongqing, penglingzhongqing, yunluojia, shimianluo, suluozhongqing, jingluozhongqing,
+        xiaoluozhongqing, daluozhongqing, mangluozhongqing, ruluozhongqing, baoluozhongqing, tangluozhongqing, jiaozizhongqing, bopianzhongqing, naobozhongqing, xingzizhongqing,
+    )
+}

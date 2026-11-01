@@ -1,0 +1,636 @@
+package com.suipai.core.engine
+
+object LookLibraryAgate {
+    val nanhongmanao = Look(
+        id = "nanhongmanao",
+        name = "南红玛瑙",
+        summary = "南红玛瑙。柿红匀，蜡光发暖，高光发黏。",
+        contrast = 0.14f,
+        saturation = 0.10f,
+        temperature = 0.14f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.14f,
+        grain = 0.04f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val chansimanao = Look(
+        id = "chansimanao",
+        name = "缠丝玛瑙",
+        summary = "缠丝玛瑙。丝带旋，层纹发密，高光发滑。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.04f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shuicaomanao = Look(
+        id = "shuicaomanao",
+        name = "水草玛瑙",
+        summary = "水草玛瑙。草纹绿，底子发透，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = -0.02f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.06f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val taixianmanao = Look(
+        id = "taixianmanao",
+        name = "苔藓玛瑙",
+        summary = "苔藓玛瑙。苔点密，绿影发闷，高光发哑。",
+        contrast = 0.12f,
+        saturation = 0.02f,
+        temperature = -0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.08f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val huomanao = Look(
+        id = "huomanao",
+        name = "火玛瑙",
+        summary = "火玛瑙。虹彩闪，火纹发燥，高光发刺。",
+        contrast = 0.16f,
+        saturation = 0.10f,
+        temperature = 0.12f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.04f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val bingtangmanao = Look(
+        id = "bingtangmanao",
+        name = "冰糖玛瑙",
+        summary = "冰糖玛瑙。冻白透，糖光发纸，高光发滑。",
+        contrast = 0.10f,
+        saturation = -0.08f,
+        temperature = 0.04f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.03f,
+        vignette = 0.06f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val zimanao = Look(
+        id = "zimanao",
+        name = "紫玛瑙",
+        summary = "紫玛瑙。紫气沉，蜡层发闷，高光发软。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.02f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.04f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val lanmanao = Look(
+        id = "lanmanao",
+        name = "蓝玛瑙",
+        summary = "蓝玛瑙。蓝灰冷，水光发滑，高光发纸。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = -0.08f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.10f,
+        grain = 0.04f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val lvmanao = Look(
+        id = "lvmanao",
+        name = "绿玛瑙",
+        summary = "绿玛瑙。葱心绿，冻底发冷，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = -0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.06f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val huangmanao = Look(
+        id = "huangmanao",
+        name = "黄玛瑙",
+        summary = "黄玛瑙。蜜黄匀，蜡光发暖，高光发黏。",
+        contrast = 0.12f,
+        saturation = 0.08f,
+        temperature = 0.14f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val baimanao = Look(
+        id = "baimanao",
+        name = "白玛瑙",
+        summary = "白玛瑙。瓷白净，脂光发薄，高光发纸。",
+        contrast = 0.08f,
+        saturation = -0.12f,
+        temperature = 0.02f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        grain = 0.03f,
+        vignette = 0.06f,
+        fade = 0.10f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val heimanao = Look(
+        id = "heimanao",
+        name = "黑玛瑙",
+        summary = "黑玛瑙。墨底沉，边光发硬，高光发刺。",
+        contrast = 0.18f,
+        saturation = -0.10f,
+        temperature = 0.00f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        grain = 0.04f,
+        vignette = 0.16f,
+        fade = 0.02f,
+        defaultIntensity = 0.58f,
+    )
+
+    val honggaomanao = Look(
+        id = "honggaomanao",
+        name = "红缟玛瑙",
+        summary = "红缟玛瑙。红白间，缟带发齐，高光发干。",
+        contrast = 0.16f,
+        saturation = 0.08f,
+        temperature = 0.10f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val gaomanao = Look(
+        id = "gaomanao",
+        name = "缟玛瑙",
+        summary = "缟玛瑙。灰白层，条纹发平，高光发哑。",
+        contrast = 0.12f,
+        saturation = -0.10f,
+        temperature = 0.02f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val chengkoumanao = Look(
+        id = "chengkoumanao",
+        name = "城口玛瑙",
+        summary = "城口玛瑙。料色杂，皮壳发干，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val zhanguohongmanao = Look(
+        id = "zhanguohongmanao",
+        name = "战国红",
+        summary = "战国红。红黄绞，油光发燥，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.12f,
+        temperature = 0.14f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.14f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val beihongmanao = Look(
+        id = "beihongmanao",
+        name = "北红玛瑙",
+        summary = "北红玛瑙。北料冷，红中发灰，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val jinhongmanao = Look(
+        id = "jinhongmanao",
+        name = "锦红玛瑙",
+        summary = "锦红玛瑙。锦纹密，朱红发闷，高光发软。",
+        contrast = 0.14f,
+        saturation = 0.10f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.04f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shihongmanao = Look(
+        id = "shihongmanao",
+        name = "柿红玛瑙",
+        summary = "柿红玛瑙。柿色透，果光发暖，高光发黏。",
+        contrast = 0.12f,
+        saturation = 0.10f,
+        temperature = 0.14f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val yingtaohongmanao = Look(
+        id = "yingtaohongmanao",
+        name = "樱桃红玛瑙",
+        summary = "樱桃红玛瑙。果红嫩，水光发软，高光发纸。",
+        contrast = 0.10f,
+        saturation = 0.12f,
+        temperature = 0.10f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.03f,
+        vignette = 0.06f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val yangganmanao = Look(
+        id = "yangganmanao",
+        name = "羊肝玛瑙",
+        summary = "羊肝玛瑙。褐红沉，油光发闷，高光发哑。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val guibeimanao = Look(
+        id = "guibeimanao",
+        name = "龟背玛瑙",
+        summary = "龟背玛瑙。甲纹裂，块面发干，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val zhenzhumanao = Look(
+        id = "zhenzhumanao",
+        name = "珍珠玛瑙",
+        summary = "珍珠玛瑙。珠点密，乳光发软，高光发滑。",
+        contrast = 0.10f,
+        saturation = -0.02f,
+        temperature = 0.06f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val shanhumanano = Look(
+        id = "shanhumanano",
+        name = "珊瑚玛瑙",
+        summary = "珊瑚玛瑙。枝孔疏，粉红发暖，高光发干。",
+        contrast = 0.12f,
+        saturation = 0.08f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val fengjingmanao = Look(
+        id = "fengjingmanao",
+        name = "风景玛瑙",
+        summary = "风景玛瑙。山水纹，远近发灰，高光发软。",
+        contrast = 0.12f,
+        saturation = -0.02f,
+        temperature = 0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val haiyangmanao = Look(
+        id = "haiyangmanao",
+        name = "海洋玛瑙",
+        summary = "海洋玛瑙。浪纹蓝，水气发冷，高光发滑。",
+        contrast = 0.12f,
+        saturation = 0.02f,
+        temperature = -0.06f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.10f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val manaoyan = Look(
+        id = "manaoyan",
+        name = "玛瑙眼",
+        summary = "玛瑙眼。眼圈晕，瞳心发深，高光发点。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.04f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val manaoxin = Look(
+        id = "manaoxin",
+        name = "玛瑙芯",
+        summary = "玛瑙芯。芯色纯，切面发平，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val manaopi = Look(
+        id = "manaopi",
+        name = "玛瑙皮",
+        summary = "玛瑙皮。皮壳糙，风化发灰，高光发哑。",
+        contrast = 0.12f,
+        saturation = -0.06f,
+        temperature = 0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.09f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val manaojin = Look(
+        id = "manaojin",
+        name = "玛瑙筋",
+        summary = "玛瑙筋。筋纹凸，阴影发细，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.02f,
+        temperature = 0.06f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val manaogao = Look(
+        id = "manaogao",
+        name = "玛瑙缟",
+        summary = "玛瑙缟。缟带细，灰白发平，高光发纸。",
+        contrast = 0.10f,
+        saturation = -0.08f,
+        temperature = 0.02f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val manaodong = Look(
+        id = "manaodong",
+        name = "玛瑙冻",
+        summary = "玛瑙冻。冻地透，水光发冷，高光发滑。",
+        contrast = 0.08f,
+        saturation = -0.06f,
+        temperature = -0.04f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        splitShadowBlue = 0.08f,
+        grain = 0.03f,
+        vignette = 0.06f,
+        fade = 0.10f,
+        softness = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val manaojiang = Look(
+        id = "manaojiang",
+        name = "玛瑙浆",
+        summary = "玛瑙浆。浆色浑，脂层发黏，高光发软。",
+        contrast = 0.10f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val manaosha = Look(
+        id = "manaosha",
+        name = "玛瑙砂",
+        summary = "玛瑙砂。砂面粗，颗粒发干，高光发哑。",
+        contrast = 0.14f,
+        saturation = -0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.10f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val manaomai = Look(
+        id = "manaomai",
+        name = "玛瑙脉",
+        summary = "玛瑙脉。脉纹穿，石缝发暗，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.02f,
+        temperature = 0.04f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.06f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val manaoceng = Look(
+        id = "manaoceng",
+        name = "玛瑙层",
+        summary = "玛瑙层。层理平，色带发齐，高光发干。",
+        contrast = 0.12f,
+        saturation = 0.02f,
+        temperature = 0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val manaoyun = Look(
+        id = "manaoyun",
+        name = "玛瑙晕",
+        summary = "玛瑙晕。晕圈散，边缘发软，高光发纸。",
+        contrast = 0.10f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val manaowen = Look(
+        id = "manaowen",
+        name = "玛瑙纹",
+        summary = "玛瑙纹。纹路曲，对比发浅，高光发哑。",
+        contrast = 0.12f,
+        saturation = 0.02f,
+        temperature = 0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val manaoqie = Look(
+        id = "manaoqie",
+        name = "玛瑙切",
+        summary = "玛瑙切。切面平，刀口发亮，高光发硬。",
+        contrast = 0.16f,
+        saturation = -0.04f,
+        temperature = 0.04f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.04f,
+        vignette = 0.10f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val manaopao = Look(
+        id = "manaopao",
+        name = "玛瑙抛",
+        summary = "玛瑙抛。抛光亮，镜面发滑，高光发刺。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.02f,
+        vignette = 0.08f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val all: List<Look> = listOf(
+        nanhongmanao, chansimanao, shuicaomanao, taixianmanao, huomanao, bingtangmanao, zimanao, lanmanao, lvmanao, huangmanao,
+        baimanao, heimanao, honggaomanao, gaomanao, chengkoumanao, zhanguohongmanao, beihongmanao, jinhongmanao, shihongmanao, yingtaohongmanao,
+        yangganmanao, guibeimanao, zhenzhumanao, shanhumanano, fengjingmanao, haiyangmanao, manaoyan, manaoxin, manaopi, manaojin,
+        manaogao, manaodong, manaojiang, manaosha, manaomai, manaoceng, manaoyun, manaowen, manaoqie, manaopao,
+    )
+}

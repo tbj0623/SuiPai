@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  小组件的外框：暗房底 + 1dp 片基边缘，近直角 2dp —— 与 App 内的
+  `SuiPaiSheet.frame` / `outline` 是同一套语言（暗房 #101413 / 面板 #161B1A / 框线 #2A312E）。
+
+  为什么不用 MaterialCardView：RemoteViews 不认 Material 组件，
+  硬塞进去在宿主里会渲染成普通 FrameLayout（角标、阴影全丢），而 logcat 里一声不响。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/widget_panel" />
+    <corners android:radius="2dp" />
+    <stroke
+        android:width="1dp"
+        android:color="@color/widget_outline" />
+</shape>

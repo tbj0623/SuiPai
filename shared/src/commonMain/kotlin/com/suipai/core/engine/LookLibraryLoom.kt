@@ -1,0 +1,635 @@
+package com.suipai.core.engine
+
+object LookLibraryLoom {
+    val yaojijizhi = Look(
+        id = "yaojijizhi",
+        name = "腰机",
+        summary = "腰机。经线紧，布面发平，高光发干。",
+        contrast = 0.14f,
+        saturation = -0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val tabanjizhi = Look(
+        id = "tabanjizhi",
+        name = "踏板机",
+        summary = "踏板机。木架暖，踏板发旧，高光发哑。",
+        contrast = 0.12f,
+        saturation = 0.02f,
+        temperature = 0.10f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val tihuajizhi = Look(
+        id = "tihuajizhi",
+        name = "提花机",
+        summary = "提花机。花楼高，纹线发密，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val hualoujizhi = Look(
+        id = "hualoujizhi",
+        name = "花楼机",
+        summary = "花楼机。楼影沉，束综发暗，高光发干。",
+        contrast = 0.16f,
+        saturation = -0.02f,
+        temperature = 0.04f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.07f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val zongkuangjizhi = Look(
+        id = "zongkuangjizhi",
+        name = "综框",
+        summary = "综框。框木灰，综丝发冷，高光发纸。",
+        contrast = 0.12f,
+        saturation = -0.08f,
+        temperature = -0.02f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.06f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val kouchijizhi = Look(
+        id = "kouchijizhi",
+        name = "筘齿",
+        summary = "筘齿。齿密亮，金属发冷，高光发刺。",
+        contrast = 0.18f,
+        saturation = -0.10f,
+        temperature = -0.04f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        splitShadowBlue = 0.08f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val suodaojizhi = Look(
+        id = "suodaojizhi",
+        name = "梭道",
+        summary = "梭道。槽木滑，油光发暖，高光发黏。",
+        contrast = 0.10f,
+        saturation = 0.04f,
+        temperature = 0.12f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.06f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        defaultIntensity = 0.52f,
+    )
+
+    val weiguanjizhi = Look(
+        id = "weiguanjizhi",
+        name = "纬管",
+        summary = "纬管。管木旧，纱线发毛，高光发干。",
+        contrast = 0.12f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.09f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val jingzhoujizhi = Look(
+        id = "jingzhoujizhi",
+        name = "经轴",
+        summary = "经轴。轴粗沉，经面发平，高光发哑。",
+        contrast = 0.14f,
+        saturation = -0.06f,
+        temperature = 0.04f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val juanbunjizhi = Look(
+        id = "juanbunjizhi",
+        name = "卷布辊",
+        summary = "卷布辊。布卷厚，边沿发暖，高光发软。",
+        contrast = 0.10f,
+        saturation = 0.06f,
+        temperature = 0.10f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.06f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val tousuojizhi = Look(
+        id = "tousuojizhi",
+        name = "投梭",
+        summary = "投梭。梭尖亮，木身发暖，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val daweijizhi = Look(
+        id = "daweijizhi",
+        name = "打纬",
+        summary = "打纬。筘打紧，纬线发密，高光发干。",
+        contrast = 0.16f,
+        saturation = -0.02f,
+        temperature = 0.06f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val kaikoujizhi = Look(
+        id = "kaikoujizhi",
+        name = "开口梭",
+        summary = "开口梭。经层分，缝隙发暗，高光发纸。",
+        contrast = 0.14f,
+        saturation = -0.06f,
+        temperature = 0.02f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val juanqujizhi = Look(
+        id = "juanqujizhi",
+        name = "卷取辊",
+        summary = "卷取辊。布面紧，辊皮发旧，高光发哑。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val songjingjizhi = Look(
+        id = "songjingjizhi",
+        name = "送经轴",
+        summary = "送经轴。经松匀，轴心发暗，高光发干。",
+        contrast = 0.12f,
+        saturation = -0.08f,
+        temperature = 0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val wenzhenjizhi = Look(
+        id = "wenzhenjizhi",
+        name = "纹针板",
+        summary = "纹针板。针孔密，板面发灰，高光发硬。",
+        contrast = 0.18f,
+        saturation = -0.10f,
+        temperature = -0.02f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        grain = 0.06f,
+        vignette = 0.14f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val huabenjizhi = Look(
+        id = "huabenjizhi",
+        name = "花本线",
+        summary = "花本线。线束乱，彩头发闷，高光发软。",
+        contrast = 0.10f,
+        saturation = 0.08f,
+        temperature = 0.08f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.07f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val shuzongjizhi = Look(
+        id = "shuzongjizhi",
+        name = "束综",
+        summary = "束综。综绳垂，影发长，高光发哑。",
+        contrast = 0.14f,
+        saturation = -0.06f,
+        temperature = 0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.14f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val suzhimjizhi = Look(
+        id = "suzhimjizhi",
+        name = "素织面",
+        summary = "素织面。素地平，白光发纸，高光发薄。",
+        contrast = 0.10f,
+        saturation = -0.12f,
+        temperature = 0.02f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.04f,
+        vignette = 0.06f,
+        fade = 0.08f,
+        softness = 0.04f,
+        defaultIntensity = 0.50f,
+    )
+
+    val wenzhimjizhi = Look(
+        id = "wenzhimjizhi",
+        name = "纹织面",
+        summary = "纹织面。花地对照，纹路发深，高光发软。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.06f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val pingwenjizhi = Look(
+        id = "pingwenjizhi",
+        name = "平纹布",
+        summary = "平纹布。交错匀，布面发平，高光发干。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = 0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.08f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val xiewenjizhi = Look(
+        id = "xiewenjizhi",
+        name = "斜纹布",
+        summary = "斜纹布。斜路显，阴影发斜，高光发哑。",
+        contrast = 0.14f,
+        saturation = -0.02f,
+        temperature = 0.06f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val duanwenjizhi = Look(
+        id = "duanwenjizhi",
+        name = "缎纹面",
+        summary = "缎纹面。浮线长，缎光发滑，高光发黏。",
+        contrast = 0.10f,
+        saturation = 0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shaluojizhi = Look(
+        id = "shaluojizhi",
+        name = "纱罗眼",
+        summary = "纱罗眼。孔疏透，纱影发冷，高光发纸。",
+        contrast = 0.08f,
+        saturation = -0.10f,
+        temperature = -0.04f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        splitShadowBlue = 0.08f,
+        grain = 0.05f,
+        vignette = 0.06f,
+        fade = 0.10f,
+        softness = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val zhangduanjizhi = Look(
+        id = "zhangduanjizhi",
+        name = "漳缎面",
+        summary = "漳缎面。绒地沉，缎条发亮，高光发软。",
+        contrast = 0.16f,
+        saturation = 0.08f,
+        temperature = 0.10f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val zhuanghuajizhi = Look(
+        id = "zhuanghuajizhi",
+        name = "妆花面",
+        summary = "妆花面。彩纬厚，花头发暖，高光发燥。",
+        contrast = 0.14f,
+        saturation = 0.12f,
+        temperature = 0.12f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.14f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val zhuangjinjizhi = Look(
+        id = "zhuangjinjizhi",
+        name = "壮锦框",
+        summary = "壮锦框。几何硬，色块发闷，高光发干。",
+        contrast = 0.16f,
+        saturation = 0.10f,
+        temperature = 0.08f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val lijinjizhi = Look(
+        id = "lijinjizhi",
+        name = "黎锦梭",
+        summary = "黎锦梭。棉线粗，棕红发暖，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.14f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.09f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val daijinjizhi = Look(
+        id = "daijinjizhi",
+        name = "傣锦纬",
+        summary = "傣锦纬。纬彩亮，绿底发湿，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.10f,
+        temperature = 0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.06f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val miaojinjizhi = Look(
+        id = "miaojinjizhi",
+        name = "苗锦线",
+        summary = "苗锦线。线色杂，靛蓝发冷，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = -0.04f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitShadowBlue = 0.10f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val tujiazjizhi = Look(
+        id = "tujiazjizhi",
+        name = "土家织",
+        summary = "土家织。西兰卡普暖，纹块发厚，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.08f,
+        temperature = 0.12f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val dongjinjizhi = Look(
+        id = "dongjinjizhi",
+        name = "侗锦梭",
+        summary = "侗锦梭。白底净，几何发冷，高光发纸。",
+        contrast = 0.12f,
+        saturation = -0.02f,
+        temperature = -0.02f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.06f,
+        grain = 0.06f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val yaojinjizhi = Look(
+        id = "yaojinjizhi",
+        name = "瑶锦纬",
+        summary = "瑶锦纬。红纬密，边纹发暖，高光发燥。",
+        contrast = 0.16f,
+        saturation = 0.12f,
+        temperature = 0.14f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.14f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val zangtanijizhi = Look(
+        id = "zangtanijizhi",
+        name = "藏毯经",
+        summary = "藏毯经。毛经粗，色块发沉，高光发干。",
+        contrast = 0.16f,
+        saturation = 0.06f,
+        temperature = 0.08f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.02f,
+        grain = 0.10f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val ditanweijizhi = Look(
+        id = "ditanweijizhi",
+        name = "地毯纬",
+        summary = "地毯纬。纬毛厚，绒面发闷，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.09f,
+        vignette = 0.12f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val kemaomjizhi = Look(
+        id = "kemaomjizhi",
+        name = "缂毛面",
+        summary = "缂毛面。断纬齐，毛茬发干，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.10f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val rongjingjizhi = Look(
+        id = "rongjingjizhi",
+        name = "绒经",
+        summary = "绒经。经绒立，阴影发深，高光发软。",
+        contrast = 0.14f,
+        saturation = -0.02f,
+        temperature = 0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        softness = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val qirongjizhi = Look(
+        id = "qirongjizhi",
+        name = "起绒筘",
+        summary = "起绒筘。筘起绒，绒头发乱，高光发干。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = 0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.09f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val jiaozongjizhi = Look(
+        id = "jiaozongjizhi",
+        name = "绞综",
+        summary = "绞综。绞口细，纱眼发冷，高光发纸。",
+        contrast = 0.10f,
+        saturation = -0.08f,
+        temperature = -0.04f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitShadowBlue = 0.08f,
+        grain = 0.05f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val tongjingjizhi = Look(
+        id = "tongjingjizhi",
+        name = "通经断纬",
+        summary = "通经断纬。经通不断，接口发暗，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.06f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val all: List<Look> = listOf(
+        yaojijizhi, tabanjizhi, tihuajizhi, hualoujizhi, zongkuangjizhi, kouchijizhi, suodaojizhi, weiguanjizhi, jingzhoujizhi, juanbunjizhi,
+        tousuojizhi, daweijizhi, kaikoujizhi, juanqujizhi, songjingjizhi, wenzhenjizhi, huabenjizhi, shuzongjizhi, suzhimjizhi, wenzhimjizhi,
+        pingwenjizhi, xiewenjizhi, duanwenjizhi, shaluojizhi, zhangduanjizhi, zhuanghuajizhi, zhuangjinjizhi, lijinjizhi, daijinjizhi, miaojinjizhi,
+        tujiazjizhi, dongjinjizhi, yaojinjizhi, zangtanijizhi, ditanweijizhi, kemaomjizhi, rongjingjizhi, qirongjizhi, jiaozongjizhi, tongjingjizhi,
+    )
+}

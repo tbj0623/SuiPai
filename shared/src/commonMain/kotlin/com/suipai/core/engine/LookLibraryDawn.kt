@@ -1,0 +1,455 @@
+package com.suipai.core.engine
+
+object LookLibraryDawn {
+    val lanbai = Look(
+        id = "lanbai",
+        name = "岚白",
+        summary = "岚白。山岚高调白，高光发薄，饱和极低。",
+        contrast = 0.04f,
+        saturation = -0.16f,
+        temperature = -0.02f,
+        highlightRoll = 0.26f,
+        shadowLift = 0.16f,
+        grain = 0.03f,
+        vignette = 0.03f,
+        fade = 0.12f,
+        defaultIntensity = 0.46f,
+    )
+
+    val lanhui = Look(
+        id = "lanhui",
+        name = "岚灰",
+        summary = "岚灰。山岚冷灰，高光发雾，对比低。",
+        contrast = 0.06f,
+        saturation = -0.18f,
+        temperature = -0.04f,
+        highlightRoll = 0.24f,
+        shadowLift = 0.14f,
+        grain = 0.05f,
+        vignette = 0.06f,
+        fade = 0.10f,
+        defaultIntensity = 0.48f,
+    )
+
+    val lanlan = Look(
+        id = "lanlan",
+        name = "岚蓝",
+        summary = "岚蓝。浅冷蓝雾，高光发薄，阴影透。",
+        contrast = 0.06f,
+        saturation = -0.10f,
+        temperature = -0.10f,
+        highlightRoll = 0.24f,
+        shadowLift = 0.14f,
+        splitShadowBlue = 0.12f,
+        grain = 0.04f,
+        vignette = 0.06f,
+        fade = 0.10f,
+        defaultIntensity = 0.48f,
+    )
+
+    val mulanse = Look(
+        id = "mulanse",
+        name = "暮蓝",
+        summary = "暮蓝。晚蓝沉，阴影发青，高光少。",
+        contrast = 0.16f,
+        saturation = -0.08f,
+        temperature = -0.12f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.02f,
+        splitShadowBlue = 0.16f,
+        grain = 0.07f,
+        vignette = 0.16f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val mubai = Look(
+        id = "mubai",
+        name = "暮白",
+        summary = "暮白。晚白微暖，高光发旧，对比克制。",
+        contrast = 0.08f,
+        saturation = -0.14f,
+        temperature = 0.04f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.10f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.10f,
+        defaultIntensity = 0.48f,
+    )
+
+    val xiaobai = Look(
+        id = "xiaobai",
+        name = "晓白",
+        summary = "晓白。晨白微冷，高调，高光发薄。",
+        contrast = 0.04f,
+        saturation = -0.14f,
+        temperature = -0.02f,
+        highlightRoll = 0.26f,
+        shadowLift = 0.16f,
+        grain = 0.03f,
+        vignette = 0.03f,
+        fade = 0.12f,
+        defaultIntensity = 0.46f,
+    )
+
+    val xiaoqing = Look(
+        id = "xiaoqing",
+        name = "晓青",
+        summary = "晓青。晨青浅，高光发新，阴影透。",
+        contrast = 0.06f,
+        saturation = -0.08f,
+        temperature = -0.08f,
+        highlightRoll = 0.24f,
+        shadowLift = 0.14f,
+        splitShadowBlue = 0.10f,
+        grain = 0.04f,
+        vignette = 0.05f,
+        fade = 0.08f,
+        defaultIntensity = 0.48f,
+    )
+
+    val xiaolan = Look(
+        id = "xiaolan",
+        name = "晓蓝",
+        summary = "晓蓝。晨蓝干净，高光发薄，饱和低。",
+        contrast = 0.08f,
+        saturation = -0.10f,
+        temperature = -0.10f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        splitShadowBlue = 0.12f,
+        grain = 0.04f,
+        vignette = 0.06f,
+        fade = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val hunlan = Look(
+        id = "hunlan",
+        name = "昏蓝",
+        summary = "昏蓝。暮蓝闷，阴影沉，高光发旧。",
+        contrast = 0.14f,
+        saturation = -0.10f,
+        temperature = -0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.04f,
+        splitShadowBlue = 0.12f,
+        grain = 0.07f,
+        vignette = 0.14f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val hunhui = Look(
+        id = "hunhui",
+        name = "昏灰",
+        summary = "昏灰。暮灰暖，饱和极低，高光少。",
+        contrast = 0.12f,
+        saturation = -0.20f,
+        temperature = 0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.04f,
+        grain = 0.08f,
+        vignette = 0.14f,
+        fade = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val xibaise = Look(
+        id = "xibaise",
+        name = "曦白",
+        summary = "曦白。晨白微暖，高光发晖，阴影浅。",
+        contrast = 0.04f,
+        saturation = -0.12f,
+        temperature = 0.06f,
+        highlightRoll = 0.26f,
+        shadowLift = 0.16f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.03f,
+        vignette = 0.03f,
+        fade = 0.10f,
+        defaultIntensity = 0.46f,
+    )
+
+    val xihong = Look(
+        id = "xihong",
+        name = "曦红",
+        summary = "曦红。晨红浅暖，高光发柔，肤色保护。",
+        contrast = 0.08f,
+        saturation = 0.06f,
+        temperature = 0.12f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.10f,
+        splitHighlightWarm = 0.14f,
+        grain = 0.04f,
+        vignette = 0.06f,
+        fade = 0.08f,
+        skinProtect = 0.22f,
+        defaultIntensity = 0.48f,
+    )
+
+    val lulan = Look(
+        id = "lulan",
+        name = "露蓝",
+        summary = "露蓝。浅冷蓝，高光发露，颗粒极少。",
+        contrast = 0.06f,
+        saturation = -0.10f,
+        temperature = -0.10f,
+        highlightRoll = 0.24f,
+        shadowLift = 0.14f,
+        splitShadowBlue = 0.12f,
+        grain = 0.03f,
+        vignette = 0.04f,
+        fade = 0.10f,
+        defaultIntensity = 0.48f,
+    )
+
+    val luzi = Look(
+        id = "luzi",
+        name = "露紫",
+        summary = "露紫。浅冷紫，高光发露，阴影透。",
+        contrast = 0.06f,
+        saturation = -0.06f,
+        temperature = -0.04f,
+        highlightRoll = 0.24f,
+        shadowLift = 0.14f,
+        splitShadowBlue = 0.10f,
+        grain = 0.04f,
+        vignette = 0.05f,
+        fade = 0.10f,
+        defaultIntensity = 0.48f,
+    )
+
+    val shuangzi = Look(
+        id = "shuangzi",
+        name = "霜紫",
+        summary = "霜紫。冷浅紫，高光发霜，饱和低。",
+        contrast = 0.08f,
+        saturation = -0.08f,
+        temperature = -0.06f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        splitShadowBlue = 0.10f,
+        grain = 0.05f,
+        vignette = 0.06f,
+        fade = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val shuanglv = Look(
+        id = "shuanglv",
+        name = "霜绿",
+        summary = "霜绿。冷浅绿，高光发霜，阴影干净。",
+        contrast = 0.08f,
+        saturation = -0.08f,
+        temperature = -0.06f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        splitShadowBlue = 0.08f,
+        grain = 0.04f,
+        vignette = 0.06f,
+        fade = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val bingbai = Look(
+        id = "bingbai",
+        name = "冰白",
+        summary = "冰白。极冷高调，高光发冰，几乎无色。",
+        contrast = 0.04f,
+        saturation = -0.20f,
+        temperature = -0.08f,
+        highlightRoll = 0.28f,
+        shadowLift = 0.16f,
+        grain = 0.02f,
+        vignette = 0.02f,
+        fade = 0.12f,
+        defaultIntensity = 0.44f,
+    )
+
+    val binglv = Look(
+        id = "binglv",
+        name = "冰绿",
+        summary = "冰绿。冷青绿，高光发冰，阴影透。",
+        contrast = 0.10f,
+        saturation = -0.06f,
+        temperature = -0.10f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.12f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val xuezi = Look(
+        id = "xuezi",
+        name = "雪紫",
+        summary = "雪紫。高调浅紫，高光发雪，颗粒极少。",
+        contrast = 0.04f,
+        saturation = -0.08f,
+        temperature = -0.04f,
+        highlightRoll = 0.26f,
+        shadowLift = 0.16f,
+        splitShadowBlue = 0.08f,
+        grain = 0.03f,
+        vignette = 0.03f,
+        fade = 0.12f,
+        defaultIntensity = 0.46f,
+    )
+
+    val xuejin = Look(
+        id = "xuejin",
+        name = "雪金",
+        summary = "雪金。冷白带浅金，高光发雪，微暖。",
+        contrast = 0.06f,
+        saturation = -0.10f,
+        temperature = 0.04f,
+        highlightRoll = 0.24f,
+        shadowLift = 0.14f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.03f,
+        vignette = 0.04f,
+        fade = 0.10f,
+        defaultIntensity = 0.48f,
+    )
+
+    val nilan = Look(
+        id = "nilan",
+        name = "霓蓝",
+        summary = "霓蓝。亮冷蓝，饱和轻提，高光点留下来。",
+        contrast = 0.16f,
+        saturation = 0.08f,
+        temperature = -0.12f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.06f,
+        splitShadowBlue = 0.16f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.03f,
+        defaultIntensity = 0.54f,
+    )
+
+    val nizi = Look(
+        id = "nizi",
+        name = "霓紫",
+        summary = "霓紫。亮冷紫，分色明显，高光硬。",
+        contrast = 0.16f,
+        saturation = 0.08f,
+        temperature = -0.06f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.06f,
+        splitShadowBlue = 0.12f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.03f,
+        defaultIntensity = 0.54f,
+    )
+
+    val hongjin = Look(
+        id = "hongjin",
+        name = "虹金",
+        summary = "虹金。薄虹暖金，高光发柔，饱和克制。",
+        contrast = 0.10f,
+        saturation = 0.06f,
+        temperature = 0.10f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.14f,
+        grain = 0.05f,
+        vignette = 0.06f,
+        fade = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val honglan = Look(
+        id = "honglan",
+        name = "虹蓝",
+        summary = "虹蓝。薄虹冷蓝，高光发柔，阴影透。",
+        contrast = 0.10f,
+        saturation = 0.04f,
+        temperature = -0.08f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.12f,
+        grain = 0.05f,
+        vignette = 0.06f,
+        fade = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val xiajin = Look(
+        id = "xiajin",
+        name = "霞金",
+        summary = "霞金。晚霞金，高光发暖，阴影不闷。",
+        contrast = 0.12f,
+        saturation = 0.06f,
+        temperature = 0.14f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.16f,
+        grain = 0.05f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val xiahong = Look(
+        id = "xiahong",
+        name = "霞红",
+        summary = "霞红。晚霞红，高光发柔，阴影暖。",
+        contrast = 0.12f,
+        saturation = 0.08f,
+        temperature = 0.12f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.14f,
+        grain = 0.05f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val huibai = Look(
+        id = "huibai",
+        name = "晖白",
+        summary = "晖白。晨晖高调，微暖，高光发晖。",
+        contrast = 0.04f,
+        saturation = -0.12f,
+        temperature = 0.06f,
+        highlightRoll = 0.26f,
+        shadowLift = 0.16f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.03f,
+        vignette = 0.03f,
+        fade = 0.10f,
+        defaultIntensity = 0.46f,
+    )
+
+    val huihong = Look(
+        id = "huihong",
+        name = "晖红",
+        summary = "晖红。晨晖浅红，高光发柔，肤色留下来。",
+        contrast = 0.08f,
+        saturation = 0.06f,
+        temperature = 0.10f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.10f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.04f,
+        vignette = 0.05f,
+        fade = 0.08f,
+        skinProtect = 0.24f,
+        defaultIntensity = 0.48f,
+    )
+
+    val all: List<Look> = listOf(
+        lanbai, lanhui, lanlan, mulanse, mubai, xiaobai, xiaoqing, xiaolan,
+        hunlan, hunhui, xibaise, xihong, lulan, luzi, shuangzi, shuanglv,
+        bingbai, binglv, xuezi, xuejin, nilan, nizi, hongjin, honglan,
+        xiajin, xiahong, huibai, huihong,
+    )
+}

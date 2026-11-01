@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  缩略图的占位：暗房底 + 中心一枚琥珀的小方框（"相纸还没显影"）。
+
+  为什么需要它：缩略图取不到（文件被删、云盘没挂上、MediaStore 那一行坏了）时，
+  `ImageView` 不画东西就是一个**透明的洞**，整块组件看起来像渲染失败。
+  这里给一块能看出"这是随拍、只是这张图没出来"的底。
+
+  矢量而不是 png：本仓库没有任何位图资源（图标全是 vector），
+  加一张 png 会让 res 里多一套密度目录，而这张图只画两个矩形。
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- 底：暗房最深的一层 -->
+    <path
+        android:fillColor="#0A0D0C"
+        android:pathData="M0,0 h48 v48 h-48 z" />
+    <!-- 中心一枚 12dp 的琥珀直角框：与 App 内选框同一个语言 -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#E8A33D"
+        android:strokeWidth="2"
+        android:pathData="M18,18 h12 v12 h-12 z" />
+</vector>

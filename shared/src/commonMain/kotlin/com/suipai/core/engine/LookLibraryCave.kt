@@ -1,0 +1,638 @@
+package com.suipai.core.engine
+
+object LookLibraryCave {
+    val rongdongku = Look(
+        id = "rongdongku",
+        name = "溶洞",
+        summary = "溶洞。洞厅湿，钙壁发冷，高光发滑。",
+        contrast = 0.12f,
+        saturation = -0.08f,
+        temperature = -0.06f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.10f,
+        grain = 0.05f,
+        vignette = 0.16f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shizhongrudongku = Look(
+        id = "shizhongrudongku",
+        name = "石钟乳",
+        summary = "石钟乳。乳柱垂，水光发点，高光发滑。",
+        contrast = 0.14f,
+        saturation = -0.06f,
+        temperature = -0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitShadowBlue = 0.08f,
+        grain = 0.04f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shisundongku = Look(
+        id = "shisundongku",
+        name = "石笋洞",
+        summary = "石笋洞。笋林立，阴影发密，高光发干。",
+        contrast = 0.16f,
+        saturation = -0.08f,
+        temperature = 0.02f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.06f,
+        vignette = 0.16f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val shizhudongku = Look(
+        id = "shizhudongku",
+        name = "石柱洞",
+        summary = "石柱洞。柱接顶，钙色发灰，高光发哑。",
+        contrast = 0.14f,
+        saturation = -0.10f,
+        temperature = 0.02f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.06f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val gaihuadongku = Look(
+        id = "gaihuadongku",
+        name = "钙华",
+        summary = "钙华。华层厚，乳白发纸，高光发软。",
+        contrast = 0.10f,
+        saturation = -0.10f,
+        temperature = 0.04f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val anhedongku = Look(
+        id = "anhedongku",
+        name = "暗河",
+        summary = "暗河。河黑静，水面发冷，高光发点。",
+        contrast = 0.16f,
+        saturation = -0.12f,
+        temperature = -0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.02f,
+        splitShadowBlue = 0.12f,
+        grain = 0.04f,
+        vignette = 0.18f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val tiankengdongku = Look(
+        id = "tiankengdongku",
+        name = "天坑口",
+        summary = "天坑口。天光垂，坑壁发绿，高光发硬。",
+        contrast = 0.18f,
+        saturation = -0.04f,
+        temperature = -0.02f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.00f,
+        splitShadowBlue = 0.08f,
+        grain = 0.06f,
+        vignette = 0.18f,
+        fade = 0.02f,
+        defaultIntensity = 0.58f,
+    )
+
+    val shujingdongku = Look(
+        id = "shujingdongku",
+        name = "竖井洞",
+        summary = "竖井洞。井壁直，光柱发冷，高光发刺。",
+        contrast = 0.18f,
+        saturation = -0.10f,
+        temperature = -0.06f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        splitShadowBlue = 0.10f,
+        grain = 0.05f,
+        vignette = 0.20f,
+        fade = 0.02f,
+        defaultIntensity = 0.58f,
+    )
+
+    val shuipingdongku = Look(
+        id = "shuipingdongku",
+        name = "水平洞",
+        summary = "水平洞。廊道长，湿壁发灰，高光发哑。",
+        contrast = 0.12f,
+        saturation = -0.10f,
+        temperature = -0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.06f,
+        vignette = 0.16f,
+        fade = 0.08f,
+        defaultIntensity = 0.52f,
+    )
+
+    val liexidongku = Look(
+        id = "liexidongku",
+        name = "裂隙洞",
+        summary = "裂隙洞。缝极窄，岩壁发硬，高光发干。",
+        contrast = 0.16f,
+        saturation = -0.12f,
+        temperature = 0.02f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.07f,
+        vignette = 0.18f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val shihuidongku = Look(
+        id = "shihuidongku",
+        name = "石灰洞",
+        summary = "石灰洞。灰岩白，粉尘发干，高光发纸。",
+        contrast = 0.12f,
+        saturation = -0.12f,
+        temperature = 0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val shayandongku = Look(
+        id = "shayandongku",
+        name = "砂岩洞",
+        summary = "砂岩洞。砂粒粗，暖黄发干，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.09f,
+        vignette = 0.14f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val huoshandongku = Look(
+        id = "huoshandongku",
+        name = "火山洞",
+        summary = "火山洞。熔岩黑，气孔发暗，高光发硬。",
+        contrast = 0.18f,
+        saturation = -0.08f,
+        temperature = 0.06f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        grain = 0.08f,
+        vignette = 0.18f,
+        fade = 0.02f,
+        defaultIntensity = 0.58f,
+    )
+
+    val haishidongku = Look(
+        id = "haishidongku",
+        name = "海蚀洞",
+        summary = "海蚀洞。浪痕湿，盐霜发白，高光发滑。",
+        contrast = 0.14f,
+        saturation = -0.06f,
+        temperature = -0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitShadowBlue = 0.10f,
+        grain = 0.06f,
+        vignette = 0.14f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val bingdongkou = Look(
+        id = "bingdongkou",
+        name = "冰洞口",
+        summary = "冰洞口。冰壁蓝，寒气发刺，高光发硬。",
+        contrast = 0.16f,
+        saturation = -0.10f,
+        temperature = -0.12f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitShadowBlue = 0.14f,
+        grain = 0.03f,
+        vignette = 0.14f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val fengdongkou = Look(
+        id = "fengdongkou",
+        name = "风洞口",
+        summary = "风洞口。穿堂风，沙尘发灰，高光发干。",
+        contrast = 0.12f,
+        saturation = -0.08f,
+        temperature = 0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.08f,
+        defaultIntensity = 0.52f,
+    )
+
+    val bianfudongku = Look(
+        id = "bianfudongku",
+        name = "蝙蝠洞",
+        summary = "蝙蝠洞。洞顶黑，氨气发闷，高光发哑。",
+        contrast = 0.16f,
+        saturation = -0.10f,
+        temperature = 0.04f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.02f,
+        grain = 0.08f,
+        vignette = 0.20f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val dishuidongku = Look(
+        id = "dishuidongku",
+        name = "滴水洞",
+        summary = "滴水洞。滴痕亮，水洼发冷，高光发点。",
+        contrast = 0.12f,
+        saturation = -0.08f,
+        temperature = -0.06f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.10f,
+        grain = 0.04f,
+        vignette = 0.14f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val huishengdongku = Look(
+        id = "huishengdongku",
+        name = "回声洞",
+        summary = "回声洞。厅阔空，壁面发平，高光发纸。",
+        contrast = 0.10f,
+        saturation = -0.10f,
+        temperature = -0.02f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.05f,
+        vignette = 0.14f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val yixiantandongku = Look(
+        id = "yixiantandongku",
+        name = "一线天洞",
+        summary = "一线天洞。缝光细，两侧发黑，高光发刺。",
+        contrast = 0.20f,
+        saturation = -0.12f,
+        temperature = -0.04f,
+        highlightRoll = 0.08f,
+        shadowLift = 0.00f,
+        grain = 0.05f,
+        vignette = 0.22f,
+        fade = 0.02f,
+        defaultIntensity = 0.58f,
+    )
+
+    val dongtingdongku = Look(
+        id = "dongtingdongku",
+        name = "洞厅",
+        summary = "洞厅。厅高大，顶光发冷，高光发软。",
+        contrast = 0.12f,
+        saturation = -0.08f,
+        temperature = -0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.08f,
+        grain = 0.05f,
+        vignette = 0.16f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val donglangdongku = Look(
+        id = "donglangdongku",
+        name = "洞廊",
+        summary = "洞廊。廊弯转，壁湿发灰，高光发哑。",
+        contrast = 0.12f,
+        saturation = -0.10f,
+        temperature = -0.02f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.06f,
+        vignette = 0.16f,
+        fade = 0.08f,
+        defaultIntensity = 0.52f,
+    )
+
+    val dongkouguang = Look(
+        id = "dongkouguang",
+        name = "洞口光",
+        summary = "洞口光。外亮内黑，光晕发硬，高光发炸。",
+        contrast = 0.20f,
+        saturation = -0.06f,
+        temperature = 0.02f,
+        highlightRoll = 0.08f,
+        shadowLift = 0.00f,
+        grain = 0.04f,
+        vignette = 0.20f,
+        fade = 0.02f,
+        defaultIntensity = 0.58f,
+    )
+
+    val dongdini = Look(
+        id = "dongdini",
+        name = "洞底泥",
+        summary = "洞底泥。泥厚黏，褐灰发闷，高光发哑。",
+        contrast = 0.10f,
+        saturation = -0.06f,
+        temperature = 0.06f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.09f,
+        vignette = 0.14f,
+        fade = 0.10f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val dongbitai = Look(
+        id = "dongbitai",
+        name = "洞壁苔",
+        summary = "洞壁苔。苔绿湿，岩缝发冷，高光发软。",
+        contrast = 0.10f,
+        saturation = -0.02f,
+        temperature = -0.04f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitShadowBlue = 0.08f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val zhongrulian = Look(
+        id = "zhongrulian",
+        name = "钟乳帘",
+        summary = "钟乳帘。帘薄透，水膜发亮，高光发滑。",
+        contrast = 0.12f,
+        saturation = -0.06f,
+        temperature = -0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.08f,
+        grain = 0.03f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shimandongku = Look(
+        id = "shimandongku",
+        name = "石幔",
+        summary = "石幔。幔褶皱，钙流发暖，高光发软。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = 0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val shihuadongku = Look(
+        id = "shihuadongku",
+        name = "石花",
+        summary = "石花。花簇密，结晶发刺，高光发燥。",
+        contrast = 0.16f,
+        saturation = -0.08f,
+        temperature = 0.02f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val shizhenzhudongku = Look(
+        id = "shizhenzhudongku",
+        name = "石珍珠",
+        summary = "石珍珠。珠圆积，水窝发亮，高光发点。",
+        contrast = 0.14f,
+        saturation = -0.06f,
+        temperature = 0.02f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.04f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val bianshiba = Look(
+        id = "bianshiba",
+        name = "边石坝",
+        summary = "边石坝。坝圈浅，水色发冷，高光发滑。",
+        contrast = 0.12f,
+        saturation = -0.08f,
+        temperature = -0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.10f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val xuezhudongku = Look(
+        id = "xuezhudongku",
+        name = "穴珠",
+        summary = "穴珠。珠粒小，钙白发纸，高光发干。",
+        contrast = 0.12f,
+        saturation = -0.10f,
+        temperature = 0.02f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val eguandongku = Look(
+        id = "eguandongku",
+        name = "鹅管",
+        summary = "鹅管。管中空，滴心发亮，高光发刺。",
+        contrast = 0.14f,
+        saturation = -0.08f,
+        temperature = -0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitShadowBlue = 0.08f,
+        grain = 0.03f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shidundongku = Look(
+        id = "shidundongku",
+        name = "石盾",
+        summary = "石盾。盾片圆，边缘发薄，高光发滑。",
+        contrast = 0.12f,
+        saturation = -0.08f,
+        temperature = 0.02f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.04f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val shibudongku = Look(
+        id = "shibudongku",
+        name = "石瀑",
+        summary = "石瀑。瀑壁流，钙纹发长，高光发软。",
+        contrast = 0.14f,
+        saturation = -0.06f,
+        temperature = 0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.05f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        softness = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val anhudongku = Look(
+        id = "anhudongku",
+        name = "暗湖",
+        summary = "暗湖。湖面静，倒影发黑，高光发点。",
+        contrast = 0.16f,
+        saturation = -0.12f,
+        temperature = -0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitShadowBlue = 0.12f,
+        grain = 0.03f,
+        vignette = 0.18f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val dongdingfeng = Look(
+        id = "dongdingfeng",
+        name = "洞顶缝",
+        summary = "洞顶缝。缝漏光，尘柱发灰，高光发硬。",
+        contrast = 0.18f,
+        saturation = -0.10f,
+        temperature = -0.02f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        grain = 0.06f,
+        vignette = 0.18f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val dongfengdongku = Look(
+        id = "dongfengdongku",
+        name = "洞风",
+        summary = "洞风。气流冷，雾丝发薄，高光发纸。",
+        contrast = 0.08f,
+        saturation = -0.12f,
+        temperature = -0.08f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        splitShadowBlue = 0.10f,
+        grain = 0.04f,
+        vignette = 0.10f,
+        fade = 0.12f,
+        softness = 0.10f,
+        defaultIntensity = 0.50f,
+    )
+
+    val linguangbi = Look(
+        id = "linguangbi",
+        name = "磷光壁",
+        summary = "磷光壁。壁微绿，暗处发冷，高光发软。",
+        contrast = 0.10f,
+        saturation = -0.04f,
+        temperature = -0.08f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitShadowBlue = 0.12f,
+        grain = 0.04f,
+        vignette = 0.16f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val shigaohua = Look(
+        id = "shigaohua",
+        name = "石膏花",
+        summary = "石膏花。纤晶白，刺毛发干，高光发纸。",
+        contrast = 0.12f,
+        saturation = -0.14f,
+        temperature = 0.02f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val fangjieshimai = Look(
+        id = "fangjieshimai",
+        name = "方解石脉",
+        summary = "方解石脉。脉纹亮，解理发硬，高光发刺。",
+        contrast = 0.16f,
+        saturation = -0.10f,
+        temperature = -0.02f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.04f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val all: List<Look> = listOf(
+        rongdongku, shizhongrudongku, shisundongku, shizhudongku, gaihuadongku, anhedongku, tiankengdongku, shujingdongku, shuipingdongku, liexidongku,
+        shihuidongku, shayandongku, huoshandongku, haishidongku, bingdongkou, fengdongkou, bianfudongku, dishuidongku, huishengdongku, yixiantandongku,
+        dongtingdongku, donglangdongku, dongkouguang, dongdini, dongbitai, zhongrulian, shimandongku, shihuadongku, shizhenzhudongku, bianshiba,
+        xuezhudongku, eguandongku, shidundongku, shibudongku, anhudongku, dongdingfeng, dongfengdongku, linguangbi, shigaohua, fangjieshimai,
+    )
+}

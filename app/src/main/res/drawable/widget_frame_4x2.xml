@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  4×2 的外框。与 widget_frame_2x2 是**两份**而不是一份：
+  2×2 是"一格大图"，边要细；4×2 是四条并排，框线要能压住四格之间的缝，
+  哪天要给 4×2 换一种描边（比如更淡的一档）不该牵动 2×2。
+  现在两份内容相同，这是有意的 —— 而不是抽一个 drawable 让两边共用。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/widget_panel" />
+    <corners android:radius="2dp" />
+    <stroke
+        android:width="1dp"
+        android:color="@color/widget_outline" />
+</shape>

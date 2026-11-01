@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  随拍小组件 · 2×2（一格大图 + 一行说明）。
+
+  为什么不是 ConstraintLayout：RemoteViews 只认一小撮控件与布局
+  （FrameLayout / LinearLayout / RelativeLayout / GridLayout / ImageView / TextView / Button / …）。
+  ConstraintLayout 在宿主里要额外挂一个 ConstraintLayout 的 RemoteViews 支持库，
+  引进来就是一个新依赖 —— 本轮明令禁止。两层 LinearLayout 足够画这一块。
+
+  为什么根节点一定要有 id：`setOnClickPendingIntent` 与 `setContentDescription`
+  都按 id 找视图。根节点用 `@+id/widget_root` 让两套布局共用同一个 id，
+  provider 那边的点击代码就只有一条路径（两套布局两份 id 是"点了没反应"的经典来源）。
+
+  可点控件必须自己带 `android:contentDescription`：桌面是**宿主**画的，
+  我们没法在 Compose 里补语义；这是这个地方唯一能给读屏名字的口子。
+  具体文案在运行时按状态改写（见 RecentWidgetProvider.draw），这里给的是兜底。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/widget_frame_2x2"
+    android:padding="8dp"
+    android:contentDescription="@string/widget_root_desc_fallback"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!--
+      2×2 只显示最近这一张（`WidgetShape.visibleSlots` 对这套布局只给 1 格）。
+      `scaleType="centerCrop"` 而不是 fitCenter：相纸是满格裁切的，
+      fitCenter 会在两边留出两条底色的缝，看起来像"图没加载完"。
+
+      这里**故意没有** widget_thumb_1..3：provider 的 `slotId` 对 2×2 的
+      i>0 返回 null，多写三个 `visibility=gone` 的 ImageView 只会让
+      "明明有 id 却永远不显示"这种东西留在布局里。
+    -->
+    <ImageView
+        android:id="@+id/widget_thumb_0"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/widget_thumb_desc_fallback"
+        android:src="@drawable/widget_thumb_placeholder" />
+
+    <TextView
+        android:id="@+id/widget_caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textColor="@color/widget_ink"
+        android:textSize="12sp"
+        android:text="@string/widget_caption_fallback" />
+
+</LinearLayout>

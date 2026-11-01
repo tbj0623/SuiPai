@@ -1,0 +1,455 @@
+package com.suipai.core.engine
+
+object LookLibraryIncense {
+    val chenxiang = Look(
+        id = "chenxiang",
+        name = "沉香",
+        summary = "沉香。木脂沉暖，阴影发稠，高光发油。",
+        contrast = 0.16f,
+        saturation = -0.06f,
+        temperature = 0.12f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.10f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val tanxiang = Look(
+        id = "tanxiang",
+        name = "檀香",
+        summary = "檀香。乳木暖白，高光发糯，阴影轻。",
+        contrast = 0.08f,
+        saturation = -0.08f,
+        temperature = 0.10f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        splitHighlightWarm = 0.08f,
+        softness = 0.06f,
+        grain = 0.04f,
+        vignette = 0.06f,
+        fade = 0.08f,
+        defaultIntensity = 0.48f,
+    )
+
+    val qinan = Look(
+        id = "qinan",
+        name = "奇楠",
+        summary = "奇楠。油结暖金，高光发箔，饱和压住。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = 0.16f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.16f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.03f,
+        defaultIntensity = 0.56f,
+    )
+
+    val jialuo = Look(
+        id = "jialuo",
+        name = "伽罗",
+        summary = "伽罗。黑沉暖，对比重，高光发干。",
+        contrast = 0.18f,
+        saturation = -0.10f,
+        temperature = 0.10f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.12f,
+        vignette = 0.16f,
+        fade = 0.02f,
+        defaultIntensity = 0.54f,
+    )
+
+    val jiangzhen = Look(
+        id = "jiangzhen",
+        name = "降真",
+        summary = "降真。木气微冷，高光发薄，阴影透青。",
+        contrast = 0.10f,
+        saturation = -0.10f,
+        temperature = -0.04f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitShadowBlue = 0.08f,
+        grain = 0.06f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val longxian = Look(
+        id = "longxian",
+        name = "龙涎",
+        summary = "龙涎。脂白高调，微暖，高光发透。",
+        contrast = 0.04f,
+        saturation = -0.12f,
+        temperature = 0.04f,
+        highlightRoll = 0.26f,
+        shadowLift = 0.16f,
+        softness = 0.08f,
+        grain = 0.03f,
+        vignette = 0.03f,
+        fade = 0.12f,
+        defaultIntensity = 0.44f,
+    )
+
+    val ruxiang = Look(
+        id = "ruxiang",
+        name = "乳香",
+        summary = "乳香。树脂浅金，高光发油，阴影暖。",
+        contrast = 0.08f,
+        saturation = 0.02f,
+        temperature = 0.12f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        splitHighlightWarm = 0.10f,
+        softness = 0.06f,
+        grain = 0.04f,
+        vignette = 0.05f,
+        fade = 0.08f,
+        defaultIntensity = 0.48f,
+    )
+
+    val suhexiang = Look(
+        id = "suhexiang",
+        name = "苏合",
+        summary = "苏合。琥珀暖，高光发晖，阴影稠。",
+        contrast = 0.12f,
+        saturation = 0.06f,
+        temperature = 0.16f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.14f,
+        grain = 0.05f,
+        vignette = 0.08f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val anxixiang = Look(
+        id = "anxixiang",
+        name = "安息",
+        summary = "安息。树脂冷灰，对比中，高光发硬。",
+        contrast = 0.14f,
+        saturation = -0.14f,
+        temperature = -0.04f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val huoxiang = Look(
+        id = "huoxiang",
+        name = "藿香",
+        summary = "藿香。草叶浅青，高光发薄，阴影透。",
+        contrast = 0.08f,
+        saturation = -0.04f,
+        temperature = -0.08f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.10f,
+        splitShadowBlue = 0.10f,
+        grain = 0.05f,
+        vignette = 0.06f,
+        fade = 0.06f,
+        defaultIntensity = 0.48f,
+    )
+
+    val xianxiang = Look(
+        id = "xianxiang",
+        name = "线香",
+        summary = "线香。烟线冷灰，高光发薄，颗粒细。",
+        contrast = 0.06f,
+        saturation = -0.16f,
+        temperature = 0.02f,
+        highlightRoll = 0.24f,
+        shadowLift = 0.14f,
+        grain = 0.08f,
+        vignette = 0.08f,
+        fade = 0.10f,
+        defaultIntensity = 0.46f,
+    )
+
+    val panxiang = Look(
+        id = "panxiang",
+        name = "盘香",
+        summary = "盘香。盘烟暖灰，饱和低，高光发旧。",
+        contrast = 0.10f,
+        saturation = -0.14f,
+        temperature = 0.06f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val zhuanxiang = Look(
+        id = "zhuanxiang",
+        name = "篆香",
+        summary = "篆香。篆纹冷灰，对比中，高光发干。",
+        contrast = 0.12f,
+        saturation = -0.16f,
+        temperature = -0.02f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.05f,
+        defaultIntensity = 0.50f,
+    )
+
+    val hexiang = Look(
+        id = "hexiang",
+        name = "合香",
+        summary = "合香。诸香混暖，高光发油，阴影匀。",
+        contrast = 0.10f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.06f,
+        vignette = 0.08f,
+        fade = 0.05f,
+        defaultIntensity = 0.50f,
+    )
+
+    val xiangbing = Look(
+        id = "xiangbing",
+        name = "香饼",
+        summary = "香饼。饼炭暖，颗粒重，高光发干。",
+        contrast = 0.14f,
+        saturation = -0.08f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.12f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val xiangwan = Look(
+        id = "xiangwan",
+        name = "香丸",
+        summary = "香丸。丸脂微暖，高光发糯，阴影轻。",
+        contrast = 0.08f,
+        saturation = -0.06f,
+        temperature = 0.08f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        softness = 0.06f,
+        grain = 0.05f,
+        vignette = 0.06f,
+        fade = 0.08f,
+        defaultIntensity = 0.48f,
+    )
+
+    val xianghui = Look(
+        id = "xianghui",
+        name = "香灰",
+        summary = "香灰。冷灰低饱和，高光发旧，颗粒中。",
+        contrast = 0.10f,
+        saturation = -0.20f,
+        temperature = 0.02f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.10f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val xiangwu = Look(
+        id = "xiangwu",
+        name = "香雾",
+        summary = "香雾。烟霭高调，软，高光发透。",
+        contrast = 0.04f,
+        saturation = -0.14f,
+        temperature = 0.02f,
+        highlightRoll = 0.26f,
+        shadowLift = 0.16f,
+        softness = 0.10f,
+        grain = 0.04f,
+        vignette = 0.04f,
+        fade = 0.14f,
+        defaultIntensity = 0.44f,
+    )
+
+    val luxiang = Look(
+        id = "luxiang",
+        name = "炉香",
+        summary = "炉香。炉火暖金，高光发晖，暗角沉。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = 0.14f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.14f,
+        grain = 0.08f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val longnao = Look(
+        id = "longnao",
+        name = "龙脑",
+        summary = "龙脑。冰片冷白，高光发硬，阴影透青。",
+        contrast = 0.10f,
+        saturation = -0.16f,
+        temperature = -0.08f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitShadowBlue = 0.10f,
+        grain = 0.03f,
+        vignette = 0.06f,
+        fade = 0.06f,
+        defaultIntensity = 0.48f,
+    )
+
+    val aixiang = Look(
+        id = "aixiang",
+        name = "艾香",
+        summary = "艾香。艾叶灰绿，高光发干，阴影冷。",
+        contrast = 0.10f,
+        saturation = -0.08f,
+        temperature = -0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.06f,
+        grain = 0.08f,
+        vignette = 0.08f,
+        fade = 0.05f,
+        defaultIntensity = 0.50f,
+    )
+
+    val xiangnan = Look(
+        id = "xiangnan",
+        name = "香楠",
+        summary = "香楠。楠木暖，高光发干，阴影暖。",
+        contrast = 0.12f,
+        saturation = 0.02f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.08f,
+        vignette = 0.08f,
+        fade = 0.05f,
+        defaultIntensity = 0.52f,
+    )
+
+    val chenshui = Look(
+        id = "chenshui",
+        name = "沉水",
+        summary = "沉水。沉木深暖，对比重，暗角沉。",
+        contrast = 0.18f,
+        saturation = -0.08f,
+        temperature = 0.08f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.10f,
+        vignette = 0.18f,
+        fade = 0.02f,
+        defaultIntensity = 0.54f,
+    )
+
+    val yazhuang = Look(
+        id = "yazhuang",
+        name = "芽庄",
+        summary = "芽庄。南香暖金，高光发油，阴影暖。",
+        contrast = 0.12f,
+        saturation = 0.06f,
+        temperature = 0.14f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.14f,
+        grain = 0.05f,
+        vignette = 0.08f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val huianxiang = Look(
+        id = "huianxiang",
+        name = "惠安",
+        summary = "惠安。清甜微冷，高光发薄，阴影透。",
+        contrast = 0.08f,
+        saturation = -0.06f,
+        temperature = -0.04f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        splitShadowBlue = 0.06f,
+        grain = 0.04f,
+        vignette = 0.06f,
+        fade = 0.08f,
+        defaultIntensity = 0.48f,
+    )
+
+    val xingzhou = Look(
+        id = "xingzhou",
+        name = "星洲",
+        summary = "星洲。树脂深暖，颗粒中，高光发稠。",
+        contrast = 0.16f,
+        saturation = -0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.10f,
+        vignette = 0.12f,
+        fade = 0.03f,
+        defaultIntensity = 0.54f,
+    )
+
+    val guanxiang = Look(
+        id = "guanxiang",
+        name = "莞香",
+        summary = "莞香。岭南浅暖，高光发糯，阴影轻。",
+        contrast = 0.08f,
+        saturation = -0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        splitHighlightWarm = 0.08f,
+        softness = 0.06f,
+        grain = 0.04f,
+        vignette = 0.05f,
+        fade = 0.08f,
+        defaultIntensity = 0.48f,
+    )
+
+    val shexiang = Look(
+        id = "shexiang",
+        name = "麝香",
+        summary = "麝香。暖褐沉，饱和低，高光发油。",
+        contrast = 0.14f,
+        saturation = -0.10f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val all: List<Look> = listOf(
+        chenxiang, tanxiang, qinan, jialuo, jiangzhen, longxian, ruxiang, suhexiang,
+        anxixiang, huoxiang, xianxiang, panxiang, zhuanxiang, hexiang, xiangbing, xiangwan,
+        xianghui, xiangwu, luxiang, longnao, aixiang, xiangnan, chenshui, yazhuang,
+        huianxiang, xingzhou, guanxiang, shexiang,
+    )
+}

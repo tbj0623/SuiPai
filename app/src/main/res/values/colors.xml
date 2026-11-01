@@ -1,0 +1,15 @@
+<resources>
+    <!-- 暗房底：Compose 首帧的背景色，写在这里让冷启动第一帧就是它，不再闪一层纯黑。 -->
+    <color name="suipai_darkroom">#FF101413</color>
+
+    <!--
+      桌面小组件的三支颜色。**必须与 App 内的 token 逐字一致**（ui/design/SuiPaiTokens.kt）：
+      深色主题 panel #161B1A / ink #EDEBE4 / outline #2A312E。
+      RemoteViews 里拿不到 Compose 的 token（那是运行时对象），所以只能在这里抄一份 ——
+      抄错了的症状是"桌面上那块比 App 里亮一档"，而截图上几乎看不出来。
+      widget 只跟暗房这一套走（桌面壁纸什么人都有，浅色板压在亮壁纸上会糊成一片）。
+    -->
+    <color name="widget_panel">#FF161B1A</color>
+    <color name="widget_ink">#FFEDEBE4</color>
+    <color name="widget_outline">#FF2A312E</color>
+</resources>

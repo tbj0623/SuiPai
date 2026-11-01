@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>随拍 隐私政策 / SuiPai Privacy Policy</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { max-width: 42rem; margin: 0 auto; padding: 2.5rem 1.25rem 5rem;
+         font: 16px/1.75 system-ui, -apple-system, "Noto Sans SC", sans-serif;
+         color: #1c1c1a; background: #fbfaf8; }
+  h1 { font-size: 1.6rem; letter-spacing: .02em; margin-bottom: .25rem; }
+  h2 { font-size: 1.05rem; margin-top: 2.25rem; padding-bottom: .3rem;
+       border-bottom: 2px solid #d97706; }
+  .meta { color: #6b6b66; font-size: .85rem; font-variant-numeric: tabular-nums; }
+  ul { padding-left: 1.15rem; }
+  li { margin: .35rem 0; }
+  .key { font-weight: 600; }
+  .en { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px dashed #c9c9c3;
+        color: #4a4a46; font-size: .95rem; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #101413; color: #e8e6e1; }
+    .meta, .en { color: #9a9791; }
+    h2 { border-bottom-color: #f0a72c; }
+    .en { border-top-color: #33373a; }
+  }
+</style>
+</head>
+<body>
+
+<h1>随拍 · 隐私政策</h1>
+<p class="meta">生效日期：2026-10-18 ｜ 适用版本：0.7.0 及之后 ｜ 包名：com.suipai.app</p>
+
+<h2>结论</h2>
+<p><span class="key">随拍不收集、不使用、不共享、不转让任何个人数据。</span>
+应用没有账号体系，没有服务器端，也不含任何统计、广告或崩溃回传代码。
+安装后不需要联网即可使用全部功能；会出网的只有两处，且都要你亲手发起：
+可选的「智能配方」总开关默认关闭，且只在你填入 API Key 并亲手按下按钮时才发（见下方「智能配方」一节）；
+「互通」只在你打开那一屏、且两端都确认之后，才在局域网内的两台设备之间直传（见下方「互通」一节）。</p>
+
+<h2>我们接触哪些内容，存在哪里</h2>
+<ul>
+  <li>你的照片与视频帧：只读取你自己设备上的媒体库，用于在应用内展示、编辑与套用配方。</li>
+  <li>编辑结果：作为普通图片文件写入本机 <code>Pictures/SuiPai</code>，由系统媒体库管理，你可随时在相册或文件管理器中删除。</li>
+  <li>界面偏好（滤镜参数、排序、筛选条件、设备名、设置项）：写入本机的一个偏好文件，不上传。</li>
+  <li>回收站：删除的照片字节移到本机 <code>Pictures/SuiPai/回收站</code>，账单记在本机私有目录 <code>filesDir/trash.json</code>；30 天后可由下次启动清理。</li>
+  <li>搜索索引：为了让你能搜全库，索引把文件名、日期与 EXIF 摘要（相机型号、尺寸）写在本机私有目录 <code>filesDir/search_index.json</code>。它是一份可重建的缓存，删掉只会下次重扫。</li>
+  <li>收藏夹（你自建的相册）与自定义配方：分别存在本机私有目录 <code>filesDir/collections.json</code> 与 <code>filesDir/custom_looks.json</code>。</li>
+  <li>智能配方的 API Key：先用 Android 密钥库中不可导出的主密钥加密，再写入单独的偏好文件；明文不落盘，写入后界面不再显示。</li>
+  <li>系统自动备份与换机直传：仅包含偏好文件 <code>suipai.xml</code> 一个；不包含任何照片，不包含存放 Key 的 <code>suipai.ai</code>，也不包含收藏/隐藏清单（<code>suipai.private.xml</code>）与自定义配方（<code>custom_looks.json</code>）。</li>
+</ul>
+
+<h2>权限与用途</h2>
+<ul>
+  <li><span class="key">相机</span>：仅在进入拍摄界面时申请，用于取景与拍照。</li>
+  <li><span class="key">读取照片</span>（Android 13+ 为 <code>READ_MEDIA_IMAGES</code>，并支持系统的「仅允许访问所选照片」模式）：用于列出相册、编辑与批量整理。</li>
+  <li><span class="key">旧系统存储权限</span>（<code>READ_EXTERNAL_STORAGE</code> ≤ Android 12L、<code>WRITE_EXTERNAL_STORAGE</code> ≤ Android 9）：仅为在旧版本上完成同样的读取与保存。</li>
+  <li><span class="key">网络</span>（<code>INTERNET</code>、<code>ACCESS_NETWORK_STATE</code>）：只服务两件事——「互通」在同一局域网内发现附近设备并传输图片；「智能配方」在你按下按钮时，把当前照片的缩略图发往<b>你在应用内挑定的那一家服务商</b>（可选服务商是应用内列出的几家官方接口，不是任意地址）。应用不连接任何自有服务器。</li>
+  <li><span class="key">设为壁纸</span>、<span class="key">震动</span>：分别对应「设为壁纸」操作与快门触感反馈，二者由系统直接授予、不弹窗。</li>
+  <li>不请求位置、通讯录、通话记录、短信、麦克风、日历权限，也不在后台执行任何数据采集。</li>
+</ul>
+
+<h2>局域网互通</h2>
+<p>「互通」在用户主动打开该界面时，通过局域网广播发现同样运行随拍的设备，
+并在双方确认后将图片从一台设备直接传到另一台。传输不经过任何中间服务器；
+接收方保存的文件落在其本机的 <code>Pictures/SuiPai</code>。</p>
+
+<h2>智能配方（可选，默认关闭）</h2>
+<p>这是一项可选的照片增强功能：让大模型看一眼照片，从应用自带的胶片配方库里推荐一条并说明理由。</p>
+<ul>
+  <li><span class="key">默认关闭</span>：总开关处于关闭状态时，这个功能一次也不会出网；关掉开关后的行为与没有这个功能的版本一致（局域网的「互通」是另一件事，见上面那一节，它不受这个开关影响）。</li>
+  <li><span class="key">出网内容只有两样</span>：当前这一张照片长边 256 像素的缩略 JPEG（JPEG 质量 85，平均约 11 KB），以及一段固定的提问文字。
+      <b>原图、EXIF、拍摄位置、相册里的其它照片、你的文件名都不发送。</b></li>
+  <li><span class="key">发到哪里由你选</span>：应用内列出几家服务商的官方接口（默认智谱），你在「智能配方」里挑一家；<b>API Key 由你自己填写</b>，随拍不代你持有任何 Key，也不代你转发到别处。
+      一旦发出，该照片缩略图的处理就受你所选服务商的条款约束。</li>
+  <li><span class="key">只在按下按钮时发生</span>：没有后台上传、没有批量上传、没有自动重试以外的额外请求。</li>
+  <li>返回的结果只是<b>建议</b>：它只能选择应用配方库里已经存在的条目，应用不会因为它说了一句什么就改动你的原片。</li>
+  <li>随时可撤：在「智能配方」里按「清除」即抹掉本机存放的加密 Key；关闭总开关即断掉这一项的全部公网请求。</li>
+</ul>
+
+<h2>分享与第三方</h2>
+<p>应用内的「分享」调用系统选择器，由你选择的目标应用处理后续；随拍不保留副本，也不记录你分享给了谁。</p>
+
+<h2>儿童与数据删除</h2>
+<p>随拍不面向 12 岁以下儿童，且不收集任何用户数据，因此不存在需要代为删除的记录。
+如需清除应用产生的一切设置：系统「设置 → 应用 → 随拍 → 存储 → 清除数据」，或直接卸载；
+已保存的照片是相册中的普通文件，请自行删除。</p>
+<p>只想清掉设置中心那几项（主题、字号、各功能开关）：应用内「设置 → 存储 → 清除设置」。
+它只清 <code>cfg_</code> 开头的偏好，不碰照片、不碰相机/一瞬/相册的既有设置，
+也不碰收藏与隐藏清单。</p>
+
+<h2>联系方式</h2>
+<p>对本政策有疑问，或希望行使任何数据相关权利，请联系：
+<b>&lt;CONTACT_PLACEHOLDER&gt;</b>（正式发布前替换为可用的开发者邮箱）。</p>
+
+<h2>政策变更</h2>
+<p>若本政策发生变更，会随应用版本一起更新，并在应用内
+「设置 → 隐私与数据」与「关于随拍」两处同步显示。</p>
+
+<h2>开源组件</h2>
+<p>Jetpack Compose、CameraX、Material 3、ExifInterface、Lifecycle、Navigation、Kotlin、
+kotlinx-coroutines、Coil，均以 Apache License 2.0 提供。这些组件不引入任何数据收集行为。</p>
+
+<div class="en">
+<h2 style="border-bottom:none">Summary in English</h2>
+<p>SuiPai (随拍) collects <strong>no personal data</strong>. There is no account, no backend,
+no analytics, no advertising and no crash-reporting SDK. Photos are read from and written to the
+user's own device only. The <code>INTERNET</code> permission exists solely for the optional
+device-to-device transfer over the local network, which never passes through a server.
+Saved images live in <code>Pictures/SuiPai</code>. Clearing app data or uninstalling removes all
+preferences; saved photos are ordinary media files the user can delete at any time.</p>
+</div>
+
+</body>
+</html>

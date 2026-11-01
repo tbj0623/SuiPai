@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  桌面长按图标的三个直达动作。选这三条的理由不是"能做"，而是它们各自代表一条主路径的入口：
+  拍（快门）、传（互通）、改（一瞬）。第三条固定指向**最近一张**，因为长按图标进 app
+  的人多半是"刚拍完想立刻看看"，让他再翻一层相册等于没有这条捷径。
+-->
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="camera"
+        android:enabled="true"
+        android:icon="@drawable/sc_camera"
+        android:shortcutShortLabel="@string/sc_camera_short"
+        android:shortcutLongLabel="@string/sc_camera_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.suipai.app.MainActivity"
+            android:data="suipai://camera" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="sync"
+        android:enabled="true"
+        android:icon="@drawable/sc_sync"
+        android:shortcutShortLabel="@string/sc_sync_short"
+        android:shortcutLongLabel="@string/sc_sync_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.suipai.app.MainActivity"
+            android:data="suipai://sync" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="yishun"
+        android:enabled="true"
+        android:icon="@drawable/sc_yishun"
+        android:shortcutShortLabel="@string/sc_yishun_short"
+        android:shortcutLongLabel="@string/sc_yishun_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.suipai.app.MainActivity"
+            android:data="suipai://yishun" />
+    </shortcut>
+</shortcuts>

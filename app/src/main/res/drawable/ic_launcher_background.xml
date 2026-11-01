@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 底色 = 暗房 #101413：图标和 App 冷启动第一帧同一个颜色，桌面上的黑方块不再和界面脱节。 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="#FF101413" />
+</shape>

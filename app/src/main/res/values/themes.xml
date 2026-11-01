@@ -1,0 +1,8 @@
+<resources>
+    <!-- 冷启动第一帧用暗房底色，和 Compose 首帧连续。
+         statusBarColor / navigationBarColor 在 targetSdk 35+ 已经不生效（enableEdgeToEdge
+         把系统栏全透明），状态栏图标的明暗由 MainActivity 按 dark_ui 运行时设置。 -->
+    <style name="Theme.SuiPai" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/suipai_darkroom</item>
+    </style>
+</resources>

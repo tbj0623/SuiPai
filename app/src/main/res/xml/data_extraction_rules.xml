@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 12+ 的迁移规则：云端备份与换机直传分开管。偏好文件有两个，两侧口径一致：
+     · suipai.xml —— 界面/相机/一瞬参数，带上；
+     · suipai.private.xml —— 收藏与隐藏两份 id 清单，两侧都**不带**（"藏起了哪些照片"是隐私，
+       换机后重新收藏一次，比把它送到另一台设备/云上安全）。
+     cacheDir 里的相机临时片（camera/system.jpg）任何一侧都不该传。
+
+     ## 关于每条 exclude 上的 `tools:ignore="FullBackupContent"`
+     与 `backup_rules.xml` 同一个理由：lint 认为"已有显式 include 时，别的路径本来就不会
+     被备份，所以 exclude 是多余的"。多余是真的，但它挡的是**未来的自己** ——
+     哪天有人把 include 从 `suipai.xml` 改成 `path="."`，这四行 exclude 就是唯一的
+     隐私闸门（收藏/隐藏清单、自定义配方的蒙版坐标）。删掉只是让警告列表短一行，
+     代价却是把"用户藏了哪张照片"送上云。所以保留并就地静音。 -->
+<data-extraction-rules xmlns:tools="http://schemas.android.com/tools">
+    <cloud-backup>
+        <include
+            domain="sharedpref"
+            path="suipai.xml" />
+        <exclude
+            domain="sharedpref"
+            path="suipai.private.xml"
+            tools:ignore="FullBackupContent" />
+        <!-- 自定义配方带蒙版坐标与分色参数，和收藏/隐藏清单同级隐私：云端不带。
+             换机直传也不带 —— 两份清单的口径一致，理由同 suipai.private.xml。 -->
+        <exclude
+            domain="file"
+            path="custom_looks.json"
+            tools:ignore="FullBackupContent" />
+    </cloud-backup>
+    <device-transfer>
+        <include
+            domain="sharedpref"
+            path="suipai.xml" />
+        <exclude
+            domain="sharedpref"
+            path="suipai.private.xml"
+            tools:ignore="FullBackupContent" />
+        <exclude
+            domain="file"
+            path="custom_looks.json"
+            tools:ignore="FullBackupContent" />
+    </device-transfer>
+</data-extraction-rules>

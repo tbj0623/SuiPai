@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  随拍小组件的 AppWidgetProviderInfo。
+
+  几个数字的理由（细节见 docs/product/WIDGET.md）：
+  · `minWidth/minHeight = 110dp` 是「2×2」在主流 launcher 上的等效尺寸
+    （一格约 70dp 减掉内边距，两格 ≈ 110–150dp）。写大了一开始就只让用户选 4×2。
+  · `minResizeWidth/Height` 与 `minWidth` 相同：再小就没法裁出一张看得清的图。
+  · `updatePeriodMillis = 1800000`（30 分钟）是系统允许的**最小值**，比它小会被
+    系统静默抬到 30 分钟。不写 0 是有意的：0 = 永不周期刷新，那"最近 4 张"在
+    用户不打开 App 的几天里会一直是旧的。30 分钟一次的全表计数在这个体量的库上是可接受的。
+  · `resizeMode = horizontal|vertical`：两种布局靠**宽度**切换（WidgetSize.forWidthDp），
+    但纵向也让用户拖 —— 高度我们自适应（缩略图那一行是 `layout_weight=1`）。
+  · `targetCellWidth/Height`(API 31+) 只是给 launcher 的**建议**，老系统忽略它，
+    真判据仍然是运行时算出来的 dp 宽度。
+
+  没有 `android:previewLayout`（API 31）：它要一个专门的布局，
+  而 `previewImage` 一张静态图已经够描述这块组件。
+-->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="110dp"
+    android:minHeight="110dp"
+    android:minResizeWidth="110dp"
+    android:minResizeHeight="110dp"
+    android:targetCellWidth="2"
+    android:targetCellHeight="2"
+    android:maxResizeWidth="400dp"
+    android:maxResizeHeight="200dp"
+    android:initialLayout="@layout/widget_recent_2x2"
+    android:previewImage="@drawable/widget_preview"
+    android:resizeMode="horizontal|vertical"
+    android:updatePeriodMillis="1800000"
+    android:widgetCategory="home_screen"
+    android:description="@string/widget_desc"
+    android:label="@string/widget_label" />

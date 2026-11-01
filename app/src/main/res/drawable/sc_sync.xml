@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 「互通」：两台设备之间来回一趟。 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#E8A33D"
+        android:strokeWidth="6"
+        android:pathData="M34,46 h34 M60,38 l9,8 l-9,8" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#E8A33D"
+        android:strokeWidth="6"
+        android:pathData="M74,62 h-34 M48,54 l-9,8 l9,8" />
+</vector>

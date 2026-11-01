@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 长按图标的「拍照」：镜身 + 镜头，和 app 图标同一套线稿语言（描边、不填充）。 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#E8A33D"
+        android:strokeWidth="6"
+        android:pathData="M30,40 h9 l6,-9 h16 l6,9 h11 a6,6 0 0 1 6,6 v26 a6,6 0 0 1 -6,6 h-48 a6,6 0 0 1 -6,-6 v-26 a6,6 0 0 1 6,-6 z" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#E8A33D"
+        android:strokeWidth="6"
+        android:pathData="M54,45 a11,11 0 1 0 0.1,0 z" />
+</vector>

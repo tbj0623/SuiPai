@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  随拍小组件 · 4×2（四张并排缩略图 + 一行说明）。
+
+  四格是**四条各自可点的 ImageView**，不是 GridView：
+  GridView 在 RemoteViews 里要走 RemoteViewsService + 一个 Service 声明，
+  而这里格数固定是 4、且每一格的 PendingIntent 都不一样 —— 用 GridView 反而要
+  为"固定四格"写一整套 adapter。四条 LinearLayout 里的 ImageView 更短也更准。
+
+  四格的 `weight` 都是 1，所以四种常见宽度（250/280/320dp 与折叠屏展开）都能均分；
+  写死宽度会在某一档上把第四张挤出去。
+
+  可点控件的名字在运行时按「第几张 + 那一行说明」改写，见 RecentWidgetProvider.draw。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/widget_frame_4x2"
+    android:padding="8dp"
+    android:contentDescription="@string/widget_root_desc_fallback"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <ImageView
+            android:id="@+id/widget_thumb_0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/widget_thumb_desc_fallback"
+            android:src="@drawable/widget_thumb_placeholder" />
+
+        <ImageView
+            android:id="@+id/widget_thumb_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/widget_thumb_desc_fallback"
+            android:src="@drawable/widget_thumb_placeholder" />
+
+        <ImageView
+            android:id="@+id/widget_thumb_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/widget_thumb_desc_fallback"
+            android:src="@drawable/widget_thumb_placeholder" />
+
+        <ImageView
+            android:id="@+id/widget_thumb_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/widget_thumb_desc_fallback"
+            android:src="@drawable/widget_thumb_placeholder" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/widget_caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textColor="@color/widget_ink"
+        android:textSize="12sp"
+        android:text="@string/widget_caption_fallback" />
+
+</LinearLayout>

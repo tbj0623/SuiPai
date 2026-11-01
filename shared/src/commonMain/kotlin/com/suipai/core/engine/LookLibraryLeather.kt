@@ -1,0 +1,636 @@
+package com.suipai.core.engine
+
+object LookLibraryLeather {
+    val niupimianpiju = Look(
+        id = "niupimianpiju",
+        name = "牛皮面",
+        summary = "牛皮面。粒面粗，油光发暖，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.09f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val yangpimianpiju = Look(
+        id = "yangpimianpiju",
+        name = "羊皮面",
+        summary = "羊皮面。纹细软，肤光发薄，高光发纸。",
+        contrast = 0.10f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.05f,
+        vignette = 0.06f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val zhupimianpiju = Look(
+        id = "zhupimianpiju",
+        name = "猪皮面",
+        summary = "猪皮面。毛孔疏，皮色发灰，高光发干。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.10f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val mapimianpiju = Look(
+        id = "mapimianpiju",
+        name = "马皮面",
+        summary = "马皮面。纤维紧，皮色发亮，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val lupimianpiju = Look(
+        id = "lupimianpiju",
+        name = "鹿皮面",
+        summary = "鹿皮面。绒毛细，暖褐发软，高光发哑。",
+        contrast = 0.10f,
+        saturation = 0.04f,
+        temperature = 0.12f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.08f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        softness = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val jipimianpiju = Look(
+        id = "jipimianpiju",
+        name = "麂皮面",
+        summary = "麂皮面。绒面密，雾光发软，高光发纸。",
+        contrast = 0.08f,
+        saturation = -0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        grain = 0.07f,
+        vignette = 0.06f,
+        fade = 0.10f,
+        softness = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val zhiraugepiju = Look(
+        id = "zhiraugepiju",
+        name = "植鞣革",
+        summary = "植鞣革。鞣色暖，断面发粉，高光发干。",
+        contrast = 0.12f,
+        saturation = 0.06f,
+        temperature = 0.14f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val gelaugepiju = Look(
+        id = "gelaugepiju",
+        name = "铬鞣革",
+        summary = "铬鞣革。皮色冷，蓝灰发闷，高光发滑。",
+        contrast = 0.12f,
+        saturation = -0.06f,
+        temperature = -0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitShadowBlue = 0.08f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val youraugepiju = Look(
+        id = "youraugepiju",
+        name = "油鞣革",
+        summary = "油鞣革。油浸透，皮面发黏，高光发软。",
+        contrast = 0.10f,
+        saturation = 0.04f,
+        temperature = 0.12f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.07f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val qipimianpiju = Look(
+        id = "qipimianpiju",
+        name = "漆皮面",
+        summary = "漆皮面。漆镜亮，反光发硬，高光发刺。",
+        contrast = 0.18f,
+        saturation = -0.04f,
+        temperature = 0.02f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        grain = 0.03f,
+        vignette = 0.14f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val mosapipiju = Look(
+        id = "mosapipiju",
+        name = "磨砂皮",
+        summary = "磨砂皮。砂面匀，雾光发哑，高光发纸。",
+        contrast = 0.10f,
+        saturation = -0.08f,
+        temperature = 0.04f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.08f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val napapipiju = Look(
+        id = "napapipiju",
+        name = "纳帕皮",
+        summary = "纳帕皮。手感软，肤光发薄，高光发滑。",
+        contrast = 0.10f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.04f,
+        vignette = 0.06f,
+        fade = 0.08f,
+        softness = 0.06f,
+        skinProtect = 0.16f,
+        defaultIntensity = 0.50f,
+    )
+
+    val fengmapipiju = Look(
+        id = "fengmapipiju",
+        name = "疯马皮",
+        summary = "疯马皮。擦痕显，蜡层发暖，高光发黏。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.14f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.14f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val lizhiwenpiju = Look(
+        id = "lizhiwenpiju",
+        name = "荔枝纹",
+        summary = "荔枝纹。粒凸密，阴影发点，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.10f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shuaiwenpiju = Look(
+        id = "shuaiwenpiju",
+        name = "摔纹皮",
+        summary = "摔纹皮。皱纹深，皮色发闷，高光发哑。",
+        contrast = 0.16f,
+        saturation = -0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.09f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val toucengpipiju = Look(
+        id = "toucengpipiju",
+        name = "头层皮",
+        summary = "头层皮。皮层厚，自然发暖，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.07f,
+        vignette = 0.08f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val ercengpipiju = Look(
+        id = "ercengpipiju",
+        name = "二层皮",
+        summary = "二层皮。纤维平，色膜发灰，高光发纸。",
+        contrast = 0.10f,
+        saturation = -0.06f,
+        temperature = 0.04f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.07f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val fanrongpipiju = Look(
+        id = "fanrongpipiju",
+        name = "反绒皮",
+        summary = "反绒皮。绒向乱，雾面发软，高光发哑。",
+        contrast = 0.10f,
+        saturation = -0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.09f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val limianpipiju = Look(
+        id = "limianpipiju",
+        name = "粒面皮",
+        summary = "粒面皮。原粒清，阴影发浅，高光发干。",
+        contrast = 0.12f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val fupipiju = Look(
+        id = "fupipiju",
+        name = "腹皮",
+        summary = "腹皮。皮薄软，纹疏发灰，高光发纸。",
+        contrast = 0.08f,
+        saturation = -0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        grain = 0.06f,
+        vignette = 0.06f,
+        fade = 0.10f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val jianpipiju = Look(
+        id = "jianpipiju",
+        name = "肩皮",
+        summary = "肩皮。纤维密，厚度发沉，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val angepiju = Look(
+        id = "angepiju",
+        name = "鞍革",
+        summary = "鞍革。鞍面厚，油蜡发亮，高光发黏。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.14f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val jianggepiju = Look(
+        id = "jianggepiju",
+        name = "缰革",
+        summary = "缰革。条皮长，握痕发旧，高光发干。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val qiaogepiju = Look(
+        id = "qiaogepiju",
+        name = "鞘革",
+        summary = "鞘革。鞘面硬，缝线发暗，高光发哑。",
+        contrast = 0.16f,
+        saturation = -0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.07f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val xuetonggepiju = Look(
+        id = "xuetonggepiju",
+        name = "靴筒革",
+        summary = "靴筒革。筒皮直，折痕发深，高光发硬。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val yaodaigepiju = Look(
+        id = "yaodaigepiju",
+        name = "腰带革",
+        summary = "腰带革。带身厚，扣影发暗，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val pishengpiju = Look(
+        id = "pishengpiju",
+        name = "皮绳",
+        summary = "皮绳。绳圆绞，油色发暖，高光发哑。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.09f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val pidingpiju = Look(
+        id = "pidingpiju",
+        name = "皮钉",
+        summary = "皮钉。钉帽亮，皮窝发暗，高光发刺。",
+        contrast = 0.18f,
+        saturation = -0.04f,
+        temperature = 0.04f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val pibianyoupiju = Look(
+        id = "pibianyoupiju",
+        name = "皮边油",
+        summary = "皮边油。边线亮，油膜发黏，高光发滑。",
+        contrast = 0.12f,
+        saturation = 0.06f,
+        temperature = 0.12f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.05f,
+        vignette = 0.08f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val lafengbianpiju = Look(
+        id = "lafengbianpiju",
+        name = "蜡封边",
+        summary = "蜡封边。蜡边硬，切面发亮，高光发燥。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val yahuapipiju = Look(
+        id = "yahuapipiju",
+        name = "压花皮",
+        summary = "压花皮。花模深，阴影发密，高光发干。",
+        contrast = 0.16f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val diaohuapipiju = Look(
+        id = "diaohuapipiju",
+        name = "雕花皮",
+        summary = "雕花皮。刀痕凹，花边发暖，高光发软。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val casepipiju = Look(
+        id = "casepipiju",
+        name = "擦色皮",
+        summary = "擦色皮。色层薄，擦痕发亮，高光发黏。",
+        contrast = 0.14f,
+        saturation = 0.08f,
+        temperature = 0.14f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.14f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shuirangepiju = Look(
+        id = "shuirangepiju",
+        name = "水染革",
+        summary = "水染革。水色透，皮纹发清，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.06f,
+        temperature = 0.10f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.06f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val yanxungepiju = Look(
+        id = "yanxungepiju",
+        name = "烟熏革",
+        summary = "烟熏革。烟色沉，皮面发暗，高光发哑。",
+        contrast = 0.16f,
+        saturation = -0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.02f,
+        grain = 0.09f,
+        vignette = 0.16f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val majugepiju = Look(
+        id = "majugepiju",
+        name = "马具革",
+        summary = "马具革。装具厚，铜件发亮，高光发硬。",
+        contrast = 0.16f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val xiangbaogepiju = Look(
+        id = "xiangbaogepiju",
+        name = "箱包革",
+        summary = "箱包革。板面平，边角发硬，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val shoutaogepiju = Look(
+        id = "shoutaogepiju",
+        name = "手套革",
+        summary = "手套革。皮极薄，指节发软，高光发纸。",
+        contrast = 0.08f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        grain = 0.05f,
+        vignette = 0.06f,
+        fade = 0.10f,
+        softness = 0.08f,
+        skinProtect = 0.12f,
+        defaultIntensity = 0.50f,
+    )
+
+    val shupigepiju = Look(
+        id = "shupigepiju",
+        name = "书皮革",
+        summary = "书皮革。封面旧，书脊发暖，高光发哑。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = 0.12f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.08f,
+        defaultIntensity = 0.52f,
+    )
+
+    val kaijiagepiju = Look(
+        id = "kaijiagepiju",
+        name = "铠甲革",
+        summary = "铠甲革。甲片硬，缝钉发暗，高光发硬。",
+        contrast = 0.18f,
+        saturation = -0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        grain = 0.08f,
+        vignette = 0.16f,
+        fade = 0.02f,
+        defaultIntensity = 0.58f,
+    )
+
+    val all: List<Look> = listOf(
+        niupimianpiju, yangpimianpiju, zhupimianpiju, mapimianpiju, lupimianpiju, jipimianpiju, zhiraugepiju, gelaugepiju, youraugepiju, qipimianpiju,
+        mosapipiju, napapipiju, fengmapipiju, lizhiwenpiju, shuaiwenpiju, toucengpipiju, ercengpipiju, fanrongpipiju, limianpipiju, fupipiju,
+        jianpipiju, angepiju, jianggepiju, qiaogepiju, xuetonggepiju, yaodaigepiju, pishengpiju, pidingpiju, pibianyoupiju, lafengbianpiju,
+        yahuapipiju, diaohuapipiju, casepipiju, shuirangepiju, yanxungepiju, majugepiju, xiangbaogepiju, shoutaogepiju, shupigepiju, kaijiagepiju,
+    )
+}

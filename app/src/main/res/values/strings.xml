@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">随拍</string>
+
+    <!-- 桌面长按图标。静态快捷方式的标签必须是资源引用（系统按 locale 取），不能写死在 xml 里。 -->
+    <string name="sc_camera_short">拍照</string>
+    <string name="sc_camera_long">直接进取景</string>
+    <string name="sc_sync_short">互通</string>
+    <string name="sc_sync_long">找同一网络里的随拍设备</string>
+    <string name="sc_yishun_short">一瞬</string>
+    <string name="sc_yishun_long">给最近一张套配方</string>
+
+    <!--
+      桌面小组件。
+      `widget_caption_fallback` 与 `widget_root_desc_fallback` 是**布局里的兜底文案**：
+      布局在渲染出来之前必须有一个合法值（AAPT 会检查），而真正的文案在
+      RecentWidgetProvider.draw 里按状态改写（见 WidgetState.caption）。
+      `widget_thumb_desc` 用位置参数而不是四份字符串：多一份就多一处会漏改的地方。
+    -->
+    <string name="widget_label">最近的照片</string>
+    <string name="widget_desc">摆在桌面上，一眼看见最近拍的那几张。</string>
+    <string name="widget_caption_fallback">随拍</string>
+    <string name="widget_root_desc_fallback">随拍：最近的照片</string>
+    <!-- %1$s 是那一行说明（「随拍 · 12 张」）。整块的可点名字要把它带上，否则读屏只说「随拍」。 -->
+    <string name="widget_root_desc">随拍 · 最近的照片，%1$s，双击打开相册</string>
+    <string name="widget_thumb_desc">第 %1$d 张，双击打开随拍</string>
+    <string name="widget_thumb_desc_fallback">照片</string>
+
+    <!-- 动态快捷方式。与静态那三条同一套口径：短标签进长按菜单，长标签进拖出来的桌面图标。 -->
+    <string name="sc_recent_short">最近一张</string>
+    <string name="sc_recent_long">打开随拍看最近一张</string>
+    <string name="sc_dyn_trash_short">回收站</string>
+    <string name="sc_dyn_trash_long">30 天内删掉的照片</string>
+</resources>

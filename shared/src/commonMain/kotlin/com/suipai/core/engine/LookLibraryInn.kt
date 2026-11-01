@@ -1,0 +1,636 @@
+package com.suipai.core.engine
+
+object LookLibraryInn {
+    val yediankezhan = Look(
+        id = "yediankezhan",
+        name = "野店",
+        summary = "野店。店门旧，灯火发暖，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.08f,
+        vignette = 0.14f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val yiguankezhan = Look(
+        id = "yiguankezhan",
+        name = "驿馆",
+        summary = "驿馆。馆堂阔，梁影发沉，高光发干。",
+        contrast = 0.14f,
+        saturation = -0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val lvushekezhan = Look(
+        id = "lvushekezhan",
+        name = "旅舍",
+        summary = "旅舍。舍小静，被褥发暖，高光发软。",
+        contrast = 0.10f,
+        saturation = 0.02f,
+        temperature = 0.10f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val chemadiankezhan = Look(
+        id = "chemadiankezhan",
+        name = "车马店",
+        summary = "车马店。尘土厚，槽味发闷，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.09f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val jimaodiankezhan = Look(
+        id = "jimaodiankezhan",
+        name = "鸡毛店",
+        summary = "鸡毛店。店极简，油灯发暗，高光发干。",
+        contrast = 0.16f,
+        saturation = -0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.10f,
+        vignette = 0.16f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val yuelaidiankezhan = Look(
+        id = "yuelaidiankezhan",
+        name = "悦来店",
+        summary = "悦来店。招牌旧，朱红发闷，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.06f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val tongpukezhan = Look(
+        id = "tongpukezhan",
+        name = "通铺",
+        summary = "通铺。铺板长，被影发灰，高光发哑。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.14f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val shangfangkezhan = Look(
+        id = "shangfangkezhan",
+        name = "上房",
+        summary = "上房。房净暖，窗纸发薄，高光发纸。",
+        contrast = 0.10f,
+        saturation = 0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val guifangkezhan = Look(
+        id = "guifangkezhan",
+        name = "柜房",
+        summary = "柜房。柜台亮，算盘发干，高光发硬。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val zhangfangkezhan = Look(
+        id = "zhangfangkezhan",
+        name = "账房",
+        summary = "账房。账册旧，墨色发沉，高光发干。",
+        contrast = 0.14f,
+        saturation = -0.06f,
+        temperature = 0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val zaofangkezhan = Look(
+        id = "zaofangkezhan",
+        name = "灶房",
+        summary = "灶房。灶火红，油烟发闷，高光发黏。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.14f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.14f,
+        grain = 0.08f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val mapengkezhan = Look(
+        id = "mapengkezhan",
+        name = "马棚",
+        summary = "马棚。棚荫暗，草料发暖，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.04f,
+        grain = 0.09f,
+        vignette = 0.16f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val caoliaopengkezhan = Look(
+        id = "caoliaopengkezhan",
+        name = "草料棚",
+        summary = "草料棚。干草黄，尘雾发薄，高光发纸。",
+        contrast = 0.10f,
+        saturation = 0.04f,
+        temperature = 0.12f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val dianhuangkezhan = Look(
+        id = "dianhuangkezhan",
+        name = "店幌",
+        summary = "店幌。幌布垂，风影发长，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.08f,
+        temperature = 0.10f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.06f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val dianzhaokezhan = Look(
+        id = "dianzhaokezhan",
+        name = "店招",
+        summary = "店招。木牌旧，金字发闷，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val dianmenkezhan = Look(
+        id = "dianmenkezhan",
+        name = "店门",
+        summary = "店门。门板厚，门槛发旧，高光发哑。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val dianlangkezhan = Look(
+        id = "dianlangkezhan",
+        name = "店廊",
+        summary = "店廊。廊阴长，柱影发冷，高光发纸。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.06f,
+        vignette = 0.14f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val dianjingkezhan = Look(
+        id = "dianjingkezhan",
+        name = "店井",
+        summary = "店井。井口圆，水光发冷，高光发滑。",
+        contrast = 0.12f,
+        saturation = -0.06f,
+        temperature = -0.02f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.08f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val diandengkezhan = Look(
+        id = "diandengkezhan",
+        name = "店灯",
+        summary = "店灯。油灯小，暖晕发黏，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.06f,
+        temperature = 0.16f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.16f,
+        grain = 0.05f,
+        vignette = 0.16f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val dianguikezhan = Look(
+        id = "dianguikezhan",
+        name = "店柜",
+        summary = "店柜。柜面平，铜扣发亮，高光发硬。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val dianzhangkezhan = Look(
+        id = "dianzhangkezhan",
+        name = "店账",
+        summary = "店账。账页黄，墨迹发干，高光发纸。",
+        contrast = 0.12f,
+        saturation = 0.02f,
+        temperature = 0.10f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val dianzaokezhan = Look(
+        id = "dianzaokezhan",
+        name = "店灶",
+        summary = "店灶。灶口红，火色发燥，高光发黏。",
+        contrast = 0.16f,
+        saturation = 0.08f,
+        temperature = 0.16f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.16f,
+        grain = 0.07f,
+        vignette = 0.14f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val dianpubankezhan = Look(
+        id = "dianpubankezhan",
+        name = "店铺板",
+        summary = "店铺板。板缝密，木色发旧，高光发干。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val dianerloukezhan = Look(
+        id = "dianerloukezhan",
+        name = "店二楼",
+        summary = "店二楼。楼板响，窗影发斜，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val diantianjingkezhan = Look(
+        id = "diantianjingkezhan",
+        name = "店天井",
+        summary = "店天井。天井亮，青石发冷，高光发纸。",
+        contrast = 0.12f,
+        saturation = -0.06f,
+        temperature = 0.02f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.06f,
+        grain = 0.05f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val dianhouyuankezhan = Look(
+        id = "dianhouyuankezhan",
+        name = "店后院",
+        summary = "店后院。院落静，苔色发绿，高光发哑。",
+        contrast = 0.12f,
+        saturation = -0.02f,
+        temperature = 0.06f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val dianguitaikezhan = Look(
+        id = "dianguitaikezhan",
+        name = "店柜台",
+        summary = "店柜台。台面亮，掌柜发暗，高光发硬。",
+        contrast = 0.14f,
+        saturation = 0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val dianchakezhan = Look(
+        id = "dianchakezhan",
+        name = "店茶",
+        summary = "店茶。茶汤褐，热气发软，高光发黏。",
+        contrast = 0.10f,
+        saturation = 0.04f,
+        temperature = 0.12f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val dianjiukezhan = Look(
+        id = "dianjiukezhan",
+        name = "店酒",
+        summary = "店酒。酒色暖，坛影发沉，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.06f,
+        temperature = 0.14f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val dianzhoukezhan = Look(
+        id = "dianzhoukezhan",
+        name = "店粥",
+        summary = "店粥。粥面白，热气发薄，高光发纸。",
+        contrast = 0.08f,
+        saturation = -0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.10f,
+        softness = 0.08f,
+        defaultIntensity = 0.48f,
+    )
+
+    val dianbeikezhan = Look(
+        id = "dianbeikezhan",
+        name = "店被",
+        summary = "店被。被絮旧，暖灰发软，高光发哑。",
+        contrast = 0.10f,
+        saturation = -0.02f,
+        temperature = 0.10f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val dianzhenkezhan = Look(
+        id = "dianzhenkezhan",
+        name = "店枕",
+        summary = "店枕。枕芯硬，布面发旧，高光发干。",
+        contrast = 0.12f,
+        saturation = -0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val dianxikezhan = Look(
+        id = "dianxikezhan",
+        name = "店席",
+        summary = "店席。席纹齐，草香发暖，高光发哑。",
+        contrast = 0.12f,
+        saturation = 0.02f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val dianhuotangkezhan = Look(
+        id = "dianhuotangkezhan",
+        name = "店火塘",
+        summary = "店火塘。塘火红，烟炱发灰，高光发燥。",
+        contrast = 0.16f,
+        saturation = 0.06f,
+        temperature = 0.16f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.16f,
+        grain = 0.08f,
+        vignette = 0.16f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val diangengluokezhan = Look(
+        id = "diangengluokezhan",
+        name = "店更锣",
+        summary = "店更锣。锣声闷，铜面发暗，高光发硬。",
+        contrast = 0.16f,
+        saturation = -0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.06f,
+        vignette = 0.16f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val diangengfukezhan = Look(
+        id = "diangengfukezhan",
+        name = "店更夫",
+        summary = "店更夫。更夜冷，灯影发长，高光发哑。",
+        contrast = 0.14f,
+        saturation = -0.06f,
+        temperature = 0.04f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.04f,
+        grain = 0.07f,
+        vignette = 0.18f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val dianmenshuankezhan = Look(
+        id = "dianmenshuankezhan",
+        name = "店门闩",
+        summary = "店门闩。闩木粗，铁件发暗，高光发干。",
+        contrast = 0.16f,
+        saturation = -0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.08f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val dianzhaopaikezhan = Look(
+        id = "dianzhaopaikezhan",
+        name = "店招牌",
+        summary = "店招牌。牌面旧，金边发闷，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.06f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val diandenglongkezhan = Look(
+        id = "diandenglongkezhan",
+        name = "店灯笼",
+        summary = "店灯笼。纸红透，灯芯发暖，高光发黏。",
+        contrast = 0.12f,
+        saturation = 0.10f,
+        temperature = 0.16f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.16f,
+        grain = 0.05f,
+        vignette = 0.14f,
+        fade = 0.06f,
+        softness = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val dianjiubakezhan = Look(
+        id = "dianjiubakezhan",
+        name = "店酒坝",
+        summary = "店酒坝。坝台湿，酒渍发暖，高光发哑。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val all: List<Look> = listOf(
+        yediankezhan, yiguankezhan, lvushekezhan, chemadiankezhan, jimaodiankezhan, yuelaidiankezhan, tongpukezhan, shangfangkezhan, guifangkezhan, zhangfangkezhan,
+        zaofangkezhan, mapengkezhan, caoliaopengkezhan, dianhuangkezhan, dianzhaokezhan, dianmenkezhan, dianlangkezhan, dianjingkezhan, diandengkezhan, dianguikezhan,
+        dianzhangkezhan, dianzaokezhan, dianpubankezhan, dianerloukezhan, diantianjingkezhan, dianhouyuankezhan, dianguitaikezhan, dianchakezhan, dianjiukezhan, dianzhoukezhan,
+        dianbeikezhan, dianzhenkezhan, dianxikezhan, dianhuotangkezhan, diangengluokezhan, diangengfukezhan, dianmenshuankezhan, dianzhaopaikezhan, diandenglongkezhan, dianjiubakezhan,
+    )
+}

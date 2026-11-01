@@ -1,0 +1,637 @@
+package com.suipai.core.engine
+
+object LookLibraryShop {
+    val zaoshihang = Look(
+        id = "zaoshihang",
+        name = "早市",
+        summary = "早市。雾白薄，菜青还湿，高光发冷。",
+        contrast = 0.10f,
+        saturation = 0.04f,
+        temperature = -0.04f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        splitShadowBlue = 0.08f,
+        grain = 0.07f,
+        vignette = 0.06f,
+        fade = 0.08f,
+        defaultIntensity = 0.54f,
+    )
+
+    val yeshihang = Look(
+        id = "yeshihang",
+        name = "夜市",
+        summary = "夜市。灯暖密，巷影发浓，高光发橙。",
+        contrast = 0.16f,
+        saturation = 0.08f,
+        temperature = 0.14f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.16f,
+        grain = 0.08f,
+        vignette = 0.16f,
+        fade = 0.04f,
+        defaultIntensity = 0.56f,
+    )
+
+    val xushihang = Look(
+        id = "xushihang",
+        name = "墟市",
+        summary = "墟市。土路暖，棚布发旧，高光发干。",
+        contrast = 0.12f,
+        saturation = -0.02f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.10f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val jishihang = Look(
+        id = "jishihang",
+        name = "集市",
+        summary = "集市。人声暖，摊色发杂，高光发硬。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.08f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val miaohuihang = Look(
+        id = "miaohuihang",
+        name = "庙会",
+        summary = "庙会。红幡暖，香灰发灰，高光发燥。",
+        contrast = 0.14f,
+        saturation = 0.08f,
+        temperature = 0.12f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.55f,
+    )
+
+    val dangpuhao = Look(
+        id = "dangpuhao",
+        name = "当铺",
+        summary = "当铺。柜木沉，金字发旧，高光发哑。",
+        contrast = 0.16f,
+        saturation = -0.08f,
+        temperature = 0.08f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.02f,
+        grain = 0.09f,
+        vignette = 0.14f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val qianzhuanghao = Look(
+        id = "qianzhuanghao",
+        name = "钱庄",
+        summary = "钱庄。银柜冷，账页发黄，高光发硬。",
+        contrast = 0.14f,
+        saturation = -0.10f,
+        temperature = 0.04f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val biaojuhao = Look(
+        id = "biaojuhao",
+        name = "镖局",
+        summary = "镖局。旗布沉，刀鞘发暗，高光发干。",
+        contrast = 0.16f,
+        saturation = -0.06f,
+        temperature = 0.06f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.02f,
+        grain = 0.08f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val yizhanhao = Look(
+        id = "yizhanhao",
+        name = "驿站",
+        summary = "驿站。尘土暖，马槽发潮，高光发灰。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.08f,
+        grain = 0.10f,
+        vignette = 0.10f,
+        fade = 0.08f,
+        defaultIntensity = 0.52f,
+    )
+
+    val kezhanhao = Look(
+        id = "kezhanhao",
+        name = "客栈",
+        summary = "客栈。灯笼暖，木梯发旧，高光发软。",
+        contrast = 0.12f,
+        saturation = 0.02f,
+        temperature = 0.12f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.08f,
+        softness = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val buzhuanghao = Look(
+        id = "buzhuanghao",
+        name = "布庄",
+        summary = "布庄。匹布软，靛蓝发闷，高光发哑。",
+        contrast = 0.10f,
+        saturation = 0.04f,
+        temperature = -0.02f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.06f,
+        grain = 0.06f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        softness = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val yaopuhao = Look(
+        id = "yaopuhao",
+        name = "药铺",
+        summary = "药铺。柜屉黄，药香发干，高光发旧。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val ranfanghao = Look(
+        id = "ranfanghao",
+        name = "染坊",
+        summary = "染坊。靛缸深，布端发湿，高光发冷。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = -0.08f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.06f,
+        splitShadowBlue = 0.12f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val youfanghao = Look(
+        id = "youfanghao",
+        name = "油坊",
+        summary = "油坊。油光暖，石碾发沉，高光发黏。",
+        contrast = 0.12f,
+        saturation = 0.02f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val mofanghao = Look(
+        id = "mofanghao",
+        name = "磨坊",
+        summary = "磨坊。面粉白，木轴发旧，高光发灰。",
+        contrast = 0.10f,
+        saturation = -0.08f,
+        temperature = 0.06f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.10f,
+        grain = 0.09f,
+        vignette = 0.08f,
+        fade = 0.10f,
+        defaultIntensity = 0.50f,
+    )
+
+    val jiangyuanhao = Look(
+        id = "jiangyuanhao",
+        name = "酱园",
+        summary = "酱园。缸沿褐，酱色发浓，高光发暖。",
+        contrast = 0.14f,
+        saturation = 0.04f,
+        temperature = 0.14f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val mihanghao = Look(
+        id = "mihanghao",
+        name = "米行",
+        summary = "米行。米白薄，麻袋发暖，高光发干。",
+        contrast = 0.10f,
+        saturation = -0.06f,
+        temperature = 0.08f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.07f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val liangzhanhao = Look(
+        id = "liangzhanhao",
+        name = "粮栈",
+        summary = "粮栈。仓木沉，谷尘发黄，高光发哑。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.10f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val tiepuhao = Look(
+        id = "tiepuhao",
+        name = "铁铺",
+        summary = "铁铺。炉火暖，铁屑发黑，高光发硬。",
+        contrast = 0.18f,
+        saturation = 0.02f,
+        temperature = 0.12f,
+        highlightRoll = 0.10f,
+        shadowLift = 0.02f,
+        splitHighlightWarm = 0.14f,
+        grain = 0.08f,
+        vignette = 0.16f,
+        fade = 0.02f,
+        defaultIntensity = 0.56f,
+    )
+
+    val mupuhao = Look(
+        id = "mupuhao",
+        name = "木铺",
+        summary = "木铺。刨花暖，木纹发干，高光发柔。",
+        contrast = 0.12f,
+        saturation = -0.02f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.08f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val zhipuhao = Look(
+        id = "zhipuhao",
+        name = "纸铺",
+        summary = "纸铺。宣白薄，帘纹发冷，高光发纸。",
+        contrast = 0.08f,
+        saturation = -0.12f,
+        temperature = 0.02f,
+        highlightRoll = 0.22f,
+        shadowLift = 0.12f,
+        grain = 0.05f,
+        vignette = 0.06f,
+        fade = 0.10f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val mopuhao = Look(
+        id = "mopuhao",
+        name = "墨铺",
+        summary = "墨铺。松烟黑，墨锭发亮，高光发硬。",
+        contrast = 0.16f,
+        saturation = -0.16f,
+        temperature = -0.02f,
+        highlightRoll = 0.12f,
+        shadowLift = 0.02f,
+        grain = 0.06f,
+        vignette = 0.14f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val yanpuhao = Look(
+        id = "yanpuhao",
+        name = "砚铺",
+        summary = "砚铺。石面冷，砚池发湿，高光发哑。",
+        contrast = 0.14f,
+        saturation = -0.12f,
+        temperature = -0.04f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitShadowBlue = 0.06f,
+        grain = 0.06f,
+        vignette = 0.12f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val bipuhao = Look(
+        id = "bipuhao",
+        name = "笔铺",
+        summary = "笔铺。毫尖暖，竹管发旧，高光发细。",
+        contrast = 0.10f,
+        saturation = -0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.06f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val xiupuhao = Look(
+        id = "xiupuhao",
+        name = "绣铺",
+        summary = "绣铺。丝线亮，针脚发密，高光发软。",
+        contrast = 0.10f,
+        saturation = 0.08f,
+        temperature = 0.06f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        softness = 0.08f,
+        grain = 0.04f,
+        vignette = 0.08f,
+        fade = 0.04f,
+        skinProtect = 0.10f,
+        defaultIntensity = 0.52f,
+    )
+
+    val xiepuhao = Look(
+        id = "xiepuhao",
+        name = "鞋铺",
+        summary = "鞋铺。皮底暖，线槽发旧，高光发干。",
+        contrast = 0.12f,
+        saturation = -0.02f,
+        temperature = 0.10f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val maopuhao = Look(
+        id = "maopuhao",
+        name = "帽铺",
+        summary = "帽铺。毡沿沉，帽胎发软，高光发闷。",
+        contrast = 0.12f,
+        saturation = -0.06f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val yipuhao = Look(
+        id = "yipuhao",
+        name = "衣铺",
+        summary = "衣铺。布褶软，衣架发旧，高光发柔。",
+        contrast = 0.10f,
+        saturation = 0.02f,
+        temperature = 0.06f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        softness = 0.06f,
+        grain = 0.06f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        skinProtect = 0.08f,
+        defaultIntensity = 0.52f,
+    )
+
+    val yanzhuanghao = Look(
+        id = "yanzhuanghao",
+        name = "盐庄",
+        summary = "盐庄。盐白硬，麻包发灰，高光发冷。",
+        contrast = 0.12f,
+        saturation = -0.14f,
+        temperature = -0.02f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.08f,
+        grain = 0.07f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val chazhuanghao = Look(
+        id = "chazhuanghao",
+        name = "茶庄",
+        summary = "茶庄。茶褐暖，锡罐发哑，高光发旧。",
+        contrast = 0.12f,
+        saturation = -0.02f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.06f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val jiufanghao = Look(
+        id = "jiufanghao",
+        name = "酒坊",
+        summary = "酒坊。酒气暖，缸沿发湿，高光发黏。",
+        contrast = 0.12f,
+        saturation = 0.04f,
+        temperature = 0.12f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.08f,
+        vignette = 0.10f,
+        fade = 0.06f,
+        defaultIntensity = 0.54f,
+    )
+
+    val cuofanghao = Look(
+        id = "cuofanghao",
+        name = "醋坊",
+        summary = "醋坊。酸气冷，木桶发褐，高光发闷。",
+        contrast = 0.14f,
+        saturation = -0.04f,
+        temperature = 0.04f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        grain = 0.08f,
+        vignette = 0.12f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val tangfanghao = Look(
+        id = "tangfanghao",
+        name = "糖坊",
+        summary = "糖坊。糖浆暖，铜锅发亮，高光发甜。",
+        contrast = 0.12f,
+        saturation = 0.06f,
+        temperature = 0.14f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.08f,
+        splitHighlightWarm = 0.12f,
+        grain = 0.06f,
+        vignette = 0.08f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val doufufanghao = Look(
+        id = "doufufanghao",
+        name = "豆腐坊",
+        summary = "豆腐坊。豆浆白，石磨发冷，高光发湿。",
+        contrast = 0.08f,
+        saturation = -0.10f,
+        temperature = -0.02f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.12f,
+        grain = 0.06f,
+        vignette = 0.06f,
+        fade = 0.10f,
+        softness = 0.06f,
+        defaultIntensity = 0.50f,
+    )
+
+    val mianshihao = Look(
+        id = "mianshihao",
+        name = "面铺",
+        summary = "面铺。面粉薄，案板发暖，高光发灰。",
+        contrast = 0.10f,
+        saturation = -0.06f,
+        temperature = 0.08f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.08f,
+        vignette = 0.08f,
+        fade = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val roupuhao = Look(
+        id = "roupuhao",
+        name = "肉铺",
+        summary = "肉铺。肉色暖，案油发亮，高光发腥。",
+        contrast = 0.14f,
+        saturation = 0.06f,
+        temperature = 0.10f,
+        highlightRoll = 0.14f,
+        shadowLift = 0.04f,
+        splitHighlightWarm = 0.10f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.54f,
+    )
+
+    val yupuhao = Look(
+        id = "yupuhao",
+        name = "鱼铺",
+        summary = "鱼铺。鳞光冷，冰台发湿，高光发青。",
+        contrast = 0.12f,
+        saturation = -0.02f,
+        temperature = -0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.08f,
+        splitShadowBlue = 0.12f,
+        grain = 0.06f,
+        vignette = 0.08f,
+        fade = 0.06f,
+        defaultIntensity = 0.52f,
+    )
+
+    val qinpuhao = Look(
+        id = "qinpuhao",
+        name = "琴铺",
+        summary = "琴铺。漆面暖，弦影发细，高光发润。",
+        contrast = 0.12f,
+        saturation = -0.04f,
+        temperature = 0.08f,
+        highlightRoll = 0.16f,
+        shadowLift = 0.06f,
+        grain = 0.05f,
+        vignette = 0.10f,
+        fade = 0.04f,
+        defaultIntensity = 0.52f,
+    )
+
+    val shupuhao = Look(
+        id = "shupuhao",
+        name = "书铺",
+        summary = "书铺。纸黄旧，墨气发干，高光发柔。",
+        contrast = 0.10f,
+        saturation = -0.08f,
+        temperature = 0.08f,
+        highlightRoll = 0.18f,
+        shadowLift = 0.08f,
+        grain = 0.07f,
+        vignette = 0.10f,
+        fade = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val huapuhao = Look(
+        id = "huapuhao",
+        name = "画铺",
+        summary = "画铺。绢色暖，墨韵发淡，高光发纸。",
+        contrast = 0.10f,
+        saturation = -0.04f,
+        temperature = 0.06f,
+        highlightRoll = 0.20f,
+        shadowLift = 0.10f,
+        fade = 0.10f,
+        softness = 0.06f,
+        grain = 0.05f,
+        vignette = 0.08f,
+        defaultIntensity = 0.50f,
+    )
+
+    val all: List<Look> = listOf(
+        zaoshihang, yeshihang, xushihang, jishihang, miaohuihang, dangpuhao, qianzhuanghao, biaojuhao, yizhanhao, kezhanhao,
+        buzhuanghao, yaopuhao, ranfanghao, youfanghao, mofanghao, jiangyuanhao, mihanghao, liangzhanhao, tiepuhao, mupuhao,
+        zhipuhao, mopuhao, yanpuhao, bipuhao, xiupuhao, xiepuhao, maopuhao, yipuhao, yanzhuanghao, chazhuanghao,
+        jiufanghao, cuofanghao, tangfanghao, doufufanghao, mianshihao, roupuhao, yupuhao, qinpuhao, shupuhao, huapuhao,
+    )
+}

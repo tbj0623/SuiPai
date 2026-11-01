@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Auto Backup（Android 6+ 云备份）。持久状态分两个偏好文件：
+     · suipai.xml —— 界面偏好、一瞬参数、相机参数：**参与备份**（换机后这些是"我的设置还在"）。
+     · suipai.private.xml —— 收藏与隐藏两份 id 清单：**不参与备份**。它们描述的是
+       "用户藏起了哪些照片"，属于隐私本身；照片内容从来不进备份，清单也不该进。
+     两个文件都显式写出来，是为了让"只 include 一个"这件事不依赖默认行为 ——
+     以后有人加 include 目录时，这一行 exclude 还在。照片本身在 MediaStore，不归备份管。
+
+     ## 关于每条 exclude 上的 `tools:ignore="FullBackupContent"`
+     lint 的判据是"exclude 的路径必须落在某条 include 之内"，而这里 include 只有
+     suipai.xml，所以下面两条 exclude 都被它判成**多余**。冗余是真的 —— 只要还有
+     显式 include，别的路径本来就不会被备份。但这两行是**防回归的钉子**：
+     一旦以后有人往这里加 `<include domain="sharedpref" path="." />` 或
+     `<include domain="file" path="." />`，没有这两行 exclude 就等于把
+     "藏起了哪些照片"与"用户在哪张照片的哪个位置做了手脚"送上云端。
+     所以不删，只就地静音，并把理由写在这里。 -->
+<full-backup-content xmlns:tools="http://schemas.android.com/tools">
+    <include
+        domain="sharedpref"
+        path="suipai.xml" />
+    <exclude
+        domain="sharedpref"
+        path="suipai.private.xml"
+        tools:ignore="FullBackupContent" />
+    <!-- 自定义配方（filesDir/custom_looks.json）不进云备份：里面带局部蒙版的
+         归一化坐标与分色参数，等价于「用户在这张照片的哪个位置做了手脚」，
+         和收藏/隐藏清单同级别的隐私；换机后重新存一次比上云便宜。 -->
+    <exclude
+        domain="file"
+        path="custom_looks.json"
+        tools:ignore="FullBackupContent" />
+</full-backup-content>
