@@ -21,6 +21,9 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: android-actions/setup-android@v3
+        with:
+          # SDK 的旧 "tools" 包已下架；默认列表会让新仓库 CI 在 16 秒内失败。
+          packages: platform-tools
       - name: Install Android SDK
         run: sdkmanager "platforms;android-36" "build-tools;35.0.0"
       - uses: gradle/actions/setup-gradle@v4
