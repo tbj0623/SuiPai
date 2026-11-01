@@ -741,11 +741,15 @@ private fun SecondaryScreenHost(
         scope.launch {
             val result = withContext(Dispatchers.IO) { Backup.importFrom(context, uri, mode) }
             backupNote = result.line("恢复")
-            // 恢复不改照片本身，但会换掉收藏/隐藏/收藏夹/搜索历史/设置 ——
-            // 收藏与隐藏的**徽标**要重读，否则界面上还是旧的那一套。
-            if (result is BackupResult.Ok) {
-                backupLastAt = result.at
-                backupLastCounts = result.counts
+            // 即使只有一部分成功，也要重读界面。失败时恢复可能已经写入某些类别。
+            val applied = when (result) {
+                is BackupResult.Ok -> result.at to result.counts
+                is BackupResult.Partial -> result.at to result.counts
+                is BackupResult.Failed -> null
+            }
+            if (applied != null) {
+                backupLastAt = applied.first
+                backupLastCounts = applied.second
                 // 恢复换掉的是收藏/隐藏/收藏夹/设置，**照片库本身没变**，所以
                 // `generation()` 不会动；但 id 集合可能整份不同，靠 force 才不会被门控拦下。
                 state.refresh(force = true)

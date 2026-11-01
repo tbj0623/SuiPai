@@ -325,6 +325,10 @@ class WidgetLogicTest {
         )
         assertEquals(listOf("a", "b"), budgetedDynamicShortcuts(dup).map { it.id })
         assertEquals("去重保留的是第一次出现的那份", "短", budgetedDynamicShortcuts(dup)[0].shortLabel)
+        assertEquals("启动器只余一个名额时必须裁剪", listOf("id0"),
+            budgetedDynamicShortcuts(many, availableSlots = 1).map { it.id })
+        assertTrue("一个名额都没有时不得发", budgetedDynamicShortcuts(many, availableSlots = 0).isEmpty())
+        assertTrue("异常负容量也不得发", budgetedDynamicShortcuts(many, availableSlots = -1).isEmpty())
     }
 
     /** 有照片才发「最近一张」；「回收站」永远发。 */
@@ -340,7 +344,7 @@ class WidgetLogicTest {
     // ══ 六、深链：只发 MainActivity 认得的 ═════════════════════════════
 
     /**
-     * `MainActivity.collectHop` 只认 `camera|sync|yishun` 三个 host。
+     * `MainActivity.collectHop` 认得三条静态入口和两条动态入口。
      * 发别的 host 不会崩 —— app 会打开，然后停在相册页。
      * 所以这一层的判据是"白名单"，不是"能构造就行"。
      */
@@ -349,8 +353,9 @@ class WidgetLogicTest {
         assertTrue(SupportedDeepLinks.isSupported("suipai://camera"))
         assertTrue(SupportedDeepLinks.isSupported("suipai://sync"))
         assertTrue(SupportedDeepLinks.isSupported("suipai://yishun"))
-        assertFalse("viewer 目前没有入口", SupportedDeepLinks.isSupported("suipai://viewer?index=0"))
-        assertFalse("trash 目前没有 intent 入口", SupportedDeepLinks.isSupported("suipai://trash"))
+        assertFalse("viewer 按页号跳转尚不支持", SupportedDeepLinks.isSupported("suipai://viewer?index=0"))
+        assertTrue(SupportedDeepLinks.isSupported("suipai://recent"))
+        assertTrue(SupportedDeepLinks.isSupported("suipai://trash"))
         assertFalse(SupportedDeepLinks.isSupported("suipai://camera2"))
         assertFalse(SupportedDeepLinks.isSupported("https://camera"))
         assertFalse(SupportedDeepLinks.isSupported(""))
@@ -370,9 +375,8 @@ class WidgetLogicTest {
     }
 
     /**
-     * 现在发出去的两条快捷方式都**不带**深链（普通启动）。
-     * 这条是给未来的人看的：哪天有人给它们补上 `suipai://trash`，这里会红 ——
-     * 那时要么去 `MainActivity` 加分支（本轮被禁止），要么把这条判据连同文档一起改。
+     * 动态两条都带真实深链；任何入口变更都必须同步 MainActivity 的白名单和导航分支。
+     * 自检喂一条未实现的 viewer 深链，确保守卫不会永远绿。
      */
     @Test
     fun emittedShortcutsCarryOnlySupportedDeepLinks() {
@@ -389,23 +393,16 @@ class WidgetLogicTest {
 
     // ══ 七、设备判据（纯函数，不碰 android.*） ═════════════════════════
 
-    /**
-     * 四个象限逐个钉：API 太老不发、宿主不支持钉也不发、两个都满足才发。
-     * 这条在真机上没法规——`Build.VERSION.SDK_INT` 是常量，
-     * 而"宿主不支持钉快捷方式"的那台机器我们在 CI 里拿不到。
-     */
+    /** 动态快捷方式看平台版本和 launcher 的真实名额，不看能否固定到桌面。 */
     @Test
-    fun shortcutSupportNeedsBothApiAndLauncher() {
+    fun shortcutSupportNeedsApiAndCapacityBeyondManifestShortcuts() {
         assertEquals(25, ShortcutSupport.MIN_SDK)
-        assertFalse("API 24 上没有动态快捷方式", ShortcutSupport.shouldPublish(sdkInt = 24, pinShortcutsSupported = true))
-        assertFalse("宿主不支持钉到桌面时不发", ShortcutSupport.shouldPublish(sdkInt = 33, pinShortcutsSupported = false))
-        assertTrue("API 25 + 支持钉 = 发", ShortcutSupport.shouldPublish(sdkInt = 25, pinShortcutsSupported = true))
-        assertTrue(ShortcutSupport.shouldPublish(sdkInt = 36, pinShortcutsSupported = true))
-        // 自检：判据把两个条件写成 `||` 的话上面两个 false 会变成 true
-        assertFalse(
-            "自检失败：两个条件缺一个时必须是不支持",
-            ShortcutSupport.shouldPublish(sdkInt = 20, pinShortcutsSupported = false),
-        )
+        assertFalse("API 24 上没有动态快捷方式", ShortcutSupport.shouldPublish(sdkInt = 24, launcherMax = 5))
+        assertFalse("总容量 0 不支持", ShortcutSupport.shouldPublish(sdkInt = 33, launcherMax = 0))
+        assertFalse("三个名额全被静态占用", ShortcutSupport.shouldPublish(sdkInt = 33, launcherMax = 3))
+        assertTrue("API 25 且有一个剩余名额也能发", ShortcutSupport.shouldPublish(sdkInt = 25, launcherMax = 4))
+        assertTrue(ShortcutSupport.shouldPublish(sdkInt = 36, launcherMax = 5))
+        assertFalse("低 API 且无名额必须拒绝", ShortcutSupport.shouldPublish(sdkInt = 20, launcherMax = 0))
     }
 
     // ══ 八、源码与资源的一致性（读文件，不碰 android.*） ═════════════════
@@ -586,6 +583,22 @@ class WidgetLogicTest {
         assertEquals("MainActivity 与 SupportedDeepLinks.HOSTS 对不上", hosts, SupportedDeepLinks.HOSTS)
         // 自检：那三个 host 里随便删一个，比较必须不成立
         assertTrue("自检失败：少一个 host 的集合被判成相等了", (hosts - "yishun") != SupportedDeepLinks.HOSTS)
+    }
+
+    /** 动态深链必须有实际导航分支，且最近照片不能从桌面暴露隐藏图。 */
+    @Test
+    fun dynamicDeepLinksOpenRealScreens() {
+        val main = repoFile("app/src/main/java/com/suipai/app/MainActivity.kt").readText()
+        assertTrue("回收站深链缺分支", "\"trash\" -> {" in main)
+        assertTrue("回收站没有重置到真实页面", "nav.reset(AppRoute.Gallery, listOf(AppRoute.Trash))" in main)
+        assertTrue("最近一张深链缺分支", "\"recent\" -> {" in main)
+        assertTrue("最近一张没有调真正的查看器", "state.openViewer(fromGalleryCell = true" in main)
+        assertTrue("桌面入口应过滤隐藏照片", "it.id !in state.hiddenIds" in main)
+        assertTrue("查看器路由必须入栈", "nav.showViewerAt(state.viewerIndex)" in main)
+        val dynamic = repoFile("app/src/main/java/com/suipai/app/widget/DynamicShortcuts.kt").readText()
+        assertTrue("动态入口必须按启动器实际名额发布", "getMaxShortcutCountPerActivity(app)" in dynamic)
+        assertFalse("不能用固定到桌面的支持来拦截动态入口",
+            "isRequestPinShortcutSupported(app)" in dynamic)
     }
 
     /**

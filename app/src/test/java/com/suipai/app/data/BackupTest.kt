@@ -176,6 +176,102 @@ class BackupTest {
         assertEquals("settings 的顺序不该影响编码结果", Backup.encode(b), Backup.encode(reordered))
     }
 
+    // ── 跨设备照片编号安全 ───────────────────────────────────────────
+
+    @Test
+    fun installOriginSurvivesBackupRoundTrip() {
+        val tagged = bundle().copy(sourceInstallId = "a7fbf2e2-3b1a-4cd4-8f83-36e2bbf1af10")
+        val decoded = Backup.decode(Backup.encode(tagged))
+        assertEquals(tagged, decoded)
+        assertTrue(Backup.encode(tagged).contains("\"sourceInstallId\":"))
+        assertEquals("", Backup.decode("""{"format":"suipai-backup","schema":1}""")!!.sourceInstallId)
+    }
+
+    @Test
+    fun v1BackupCannotClaimNewOriginEvenIfFieldWasInjected() {
+        val tagged = bundle().copy(sourceInstallId = "phone-a")
+        val legacy = Backup.encode(tagged).replace(
+            "\"schema\": ${Backup.CURRENT_SCHEMA}",
+            "\"schema\": 1",
+        )
+        val decoded = Backup.decode(legacy)!!
+        assertEquals("旧格式没有可信的来源字段，必须强制清空", "", decoded.sourceInstallId)
+        assertEquals(Backup.CURRENT_SCHEMA, decoded.schema)
+        val plan = Backup.planRestore(BackupBundle(sourceInstallId = "phone-a"),
+            decoded, MergeMode.REPLACE, "phone-a")
+        assertTrue(plan.photoLinksSkipped)
+    }
+
+    @Test
+    fun sameInstallMayRestorePhotoLinks() {
+        val local = BackupBundle(
+            sourceInstallId = "phone-a",
+            collections = listOf(PhotoCollection("local", "本机", listOf(1L), 1L, 1L)),
+            favorites = listOf(1L), hidden = listOf(2L),
+        )
+        val remote = BackupBundle(
+            sourceInstallId = "phone-a",
+            settings = mapOf("portable" to "yes"),
+            collections = listOf(PhotoCollection("other", "原册", listOf(30L), 1L, 1L)),
+            favorites = listOf(30L), hidden = listOf(40L),
+        )
+        val plan = Backup.planRestore(local, remote, MergeMode.REPLACE, "phone-a")
+        assertFalse(plan.photoLinksSkipped)
+        assertEquals(remote.collections, plan.target.collections)
+        assertEquals(remote.favorites, plan.target.favorites)
+        assertEquals(remote.hidden, plan.target.hidden)
+    }
+
+    @Test
+    fun foreignInstallPreservesLocalPhotoLinksButRestoresPortableSettings() {
+        val local = BackupBundle(
+            sourceInstallId = "phone-a",
+            collections = listOf(PhotoCollection("local", "本机", listOf(1L), 1L, 1L)),
+            favorites = listOf(1L), hidden = listOf(2L),
+        )
+        val remote = BackupBundle(
+            sourceInstallId = "phone-b",
+            settings = mapOf("portable" to "yes"),
+            collections = listOf(PhotoCollection("foreign", "他机", listOf(1L), 1L, 1L)),
+            favorites = listOf(1L, 3L), hidden = listOf(1L),
+            searchHistory = listOf("春天"),
+        )
+        for (mode in MergeMode.entries) {
+            val plan = Backup.planRestore(local, remote, mode, "phone-a")
+            assertTrue("照片编号绝不跨设备应用，模式=$mode", plan.photoLinksSkipped)
+            assertEquals(local.collections, plan.target.collections)
+            assertEquals(local.favorites, plan.target.favorites)
+            assertEquals(local.hidden, plan.target.hidden)
+            assertEquals("phone-a", plan.target.sourceInstallId)
+            assertEquals("yes", plan.target.settings["portable"])
+            assertEquals(listOf("春天"), plan.target.searchHistory)
+        }
+    }
+
+    @Test
+    fun legacyBackupWithoutOriginDoesNotGuessPhotoMatches() {
+        val local = BackupBundle(
+            sourceInstallId = "phone-a", favorites = listOf(10L), hidden = listOf(11L),
+        )
+        val legacy = BackupBundle(
+            sourceInstallId = "", favorites = listOf(12L), hidden = listOf(13L),
+        )
+        val plan = Backup.planRestore(local, legacy, MergeMode.REPLACE, "phone-a")
+        assertTrue(plan.photoLinksSkipped)
+        assertEquals(local.favorites, plan.target.favorites)
+        assertEquals(local.hidden, plan.target.hidden)
+        val empty = Backup.planRestore(local.copy(favorites = emptyList(), hidden = emptyList()),
+            BackupBundle(), MergeMode.REPLACE, "phone-a")
+        assertFalse("没有实际关联差异就无需误报跳过", empty.photoLinksSkipped)
+    }
+
+    @Test
+    fun partialResultDoesNotClaimFullRestoreSuccess() {
+        val result = BackupResult.Partial(BackupCounts(settings = 2), t0, "照片关联已跳过")
+        assertTrue(result.line("恢复").contains("部分完成"))
+        assertTrue(result.line("恢复").contains("照片关联已跳过"))
+    }
+
     // ── schema ────────────────────────────────────────────────────────
 
     /** schema 比当前新 → **整包拒绝**，不是"按旧语义尽量解"。 */
@@ -195,7 +291,7 @@ class BackupTest {
     /** schema 缺失 → 拒绝。不能猜成"当前版本"：猜错方向就是把数据解释成另一件东西。 */
     @Test
     fun missingSchemaIsRejected() {
-        val text = Backup.encode(bundle()).replaceFirst("\"schema\": 1,\n", "")
+        val text = Backup.encode(bundle()).replaceFirst("\"schema\": ${Backup.CURRENT_SCHEMA},\n", "")
         assertTrue("替换没生效（schema 那一行没被删掉）", "\"schema\"" !in text)
         assertNull("没有 schema 的文件必须拒绝", Backup.decode(text))
         assertTrue(Backup.read(text) is BackupRead.Broken)
@@ -205,7 +301,7 @@ class BackupTest {
     @Test
     fun schemaZeroOrNegativeIsRejected() {
         for (bad in listOf("0", "-1", "1.5", "\"1\"")) {
-            val text = Backup.encode(bundle()).replace("\"schema\": 1", "\"schema\": $bad")
+            val text = Backup.encode(bundle()).replace("\"schema\": ${Backup.CURRENT_SCHEMA}", "\"schema\": $bad")
             assertNull("<$bad> 当 schema 应当被拒绝", Backup.decode(text))
         }
     }
@@ -681,7 +777,7 @@ class BackupTest {
 
         // 坏文件：把 schema 换成字符串、把 format 删掉、截断 —— 三种都必须 null
         val mutations = listOf(
-            good.replace("\"schema\": 1", "\"schema\": \"1\""),
+            good.replace("\"schema\": ${Backup.CURRENT_SCHEMA}", "\"schema\": \"1\""),
             good.replace("\"suipai-backup\"", "\"other\""),
             good.substring(0, good.length / 3),
         )

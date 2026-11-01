@@ -18,17 +18,15 @@ import android.provider.MediaStore
  * 要么是**后来才做的页面**（回收站），写进静态 xml 会让老版本的图标下也出现一个点不动的入口。
  *
  * ## 数量预算
- * 系统上限是**每个 launcher 5 个**（静态 + 动态 + 被固定的全算）。静态占了 3 个，
- * 所以这里最多发 [ShortcutBudget.MAX_DYNAMIC] 个。超了不崩，系统会**静默丢掉**多出来的，
- * 且丢哪条不归我们管 —— 所以预算是在 [budgetedDynamicShortcuts] 里先夹好的。
+ * 部分 launcher 总容量小于常见的 5 个；先查 `getMaxShortcutCountPerActivity`，
+ * 扣掉 3 条静态入口，再由 [budgetedDynamicShortcuts] 裁掉超出当前设备容量的动态入口。
+ * 总预算还有 [ShortcutBudget.MAX_DYNAMIC] 这一层工程上限（最多 2 条）。
  *
  * ## 不支持的设备必须静默跳过
- * `ShortcutManagerCompat.pushDynamicShortcut` 在 API < 25 上会自己返回 false，
- * 但**不同 core 版本对"返回 false 还是抛"没有承诺**。而 [ShortcutManagerCompat.isRequestPinShortcutSupported]
- * 只答"能不能钉到桌面"，不是"支持不支持快捷方式"—— 用错判据会让功能在 API 25 上被误关掉。
- * 所以判据写成两条：`Build.VERSION.SDK_INT >= 25` 与 `ShortcutManagerCompat` 自己的能力探测，
- * 且**整段包在 runCatching 里** —— 这条路径的失败形态是"桌面图标没变化"，
- * 不该让 App 启动时崩一次（它挂在 `onCreate` 后面跑）。
+ * API 25 才有平台动态快捷方式；按 `Build.VERSION.SDK_INT >= 25` 加容量探测判断。
+ * [ShortcutManagerCompat.isRequestPinShortcutSupported] 不能作为门槛：有些启动器支持长按
+ * 动态入口但不支持把它固定到桌面。读取容量、发布和更新均在 `runCatching` 内，
+ * 个别定制启动器抛异常时只写日志，不影响 App 启动。
  *
  * ## 为什么不新增依赖
  * `ShortcutManagerCompat` / `ShortcutInfoCompat` / `IconCompat` 全在
@@ -48,18 +46,19 @@ object DynamicShortcuts {
      */
     fun refresh(context: Context) {
         val app = context.applicationContext
-        // 判据是纯函数（见 ShortcutSupport）：两个输入各自在外面取，取不到就当不支持。
-        val pinSupported = runCatching {
-            ShortcutManagerCompat.isRequestPinShortcutSupported(app)
-        }.onFailure { android.util.Log.w(TAG, "问不出宿主支不支持钉快捷方式，按不支持处理", it) }
-            .getOrDefault(false)
-        if (!ShortcutSupport.shouldPublish(Build.VERSION.SDK_INT, pinSupported)) {
-            android.util.Log.d(TAG, "这台设备不发动态快捷方式（API ${Build.VERSION.SDK_INT}，pin=$pinSupported），跳过")
+        // 固定到桌面的支持与长按菜单里的动态入口是两回事，按 launcher 实际容量分配。
+        val launcherMax = runCatching {
+            ShortcutManagerCompat.getMaxShortcutCountPerActivity(app)
+        }.onFailure { android.util.Log.w(TAG, "问不出启动器的快捷方式名额，按不支持处理", it) }
+            .getOrDefault(0)
+        if (!ShortcutSupport.shouldPublish(Build.VERSION.SDK_INT, launcherMax)) {
+            android.util.Log.d(TAG, "这台设备没有动态入口名额（API ${Build.VERSION.SDK_INT}，max=$launcherMax），跳过")
             return
         }
         runCatching {
             val hasPhotos = hasAnyPhoto(app)
-            val specs = budgetedDynamicShortcuts(dynamicShortcutSpecs(hasPhotos))
+            val availableSlots = launcherMax - ShortcutBudget.STATIC_COUNT
+            val specs = budgetedDynamicShortcuts(dynamicShortcutSpecs(hasPhotos), availableSlots)
             // 预算里那两条（最近一张 / 回收站）是"库状态"驱动的；
             // 「拍照」那条归属不同 —— 它在静态 xml 里，由**设置中心的开关**收放，
             // 见 `applyCameraShortcutSetting`。
@@ -166,10 +165,8 @@ object DynamicShortcuts {
     /**
      * 一条 [ShortcutSpec] → 系统要的 `ShortcutInfoCompat`。
      *
-     * 两条 intent 走的都是**普通启动**（见 `SupportedDeepLinks` 那段）：
-     * `MainActivity` 只认 `camera|sync|yishun` 三个 host，发 `suipai://viewer` 或
-     * `suipai://trash` 会打开 app 但停在相册页 —— 不崩、不报错，只表现为"点了没到地方"。
-     * 本轮不许改 `MainActivity`，所以从源头就不发它认不得的深链。
+     * recent / trash 都带受校验的深链；MainActivity 现在会打开真实页面。
+     * 未知深链仍不会被发出，避免桌面快捷方式点了却停在首页。
      *
      * 图标用 `sc_yishun` / `sc_sync` 那套线稿里的两张（琥珀描边、与静态三条同一族），
      * `IconCompat.createWithResource` 不读文件、不占内存。

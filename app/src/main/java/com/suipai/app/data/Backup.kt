@@ -2,6 +2,7 @@ package com.suipai.app.data
 
 import android.content.Context
 import android.net.Uri
+import android.util.AtomicFile
 import android.util.Log
 import androidx.compose.runtime.Immutable
 import com.suipai.app.settings.SettingKey
@@ -26,11 +27,11 @@ import kotlinx.serialization.json.Json
  * 有：设置中心的偏好（`cfg_` 那一层）、自定义配方、收藏夹、收藏与隐藏的 id 清单、
  * 相册搜索历史。
  *
- * **没有：照片本身。** 随拍不存照片，照片在系统媒体库（`Pictures/SuiPai`）。备份里
- * 只有「哪几张被收藏了」这样的 id，恢复之后那些 id 指向的是**新设备上的照片行**——
- * 换机时照片要自己搬（系统相册、数据线、云盘都行），搬完之后 id 对不上是常态，
- * 清单会指向不存在的行，界面上表现为「收藏夹里少了几张」。这是这套方案的已知边界，
- * 写在 `docs/product/BACKUP.md` 里，界面文案也要说清。
+ * **没有：照片本身。** 随拍不存照片，照片在系统媒体库（`Pictures/SuiPai`）。
+ * 收藏/隐藏及收藏夹成员仍以 MediaStore 数字 id 记录，但这些 id **不可跨安装迁移**。
+ * 新备份带一个保存在 noBackupFilesDir 的随机安装标识；同一安装才应用这些关联。
+ * 换设备或导入缺标识的旧备份时，只恢复可移植的设置、配方与搜索历史，
+ * 本机收藏夹和照片关联保留原样，避免 id 碰撞导致错误收藏或隐藏。
  *
  * 也没有：AI Key（加密封装、只在 `suipai.ai` 里）、回收站账单（记录"用户删了什么"，
  * 属隐私且换机后 uri 全失效）、搜索索引（可重建的缓存）、相机/一瞬/相册三张老表。
@@ -68,6 +69,8 @@ data class BackupBundle(
     val createdAt: Long = 0L,
     /** 打包那台设备上的版本号（`versionName`），只用于显示与排查。 */
     val appVersion: String = "",
+    /** 生成备份的安装标识。旧版备份缺失，恢复时不得假设照片编号仍对应。 */
+    val sourceInstallId: String = "",
     /**
      * 设置中心的偏好：键 → 字符串值。
      *
@@ -153,6 +156,9 @@ sealed interface BackupResult {
     /** 成功。[at] 是完成时刻（毫秒），界面上「上次导出」用它。 */
     data class Ok(val counts: BackupCounts, val at: Long) : BackupResult
 
+    /** 部分恢复：列出跳过的照片关联或实际写入失败的类别，不能报成完整成功。 */
+    data class Partial(val counts: BackupCounts, val at: Long, val reason: String) : BackupResult
+
     /** 失败。[reason] 是给用户看的一句话，不含堆栈、不甩英文异常名。 */
     data class Failed(val reason: String) : BackupResult
 
@@ -161,6 +167,7 @@ sealed interface BackupResult {
         // `${action}` 的花括号不能省：中文是合法的标识符字符，`$action完成` 会被当成
         // 一个叫 `action完成` 的变量（编译期才会发现，报错还指向"未解析的引用"）。
         is Ok -> "${action}完成：${counts.line()}"
+        is Partial -> "${action}部分完成：$reason。请检查本机数据；文件仍可重新导入。"
         is Failed -> reason
     }
 }
@@ -178,6 +185,9 @@ sealed interface BackupRead {
     /** 不是随拍的备份，或者已经损坏（截断、字段类型不对、根本不是 JSON）。 */
     object Broken : BackupRead
 }
+
+/** 恢复目标与被安全跳过的照片编号关联。 */
+internal data class RestorePlan(val target: BackupBundle, val photoLinksSkipped: Boolean)
 
 /**
  * 导出与恢复的唯一入口。
@@ -199,9 +209,10 @@ object Backup {
      *   解释成另一件东西 —— 那是"静默改数据"，比读不出来糟；
      * - 旧版本读到更大的 [CURRENT_SCHEMA]**整包拒绝**（[BackupRead.TooNew]）。
      *
-     * 今天只有 v1：设置 / 配方 / 收藏夹 / 收藏 / 隐藏 / 搜索历史六类。
+     * v2 增加 sourceInstallId 安全边界：旧版不能忽略它后继续套用照片 id。
+     * v1 仍可读取，但来源无法验证，因此照片关联一律跳过。
      */
-    const val CURRENT_SCHEMA = 1
+    const val CURRENT_SCHEMA = 2
 
     /** 文件里的身份标记。选错文件（照片、APK、别的应用的 json）靠它挡掉。 */
     const val FORMAT = "suipai-backup"
@@ -226,6 +237,8 @@ object Backup {
         append("  \"").append(K_APP_VERSION).append("\": ")
             .append(TinyJson.quote(bundle.appVersion)).append(",\n")
 
+        append("  \"").append(K_SOURCE_INSTALL_ID).append("\": ")
+            .append(TinyJson.quote(bundle.sourceInstallId)).append(",\n")
         append("  \"").append(K_SETTINGS).append("\": {")
         val keys = bundle.settings.keys.sorted()
         keys.forEachIndexed { i, k ->
@@ -289,7 +302,7 @@ object Backup {
         // schema 缺失 = 不知道这份文件按哪一版解释，只能拒绝（不能猜成当前版本）。
         val schema = schemaOf(obj[K_SCHEMA]) ?: return BackupRead.Broken
         if (schema > CURRENT_SCHEMA) return BackupRead.TooNew(schema)
-        return BackupRead.Ok(parseV1(obj))
+        return BackupRead.Ok(parseV1(obj, schema))
     }
 
     /**
@@ -313,7 +326,7 @@ object Backup {
      * v1 的字段解析。**每一层都容错**：类型不对就跳过那一条，缺字段取默认值。
      * 只有"整份结构不对"才在外层被判成 [BackupRead.Broken]。
      */
-    private fun parseV1(obj: Map<String, Any?>): BackupBundle {
+    private fun parseV1(obj: Map<String, Any?>, schema: Long): BackupBundle {
         val settings = TinyJson.objectOf(obj[K_SETTINGS])
             ?.entries
             ?.mapNotNull { (k, v) -> TinyJson.stringOf(v)?.let { k to it } }
@@ -323,6 +336,7 @@ object Backup {
             schema = CURRENT_SCHEMA,
             createdAt = (TinyJson.longOf(obj[K_CREATED_AT]) ?: 0L).coerceAtLeast(0L),
             appVersion = TinyJson.stringOf(obj[K_APP_VERSION]).orEmpty(),
+            sourceInstallId = if (schema >= 2L) TinyJson.stringOf(obj[K_SOURCE_INSTALL_ID]).orEmpty() else "",
             settings = settings,
             looks = dedupeLooks(
                 TinyJson.arrayOf(obj[K_LOOKS]).orEmpty().mapNotNull { TinyJson.stringOf(it) },
@@ -458,6 +472,7 @@ object Backup {
                 schema = CURRENT_SCHEMA,
                 createdAt = createdAt,
                 appVersion = appVersion,
+                sourceInstallId = local.sourceInstallId,
                 // `remote + local` 而不是 `local + remote`：Kotlin 的 `Map.plus` 在键冲突时
                 // **右边赢**，与 `Int.plus` 的直觉相反。写反的话每次合并都会把本机的设置
                 // 悄悄换成文件里那份 —— 单测 `unionSettingsKeepLocalAndAddRemote` 就是为这条
@@ -470,6 +485,34 @@ object Backup {
                 searchHistory = unionHistory(local.searchHistory, remote.searchHistory),
             )
         }
+    }
+
+    /**
+     * 恢复前的纯函数安全门：MediaStore 数字 id 只有同一安装才有可比性。
+     *
+     * 不同安装与旧备份（缺标识）只恢复可移植的数据；本机收藏/隐藏/收藏夹原封不动，
+     * 防止把本机一张无关照片误判为隐藏或收藏。此标识不是身份认证。
+     */
+    internal fun planRestore(
+        local: BackupBundle,
+        remote: BackupBundle,
+        mode: MergeMode,
+        localInstallId: String,
+    ): RestorePlan {
+        val merged = merge(local, remote, mode).copy(sourceInstallId = localInstallId)
+        if (localInstallId.isNotBlank() && remote.sourceInstallId == localInstallId) {
+            return RestorePlan(merged, photoLinksSkipped = false)
+        }
+        val changed = merged.collections != local.collections ||
+            merged.favorites != local.favorites || merged.hidden != local.hidden
+        return RestorePlan(
+            target = merged.copy(
+                collections = local.collections,
+                favorites = local.favorites,
+                hidden = local.hidden,
+            ),
+            photoLinksSkipped = changed,
+        )
     }
 
     private fun unionLooks(local: List<String>, remote: List<String>): List<String> {
@@ -612,6 +655,7 @@ object Backup {
             schema = CURRENT_SCHEMA,
             createdAt = now,
             appVersion = versionName(app),
+            sourceInstallId = BackupInstallIdentity.current(app).orEmpty(),
             settings = exportSettings(snapshot),
             looks = runCatching {
                 val repo = CustomLooks(app)
@@ -646,6 +690,9 @@ object Backup {
     suspend fun exportTo(context: Context, uri: Uri): BackupResult = withContext(Dispatchers.IO) {
         val app = context.applicationContext
         val bundle = collect(app)
+        if (bundle.sourceInstallId.isBlank()) return@withContext BackupResult.Failed(
+            "无法保存此设备的备份标识；为避免恢复时错配照片，本次没有导出。",
+        )
         val text = encode(bundle)
         val failure = writeAll(app, uri, text)
         if (failure != null) {
@@ -672,8 +719,8 @@ object Backup {
      *   "界面说恢复了而磁盘没落"不能靠用户别在此刻杀进程来避免；
      * - 搜索历史：先清再逐条 record（它会去重并截到 10 条），最后一次落盘。
      *
-     * 任何一步失败都只影响那一步（各自 `runCatching`），返回的 [BackupResult.Ok]
-     * 表示"文件读懂了并且已经按 [mode] 应用"，不表示每一类都一字不差。
+     * 每个类别独立写入；任一步抛异常都会报告 [BackupResult.Partial] 并列出类别。
+     * 不同安装的照片关联也以 Partial 明示，不再用 Ok 假装全部迁移完成。
      */
     suspend fun importFrom(
         context: Context,
@@ -695,21 +742,34 @@ object Backup {
             )
         }
 
+        val installId = BackupInstallIdentity.current(app)
+            ?: return@withContext BackupResult.Failed("无法确认本机备份标识；为保护照片关联，本机数据没有改动。")
         val local = collect(app)
-        val target = merge(local, remote, mode)
+        val plan = planRestore(local, remote, mode, installId)
+        val target = plan.target
+        val failures = mutableListOf<String>()
 
         runCatching { applySettings(app, target.settings) }
-            .onFailure { Log.w(TAG, "设置没写全", it) }
+            .onFailure { failures += "设置"; Log.w(TAG, "设置没写全", it) }
         runCatching { applyLooks(app, target, mode) }
-            .onFailure { Log.w(TAG, "配方没恢复全", it) }
-        runCatching { applyCollections(app, target.collections) }
-            .onFailure { Log.w(TAG, "收藏夹没恢复全", it) }
-        runCatching { applyIdLists(app, target) }
-            .onFailure { Log.w(TAG, "收藏/隐藏没恢复全", it) }
+            .onFailure { failures += "配方"; Log.w(TAG, "配方没恢复全", it) }
+        // 仅同一安装的 MediaStore 行号可重用。旧备份/别的设备必须连写入都不尝试。
+        if (remote.sourceInstallId == installId) {
+            runCatching { applyCollections(app, target.collections) }
+                .onFailure { failures += "收藏夹"; Log.w(TAG, "收藏夹没恢复全", it) }
+            runCatching { applyIdLists(app, target) }
+                .onFailure { failures += "收藏/隐藏"; Log.w(TAG, "收藏/隐藏没恢复全", it) }
+        }
         runCatching { applySearchHistory(app, target.searchHistory) }
-            .onFailure { Log.w(TAG, "搜索历史没恢复全", it) }
+            .onFailure { failures += "搜索历史"; Log.w(TAG, "搜索历史没恢复全", it) }
 
-        BackupResult.Ok(target.counts(), System.currentTimeMillis())
+        val reasons = buildList {
+            if (plan.photoLinksSkipped) add("旧备份或另一设备的照片编号无法安全对应，收藏夹与收藏/隐藏清单已跳过，本机这些数据保持原样")
+            if (failures.isNotEmpty()) add("写入失败：${failures.joinToString("、")}")
+        }
+        val finishedAt = System.currentTimeMillis()
+        if (reasons.isEmpty()) BackupResult.Ok(target.counts(), finishedAt)
+        else BackupResult.Partial(target.counts(), finishedAt, reasons.joinToString("；"))
     }
 
     // ── 落地的六个小步骤 ──────────────────────────────────────────────
@@ -754,25 +814,36 @@ object Backup {
             if (id in onDisk && mode == MergeMode.UNION) continue
             repo.save(look)
         }
+        // CustomLooks.write 历史上会吞掉磁盘异常。必须重新读盘核验，
+        // 不能仅凭 save() 返回的内存列表就报告「恢复成功」。
+        val persisted = repo.all().associateBy { it.id }
+        check(persisted.keys == want.keys) { "配方落盘后条目数量或 id 不一致" }
+        for ((id, wanted) in want) {
+            val actual = persisted[id] ?: error("配方 $id 未落盘")
+            check(actual.copy(created = 0L, modified = 0L) ==
+                wanted.copy(created = 0L, modified = 0L)) { "配方 $id 内容未正确落盘" }
+        }
     }
 
     /**
      * 整份重写收藏夹文件。
      *
      * 直接写文件而不是走 [Collections] 的增删接口，唯一的理由是**保住 id**：
-     * `create` 自己发号（`newId`），恢复两次就会得到两套收藏夹，而用户看不出
-     * 哪一套是"同一条"。写法照 `CustomLooks.write` 那套先写临时文件再改名，
-     * 半途被杀不会留下半截 JSON（下一次 `Collections.list()` 会把半截文件当空表）。
+     * `create` 自己发号。通过 AtomicFile 完成原子替换；不再在 rename 失败时
+     * 直接覆写原文件，避免半途被杀造成收藏夹账本损坏。
      */
     private fun applyCollections(context: Context, target: List<PhotoCollection>) {
         val file = File(context.filesDir, Collections.FILE_NAME)
         val text = Collections.encode(target.take(Collections.MAX_COLLECTIONS))
         file.parentFile?.mkdirs()
-        val tmp = File(file.parentFile, file.name + ".tmp")
-        tmp.writeText(text)
-        if (!tmp.renameTo(file)) {
-            file.writeText(tmp.readText())
-            tmp.delete()
+        val atomic = AtomicFile(file)
+        val out = atomic.startWrite()
+        try {
+            out.write(text.toByteArray(Charsets.UTF_8))
+            atomic.finishWrite(out)
+        } catch (e: Exception) {
+            atomic.failWrite(out)
+            throw e
         }
     }
 
@@ -782,14 +853,14 @@ object Backup {
         val haveFav = favorites.ids()
         favorites.addAll(wantFav - haveFav)
         favorites.removeAll(haveFav - wantFav)
-        favorites.persist()
+        check(favorites.persist()) { "收藏清单没写入磁盘" }
 
         val hidden = Hidden(context)
         val wantHidden = target.hidden.toSet()
         val haveHidden = hidden.ids()
         hidden.addAll(wantHidden - haveHidden)
         hidden.removeAll(haveHidden - wantHidden)
-        hidden.persist()
+        check(hidden.persist()) { "隐藏清单没写入磁盘" }
     }
 
     private suspend fun applySearchHistory(context: Context, terms: List<String>) {
@@ -798,7 +869,7 @@ object Backup {
         history.clear()
         // record 把词插到最前，所以倒着录一遍才能得到文件里的顺序。
         for (term in terms.asReversed()) history.record(term)
-        history.save()
+        check(history.save()) { "搜索历史没写入磁盘" }
     }
 
     // ── 文件进出 ──────────────────────────────────────────────────────
@@ -856,6 +927,7 @@ object Backup {
     private const val K_SCHEMA = "schema"
     private const val K_CREATED_AT = "createdAt"
     private const val K_APP_VERSION = "appVersion"
+    private const val K_SOURCE_INSTALL_ID = "sourceInstallId"
     private const val K_SETTINGS = "settings"
     private const val K_LOOKS = "looks"
     private const val K_COLLECTIONS = "collections"

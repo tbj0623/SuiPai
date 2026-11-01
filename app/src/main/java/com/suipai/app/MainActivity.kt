@@ -84,11 +84,12 @@ class MainActivity : ComponentActivity() {
     /** 别的 App「分享 → 随拍」进来的图；onCreate 与 onNewIntent 都往这里放，组合作用域消费。 */
     private var shareInbox by mutableStateOf<List<Uri>>(emptyList())
 
-    /** 桌面长按图标的三个快捷方式落在这里（suipai://camera|sync|yishun 的 host 段）。 */
+    /** 桌面长按入口：三条静态快捷方式 + 最近一张/回收站两条动态快捷方式。 */
     private var launchHop by mutableStateOf<String?>(null)
 
     private fun collectHop(intent: Intent?) {
-        launchHop = intent?.data?.host?.takeIf { it == "camera" || it == "sync" || it == "yishun" }
+        val host = intent?.data?.takeIf { it.scheme == "suipai" }?.host
+        launchHop = host?.takeIf { it == "camera" || it == "sync" || it == "yishun" || it == "recent" || it == "trash" }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -241,6 +242,27 @@ class MainActivity : ComponentActivity() {
                             "sync" -> {
                                 // 改前 `tab = 2` 只换底座，屏幕不变（返回键退掉上层才落到互通）
                                 nav.rebaseTo(com.suipai.app.state.AppRoute.Sync)
+                                launchHop = null
+                            }
+                            "trash" -> {
+                                // 从桌面直达回收站，不保留旧编辑/查看器层。
+                                nav.reset(AppRoute.Gallery, listOf(AppRoute.Trash))
+                                launchHop = null
+                            }
+                            "recent" -> {
+                                // 最近一张必须真的打开查看器；隐藏照片不应从桌面被意外曝光。
+                                val newest = state.photos.firstOrNull { it.id !in state.hiddenIds }
+                                if (newest == null) {
+                                    if (state.photos.isNotEmpty()) {
+                                        nav.reset(AppRoute.Gallery)
+                                        state.batchNote = "最近的照片已隐藏，已返回相册"
+                                        launchHop = null
+                                    }
+                                    return@LaunchedEffect
+                                }
+                                state.openViewer(fromGalleryCell = true, photo = newest, source = state.photos)
+                                nav.reset(AppRoute.Gallery)
+                                nav.showViewerAt(state.viewerIndex)
                                 launchHop = null
                             }
                             else -> {

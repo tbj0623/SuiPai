@@ -52,9 +52,9 @@
 | 27 | 设置中心：8 组 + 顶部搜索（37 项） | 已完成 | `settings/SettingsKeys.kt`、`SettingsModel.kt`、`SettingsStore.kt`、`SettingsBridge.kt`、`SettingsSignal.kt`、`ui/settings/SettingsScreen.kt` | `SettingsModelTest`（12）、`SettingsStoreTest`（14）、`SettingsBridgeTest`（29）、`SettingsUiGuardTest`（9） | 模拟器上走进去了（`store/screens/phone2/04-settings.png`，标题栏 37 项）。**读数点现在接完了，只剩三项 PENDING**（年份索引 / 桌面拍照快捷方式 / 缓存过大提醒），只有那三行写「（等接线）」并灰着。`cfg_` 是真源、老键降级为兼容写（`SettingsBridge`）；`SettingsBridgeTest.everyLiveWritableItemReallyHasAReader` 源码级钉住"标了 LIVE 就必须真有读者"。**「当场换主题/字号」这条链路（`SettingsSignal`）未装机验** |
 | 28 | 首启引导：3 屏、可滑可跳过、末屏接权限、设置里可重看 | 已完成 | `settings/OnboardingGate.kt`、`ui/onboarding/OnboardingScreen.kt` | `OnboardingTest`（7） | 模拟器上逐屏拍到（`01` / `01b` / `01c` 三张）。完成态是两个条件的与，**幂等**有断言 |
 | 29 | 隐私与数据中心：数据去向 / 权限逐项 / 导出 JSON / 清除设置 | 部分 | `ui/privacy/PrivacyScreen.kt` | `SettingsUiGuardTest`（权限表双向核对 + 导出 JSON 格式） | **未在设备上走完整条**。「导出本机数据说明」与「清除设置」的实际落盘只在 JVM 侧验过逻辑 |
-| 30 | 导出与恢复：`.json` 备份（7 类内容），REPLACE / UNION 两种合并 | 部分 | `data/Backup.kt`、`ui/settings/BackupScreen.kt` | `BackupTest`（34）、`BackupUiTextTest`（2） | **SAF 路径完全没装机验过**。`"wt"` 模式在真实 `DocumentsProvider` 上的行为未知；恢复后的界面刷新要靠宿主自己重读 |
-| 31 | 视频：网格 / 播放 / 分享 / 提帧 | 部分 | `data/VideoItem.kt`、`VideoRepository.kt`、`ui/video/VideoGrid.kt`、`VideoPlayerScreen.kt` | `VideoDurationTest`（20） | **manifest 里没有 `READ_MEDIA_VIDEO`**，Android 13+ 只能读到自己写入的行，界面会如实说「系统没放行视频」。文档明写「没有在设备上验证过」 |
-| 32 | 桌面小组件「最近的照片」+ 3 条静态快捷方式（拍 / 传 / 改）+ 2 条动态快捷方式（最近一张 / 回收站） | 部分 | `widget/WidgetLogic.kt`、`WidgetShortcuts.kt`、`RecentWidgetProvider.kt`、`DynamicShortcuts.kt` | `WidgetLogicTest`（32） | **未装机**。`exported="true"` 与 `shortcuts.xml` 的形状都有源码级断言；组件的实际绘制没在 launcher 上看过。动态快捷方式两条的 `deepLink` 都是 `null`（`MainActivity` 只认 `camera` / `sync` / `yishun` 三个 host） |
+| 30 | 导出与恢复：`.json` 备份（7 类内容），REPLACE / UNION 两种合并 | 部分 | `data/Backup.kt`、`ui/settings/BackupScreen.kt` | `BackupTest`（40）、`BackupUiTextTest`（2） | **SAF 路径完全没装机验过**。`"wt"` 模式在真实 `DocumentsProvider` 上的行为未知；恢复后的界面刷新要靠宿主自己重读 |
+| 31 | 视频：网格 / 播放 / 分享 / 提帧 | 部分 | `data/VideoItem.kt`、`VideoRepository.kt`、`ui/video/VideoGrid.kt`、`VideoPlayerScreen.kt` | `VideoDurationTest`（20） | 0.7.1 已补 Android 13+ `READ_MEDIA_VIDEO` 按需授权和 Android 14+ 部分视频选择；JVM 判据测试通过，**真机弹窗流程仍未验** |
+| 32 | 桌面小组件「最近的照片」+ 3 条静态快捷方式（拍 / 传 / 改）+ 2 条动态快捷方式（最近一张 / 回收站） | 部分 | `widget/WidgetLogic.kt`、`WidgetShortcuts.kt`、`RecentWidgetProvider.kt`、`DynamicShortcuts.kt` | `WidgetLogicTest`（33） | **未装机**。`exported="true"` 与 `shortcuts.xml` 的形状都有源码级断言；组件的实际绘制没在 launcher 上看过。0.8 Beta 已给动态「最近一张」与「回收站」接上 `suipai://recent` / `suipai://trash` 真正跳转，JVM 白名单一致性测试覆盖；**装机未验** |
 
 ---
 
@@ -86,7 +86,7 @@
 
 | 项 | 缺口是什么 | 后果 | 出处 |
 | --- | --- | --- | --- |
-| **同步收到的照片会丢拍摄时间** | `MediaRepository.saveJpeg(bytes, displayName)` **仍不接受 `dateTaken`**；它经 `saveBytes` 写的是 `DATE_TAKEN = System.currentTimeMillis()`，而 `SyncPhotoSink.saveIncoming(bytes, name, dateTaken)` 明明收了这个参数却传不进去 | **时间线顺序会乱**：连收几张时按「收到的先后」排，而不是按拍摄时间排；一次收十张的话十张的时间戳是同一个毫秒。而相册主排序正是 `DATE_TAKEN` 倒序，收得越多越乱 | `sync/SyncSupport.kt` 的 `AndroidSyncSink`（注释里写明了修法：给 `saveJpeg` 开一个 `dateTaken` 默认参数，再在这里传进去） |
+| **同步拍摄时间（代码已修，真机未验）** | `saveJpeg(bytes, displayName, dateTaken)` 已接收发送端的拍摄时间；`AndroidSyncSink.saveIncoming` 传入同一字段，非法时间回退到当前时刻 | 能避免按接收顺序代替拍摄时间排序；两机互传与 Android MediaStore 行为仍需真机实测 | `data/MediaRepository.kt`、`sync/SyncSupport.kt`、`MediaRepositoryDateTakenTest` |
 
 ---
 

@@ -3,12 +3,14 @@
 > **一部「摄影师的暗房接触印样」：相册是主体，相机是入口，一瞬是手艺。**
 > 安卓相册 + 内置高像素相机 + 端侧质感调色。画面内容一个像素都不改。
 
-[![版本](https://img.shields.io/badge/version-0.7.1--beta-E8A33D?style=flat-square)](#)
+[![版本](https://img.shields.io/badge/version-0.8.0--beta-E8A33D?style=flat-square)](https://github.com/tbj0623/SuiPai/releases/tag/v0.8.0-beta.1)
 [![平台](https://img.shields.io/badge/Android-8.0%2B-3DDC84?style=flat-square)](#技术栈)
 [![语言](https://img.shields.io/badge/Kotlin-2.0.21-7F52FF?style=flat-square)](#技术栈)
 [![JVM 测试](https://img.shields.io/badge/JVM%20tests-passing-4CAF50?style=flat-square)](#构建与测试)
 
 > **公开预览版（Beta）**：Android 代码与 JVM 单测可用，但若干功能尚未完成真机验收；iOS SwiftUI 壳仍需在 Mac 上首次编译。请勿把此仓库视为已通过商店审核的正式稳定版。现有问题与验证状态见 [功能矩阵](docs/feature-matrix.md) 和 [公开版 QA 状态](docs/QA_STATUS.md)。
+
+> **0.8 Beta 改动**：备份导入先校验安装来源，跨设备不再用不稳定的系统照片编号覆盖本机收藏/隐藏；写收藏夹账本采用原子替换，部分恢复会明确提示。桌面「最近一张」「回收站」现在有真实的深链入口。以上已通过 JVM 测试，仍等待真机验收。
 
 ---
 

@@ -28,10 +28,10 @@ android {
         applicationId = "com.suipai.app"
         minSdk = 26
         targetSdk = 36
-        // 0.7.1 预览：Android 13+ 视频按需授权与部分授权、回收站原子账单与安全回滚。
-        // versionCode 必须严格递增，才可从 GitHub 上一版测试 APK 原地升级。
-        versionCode = 8
-        versionName = "0.7.1"
+        // 0.8.0 预览：跨安装备份安全门、原子收藏夹恢复、真实动态桌面入口。
+        // versionCode 严格递增，允许从同签名的 GitHub 0.7.1 Beta 原地升级。
+        versionCode = 9
+        versionName = "0.8.0"
         // 配方写盘/读盘要的是真机上的 androidx ExifInterface 行为，JVM 单测跑不到。
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

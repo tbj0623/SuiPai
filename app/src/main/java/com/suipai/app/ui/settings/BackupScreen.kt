@@ -223,8 +223,10 @@ private fun NoPhotosBox() {
             modifier = Modifier.padding(top = 4.dp),
         )
         Text(
-            "所以换机的正确顺序是：先用系统相册 / 数据线 / 网盘把照片搬过去，再恢复这份备份。" +
-                "即使顺序反了也不会坏事 —— 只是收藏夹与收藏清单里的照片会对不上，需要重新收藏。",
+            "换机恢复时只导入设置、配方和搜索历史；收藏夹及收藏、隐藏的照片编号不会跨设备套用，" +
+                "本机原有的这些数据会保留，避免误把另一张照片收藏或隐藏。" +
+                "同一安装的备份才能恢复这些关联；旧版备份无法辨认来源，也会安全跳过。" +
+                "新版备份格式为 v2，旧版随拍无法导入，请先升级应用。",
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(top = 4.dp),
@@ -344,6 +346,14 @@ private fun RestoreBlock(
                 modifier = Modifier.padding(top = 8.dp),
             )
         }
+
+        Text(
+            "以上收藏夹、收藏及隐藏清单的覆盖/合并只适用于同一安装的备份；" +
+                "换机或导入旧备份时会安全跳过这些照片编号，本机清单不变。",
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(top = 10.dp),
+        )
 
         Row(Modifier.padding(top = 12.dp)) {
             AppBarPrimary(
