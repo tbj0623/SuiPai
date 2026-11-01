@@ -6,7 +6,17 @@
 # 做法：强制回到 verify 模式（去掉 AOT 产物），冷启动，再把每个大界面都走一遍，
 # 让那些方法真的热起来 —— ART 就会打 `Method exceeds compiler instruction limit: N`。
 # 只看 logcat 里的这一句，比数代码行数可靠：它给的是**真实指令数**和**真实判定结果**。
-export ANDROID_HOME="${ANDROID_HOME:-C:/Users/11930/AppData/Local/Android/Sdk}"
+if [ -z "${ANDROID_HOME:-}" ]; then
+  if [ -n "${ANDROID_SDK_ROOT:-}" ]; then
+    ANDROID_HOME="$ANDROID_SDK_ROOT"
+  elif [ -n "${LOCALAPPDATA:-}" ] && command -v cygpath >/dev/null 2>&1; then
+    ANDROID_HOME="$(cygpath -u "$LOCALAPPDATA")/Android/Sdk"
+  else
+    echo "请设置 ANDROID_HOME 或 ANDROID_SDK_ROOT 后再运行" >&2
+    exit 2
+  fi
+fi
+export ANDROID_HOME
 export MSYS2_ARG_CONV_EXCL="*"
 DEV="${1:-emulator-5554}"
 ADB="$ANDROID_HOME/platform-tools/adb.exe"
