@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   test-and-build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v7
@@ -22,13 +22,13 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - uses: android-actions/setup-android@v3
+      - uses: android-actions/setup-android@v4
         with:
           # SDK 的旧 "tools" 包已下架；默认列表会让新仓库 CI 在 16 秒内失败。
           packages: platform-tools
       - name: Install Android SDK
         run: sdkmanager "platforms;android-36" "build-tools;35.0.0"
-      - uses: gradle/actions/setup-gradle@v4
+      - uses: gradle/actions/setup-gradle@v6
       - name: JVM tests, lint, and debug APK
         run: bash ./gradlew :shared:testDebugUnitTest :app:testDebugUnitTest :app:lintDebug :app:assembleDebug --no-daemon --stacktrace
       - name: Upload debug APK
