@@ -69,20 +69,24 @@ class VideoRepository(private val context: Context) {
      * 在数据层长得一模一样，界面上写一句"你没有视频"就是一句假话。
      * 所以这里直接问系统要那一条授权，把"系统没放行"单独说出去。
      *
-     * Android 13（33）起 `READ_MEDIA_IMAGES` **不再覆盖**视频，两条授权彼此独立 ——
-     * `AndroidManifest.xml` 里目前只有前者，所以 13 及以上这一段会稳定地回 [VideoAccess.MISSING]，
-     * 而 12 及以下走 `READ_EXTERNAL_STORAGE`，视频照片一起放行。
+     * Android 13（33）起视频与照片单独授权；视频页提供按需授权入口。
+     * Android 14（34）起还可能只有用户选中的部分视频可见，不能把它说成整库。
      */
     suspend fun readAccess(): VideoAccess = withContext(Dispatchers.IO) {
-        val permission = videoReadPermission(Build.VERSION.SDK_INT)
-        val granted = runCatching {
-            ContextCompat.checkSelfPermission(context, permission) ==
+        val sdk = Build.VERSION.SDK_INT
+        val permission = videoReadPermission(sdk)
+        runCatching {
+            val full = ContextCompat.checkSelfPermission(context, permission) ==
                 android.content.pm.PackageManager.PERMISSION_GRANTED
+            val partial = sdk >= 34 &&
+                ContextCompat.checkSelfPermission(
+                    context, "android.permission.READ_MEDIA_VISUAL_USER_SELECTED",
+                ) == android.content.pm.PackageManager.PERMISSION_GRANTED
+            videoAccessFor(sdk, full, partial)
         }.onFailure {
-            // 探不到不等于没有：抛异常时给 UNKNOWN，界面那一句是"还没探到"而不是"没有权限"。
+            // 探不到不等于拒绝：未知状态不能让界面说「库里没有视频」。
             android.util.Log.w("VideoRepository", "探视频授权没探成：$permission", it)
-        }.getOrNull() ?: return@withContext VideoAccess.UNKNOWN
-        if (granted) VideoAccess.GRANTED else VideoAccess.MISSING
+        }.getOrDefault(VideoAccess.UNKNOWN)
     }
 
     /** 一页视频。`null` = **没读到**（游标是 null / 查询或读行抛了），空表 = 读到了、库里确实没有。 */

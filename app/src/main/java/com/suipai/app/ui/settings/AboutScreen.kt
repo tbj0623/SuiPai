@@ -177,8 +177,9 @@ fun aboutBlocks(): List<AboutBlock> = listOf(
         listOf(
             "相机 · 只在进入拍摄界面时申请，用于取景与快门。",
             "读取照片 · Android 13 以上为 READ_MEDIA_IMAGES，可选「只选部分照片」；用于列相册、套配方、批量整理。",
-            "写入照片 · 保存到 Pictures/SuiPai 走 MediaStore，Android 10 以上不需要存储权限；" +
-                "READ/WRITE_EXTERNAL_STORAGE 只发给 9 及以下的老系统。",
+            "读取视频 · Android 13 以上为 READ_MEDIA_VIDEO，只在视频页点「授权视频 / 补选视频」时申请；仅播放本机视频和提取一帧。",
+            "存储 · Android 12L 及以下读取相册用 READ_EXTERNAL_STORAGE；" +
+                "Android 9 及以下保存图片用 WRITE_EXTERNAL_STORAGE，Android 10+ 保存走 MediaStore。",
             "网络 · 只服务两件事：「互通」在同一局域网里发现附近的随拍设备并传图；" +
                 "「智能配方」在你亲手按下「看这张图」时，把这张照片的缩略图发往你自己填的那一家官方接口。" +
                 "除这两处之外，随拍不连接任何服务器。",

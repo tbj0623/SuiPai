@@ -3,7 +3,7 @@
 > **一部「摄影师的暗房接触印样」：相册是主体，相机是入口，一瞬是手艺。**
 > 安卓相册 + 内置高像素相机 + 端侧质感调色。画面内容一个像素都不改。
 
-[![版本](https://img.shields.io/badge/version-0.7.0-E8A33D?style=flat-square)](#)
+[![版本](https://img.shields.io/badge/version-0.7.1--beta-E8A33D?style=flat-square)](#)
 [![平台](https://img.shields.io/badge/Android-8.0%2B-3DDC84?style=flat-square)](#技术栈)
 [![语言](https://img.shields.io/badge/Kotlin-2.0.21-7F52FF?style=flat-square)](#技术栈)
 [![JVM 测试](https://img.shields.io/badge/JVM%20tests-passing-4CAF50?style=flat-square)](#构建与测试)
@@ -55,8 +55,7 @@
 | 搜索历史（10 条）与建议；结果按 照片 / 相册 / 相机型号 / 年份 分组 | ⚠️ |
 | 视频：网格、播放、分享、把当前帧存成照片 | ⚠️ 部分（见下） |
 
-> **视频有一条硬限制**：`AndroidManifest.xml` 里**没有** `READ_MEDIA_VIDEO`。
-> Android 13 及以上只能读到自己写入的行，界面会如实说「系统没放行视频」，而不是说「还没有视频」。
+> **视频权限（0.7.1 Beta）**：Android 13+ 的 `READ_MEDIA_VIDEO` 已声明，进入视频页后由用户主动点「授权视频」申请；Android 14+ 支持仅补选部分视频。未授权、部分授权和读库失败不会误报成「没有视频」。这条链路尚需在真实手机上验收。
 
 ### 拍 · 拍摄
 

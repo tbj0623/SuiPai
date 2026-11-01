@@ -87,6 +87,8 @@ fun VideoGrid(
     onBack: () -> Unit,
     note: String? = null,
     access: VideoAccess = VideoAccess.GRANTED,
+    onRequestAccess: (() -> Unit)? = null,
+    readFailed: Boolean = false,
 ) {
     val colors = SuiPaiColor.current
 
@@ -104,14 +106,20 @@ fun VideoGrid(
                 modifier = Modifier.padding(horizontal = Spacing.xxs),
             )
             AppBarText(
-                // 空着的时候写「0 段」而不是留白：页眉那格是这一屏唯一一直存在的位置，
-                // 它说 0 至少是一句量过的话。
-                "${videos.size} 段",
+                // 未授权、部分授权和读取失败时的数量都不代表全库。
+                if (access == VideoAccess.GRANTED && !loading) "${videos.size} 段" else "可见 ${videos.size} 段",
                 style = SuiPaiType.frameNo,
                 color = colors.inkTertiary,
                 layout = Modifier.weight(1f),
                 modifier = Modifier.padding(start = Spacing.xxs),
             )
+            if (onRequestAccess != null && (access == VideoAccess.MISSING || access == VideoAccess.PARTIAL)) {
+                AppBarCell(
+                    label = if (access == VideoAccess.PARTIAL) "补选视频" else "授权视频",
+                    on = false,
+                    onClick = onRequestAccess,
+                )
+            }
         }
 
         if (note != null) {
@@ -140,7 +148,7 @@ fun VideoGrid(
             // 空态：三句话分三种情况（没放行 / 还没读完 / 确实没有），文案由数据层给，
             // 界面不另写一份 —— 看得见的与念出来的必须同源。
             videos.isEmpty() -> {
-                val copy = videoEmptyCopy(access = access, loaded = !loading)
+                val copy = videoEmptyCopy(access = access, loaded = !loading, readFailed = readFailed)
                 EmptyState(
                     kicker = "NO CLIPS",
                     title = copy.title,
@@ -315,6 +323,7 @@ private fun NoteLine(text: String) {
  */
 internal fun videoAccessHint(access: VideoAccess): String? = when (access) {
     VideoAccess.GRANTED -> null
-    VideoAccess.MISSING -> "系统没放行视频：这一版只申请了照片权限，读视频还要一条 READ_MEDIA_VIDEO"
-    VideoAccess.UNKNOWN -> "还没探到视频权限，先按能读处理"
+    VideoAccess.PARTIAL -> "只授权了部分视频；未选中的视频不会出现在这里，可点「补选视频」更新授权"
+    VideoAccess.MISSING -> "系统还没放行视频；点「授权视频」后才会申请 READ_MEDIA_VIDEO"
+    VideoAccess.UNKNOWN -> "暂时无法确认视频权限，请稍后重试"
 }

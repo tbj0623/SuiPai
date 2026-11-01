@@ -41,31 +41,37 @@ data class VideoItem(
 /**
  * 这一屏能不能读到视频。
  *
- * 三格而不是一个布尔：`UNKNOWN` = 还没探到（首帧之前）。把"还没问"和"问过、没有"混成
- * 同一个 false，用户就会在一张还没读完的列表上看到"你没有视频"。
+ * 四格而不是一个布尔：`PARTIAL` = 仅授权部分视频，`UNKNOWN` = 未确认。
+ * 把「未确认 / 未授权 / 部分可见」都当整库，会让用户误以为视频丢失。
  */
-enum class VideoAccess { GRANTED, MISSING, UNKNOWN }
+enum class VideoAccess { GRANTED, PARTIAL, MISSING, UNKNOWN }
 
 /** 空态那一对文案。看得见的与念出来的必须同源，所以由同一处给。 */
 internal data class VideoEmpty(val title: String, val note: String?)
 
 /**
- * 视频列表空着的时候该说哪句话 —— 三件事必须分开说。
- *
- * 1. `MISSING`：系统根本没放行视频。这不是"你没有视频"，是"这一版没申请那条权限"。
- *    Android 13 起 `READ_MEDIA_VIDEO` 与 `READ_MEDIA_IMAGES` 是两条独立的授权，
- *    只申请了后者的话，`MediaStore.Video` 只会返回本应用自己写进去的行（通常是 0 行），
- *    而且**一条 SecurityException 都不会抛** —— 静默的空列表正是最容易被说成"没有视频"的那种。
- * 2. `!loaded`：还没读完（首帧、或者正在刷新）。
- * 3. 都没问题：库里确实没有视频。
+ * 视频列表空着的原因分开说：未授权 / 部分授权 / 状态未知 / 正在读 / 读取失败 / 确实为空。
+ * Android 13 起照片授权不覆盖视频，MediaStore 缺权时还可能静默回空游标。
+ * 读取失败也不能误报成「还没有视频」；只有已授权且查库成功的空表才可以这样说。
  */
-internal fun videoEmptyCopy(access: VideoAccess, loaded: Boolean): VideoEmpty = when {
+internal fun videoEmptyCopy(access: VideoAccess, loaded: Boolean, readFailed: Boolean = false): VideoEmpty = when {
     access == VideoAccess.MISSING -> VideoEmpty(
-        title = "系统没放行视频",
-        note = "随拍这一版只申请了照片权限，读视频还要一条独立的 READ_MEDIA_VIDEO；" +
-            "在它加进来之前，这里读不到任何视频（照片不受影响）。",
+        title = "还未授权读取视频",
+        note = "视频需要单独的 READ_MEDIA_VIDEO 权限。点「授权视频」后，才会向系统申请；照片不受影响。",
+    )
+    access == VideoAccess.UNKNOWN -> VideoEmpty(
+        title = "暂时无法确认视频权限",
+        note = "请稍后返回再进入视频页，或检查系统中的应用授权。",
     )
     !loaded -> VideoEmpty(title = "正在读视频", note = "第一次读整库会慢一点，读完就记在缓存里")
+    readFailed -> VideoEmpty(
+        title = "读取视频失败",
+        note = "系统媒体库本次没有返回可用结果。请返回再试，照片并未被删除。",
+    )
+    access == VideoAccess.PARTIAL -> VideoEmpty(
+        title = "已授权的视频中没有内容",
+        note = "当前只允许访问部分照片和视频，未选中的视频不会出现在这里。可以点「补选视频」扩大范围。",
+    )
     else -> VideoEmpty(title = "还没有视频", note = "相机或别的应用录的视频会自己出现在这里")
 }
 
@@ -139,6 +145,23 @@ internal fun coverCacheName(id: Long, edgePx: Int, sizeBytes: Long): String = "$
  */
 internal fun videoReadPermission(sdk: Int): String =
     if (sdk >= 33) "android.permission.READ_MEDIA_VIDEO" else "android.permission.READ_EXTERNAL_STORAGE"
+
+/** 视频是可选功能：仅在用户点视频页的「授权 / 补选」时才请求，不能跟照片首启授权绑定。 */
+internal fun videoPermissionRequest(sdk: Int): Array<String> = when {
+    sdk >= 34 -> arrayOf(
+        "android.permission.READ_MEDIA_VIDEO",
+        "android.permission.READ_MEDIA_VISUAL_USER_SELECTED",
+    )
+    sdk >= 33 -> arrayOf("android.permission.READ_MEDIA_VIDEO")
+    else -> emptyArray() // Android 12 及以下由照片权限门统一请求 READ_EXTERNAL_STORAGE。
+}
+
+/** Android 14 选中授权优先保守判成部分；即使全量和选中标记都在，也不声称看到了整库。 */
+internal fun videoAccessFor(sdk: Int, fullGranted: Boolean, selectedGranted: Boolean): VideoAccess = when {
+    sdk >= 34 && selectedGranted -> VideoAccess.PARTIAL
+    fullGranted -> VideoAccess.GRANTED
+    else -> VideoAccess.MISSING
+}
 
 /**
  * 拍摄时间：`2026.10.18 20:54`。0 = 未知，给破折号。

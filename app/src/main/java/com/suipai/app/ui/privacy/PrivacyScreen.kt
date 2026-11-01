@@ -311,6 +311,13 @@ fun permissionRows(): List<PermissionRow> = listOf(
             "只授权部分时，随拍只看得到你选中的那些。",
     ),
     PermissionRow(
+        name = "读取视频",
+        manifest = "READ_MEDIA_VIDEO（Android 13+）",
+        whenAsked = "只在视频页手动点「授权视频 / 补选视频」时",
+        purpose = "浏览和播放你允许访问的本机视频、提取视频帧。" +
+            "Android 14 起支持部分选择；不进入视频功能不会主动索取视频授权。",
+    ),
+    PermissionRow(
         name = "旧系统存储权限",
         manifest = "READ_EXTERNAL_STORAGE（≤ Android 12L）",
         whenAsked = "首次进入相册时（仅老系统）",

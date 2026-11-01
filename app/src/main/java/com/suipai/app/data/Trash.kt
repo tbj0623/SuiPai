@@ -6,8 +6,11 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.util.Log
+import android.util.AtomicFile
 import androidx.compose.runtime.Immutable
 import java.io.File
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -44,6 +47,10 @@ data class TrashItem(
      */
     val dateTaken: Long = 0L,
 )
+
+/** 仅在删成、或查到明确不存在时从账单移除；查询失败绝不能等价于不存在。 */
+internal fun shouldForgetAfterPurge(deleted: Boolean, rowStillExists: Boolean?): Boolean =
+    deleted || rowStillExists == false
 
 /**
  * 回收站：把「删除」从**立刻销毁**改成**先搬进一个 30 天的候车室**。
@@ -102,7 +109,7 @@ class Trash(context: Context) {
      * `docs/arch/APP-ARCH.md` 早写了"必须是同一个实例"，但代码没做到。
      * 现在改由 [of] 发同一个实例；**不要**再在调用点 `Trash(context)`。
      */
-    private val file: File get() = File(dir, FILE_NAME)
+    private val ledger = AtomicFile(File(dir, FILE_NAME))
     private val lock = Any()
 
     // ── 读 ────────────────────────────────────────────────────────────
@@ -130,12 +137,12 @@ class Trash(context: Context) {
      *  2. 在回收站目录 insert 一行 `IS_PENDING=1`；
      *  3. 写字节；
      *  4. `IS_PENDING=0` 让它可见；
-     *  5. 删源行；
-     *  6. 记账。
+     *  5. **原子记账成功**，保证意外中断后仍有恢复入口；
+     *  6. 删源行，删失败则回滚副本与账单。
      *
-     * 2~5 之间失败：把已 insert 的那一行删掉（[deleteRow]），然后 false。
-     * 第 5 步失败：把新行删掉、源行留着 —— **宁可没搬成，也不能两份都在**
-     * （两份都在意味着用户删了一次、库里却还有一张，下次再删就是删副本）。
+     * 2~5 之间失败：回滚目标行，原片仍在。
+     * 第 6 步失败：尝试删除目标副本；若目标删不掉则保留账单里的恢复入口。
+     * 异常中断时宁可暂时出现两份，也不能把唯一原片及其账单同时弄丢。
      *
      * @param dateTaken 原照片的拍摄时间（`DATE_TAKEN` 毫秒）。`0` = 不知道，
      *   此时新行**不写** `DATE_TAKEN`，MediaProvider 会给它补"现在" —— 与改前一致。
@@ -161,6 +168,17 @@ class Trash(context: Context) {
         source.use { input ->
             val target = insertImage(TRASH_RELATIVE_PATH, displayName, sizeBytes, width, height, dateTaken)
                 ?: return@withContext false
+            val item = TrashItem(
+                id = photoId,
+                displayName = displayName,
+                trashUri = target.toString(),
+                deletedAt = System.currentTimeMillis(),
+                sizeBytes = sizeBytes,
+                width = width,
+                height = height,
+                dateTaken = dateTakenToWrite(dateTaken),
+            )
+            var accounted = false
             try {
                 resolver.openOutputStream(target)?.use { out ->
                     input.copyTo(out, DEFAULT_BUFFER_SIZE)
@@ -173,31 +191,23 @@ class Trash(context: Context) {
                     deleteRow(target)
                     return@withContext false
                 }
+                // 必须在删源行前成功记账。反过来时，一次闪退就会留下无法从应用恢复的照片。
+                if (!record(item)) {
+                    deleteRow(target) // 原片还在，安全地报告失败。
+                    return@withContext false
+                }
+                accounted = true
                 if (!deleteRow(uri)) {
-                    // 源行删不掉：把新行收回去，宁可"没删成"也不留两份。
-                    Log.w(TAG, "源行删不掉，已收回新行：$uri")
-                    deleteRow(target)
+                    // 源行留着：仅在确认新行已删时才能划掉账单；否则保留恢复入口。
+                    Log.w(TAG, "源行删不掉，尝试回滚新行：$uri")
+                    if (deleteRow(target)) forget(item)
                     return@withContext false
                 }
             } catch (e: Exception) {
                 Log.w(TAG, "搬家途中抛了，回滚新行：$target", e)
-                deleteRow(target)
+                if (deleteRow(target) && accounted) forget(item)
                 return@withContext false
             }
-            record(
-                TrashItem(
-                    id = photoId,
-                    displayName = displayName,
-                    trashUri = target.toString(),
-                    deletedAt = System.currentTimeMillis(),
-                    sizeBytes = sizeBytes,
-                    width = width,
-                    height = height,
-                    // 负值一律当"不知道"：`DATE_TAKEN` 的合法值是正毫秒，负数只可能是脏数据，
-                    // 记进账单以后会被当成 1970 年之前的照片原样写回去。
-                    dateTaken = dateTakenToWrite(dateTaken),
-                ),
-            )
         }
         true
     }
@@ -257,12 +267,11 @@ class Trash(context: Context) {
         }
     }
 
-    /** 真删：删回收站里那一行 + 从账单里划掉。行已经不在（用户从系统相册清过）也算成功。 */
+    /** 真删：只有确认删除成功或 MediaStore 明确返回「不存在」后才能划掉账单。 */
     suspend fun purge(item: TrashItem): Boolean = withContext(Dispatchers.IO) {
         val gone = deleteRow(item.trashUri.toUriOrNull())
-        // 行本来就不在了也要把账单划掉，否则这条永远占着「张数」。
-        forget(item)
-        gone || !rowExists(item.trashUri)
+        val stillExists = if (gone) null else rowExists(item.trashUri)
+        if (shouldForgetAfterPurge(gone, stillExists)) forget(item) else false
     }
 
     /**
@@ -283,37 +292,50 @@ class Trash(context: Context) {
 
     // ── 账单 ──────────────────────────────────────────────────────────
 
-    /** 读整份账单。任何异常都退化成空表 —— 回收站读不出来是"空"，不是"崩"。 */
-    internal fun readAll(): List<TrashItem> {
+    /**
+     * 读整份账单。AtomicFile.openRead 会自动回退上一次完整版本，
+     * 避免断电/进程被杀时把写到一半的 JSON 当成整个回收站为空。
+     */
+    internal fun readAll(): List<TrashItem> = synchronized(lock) {
         val text = try {
-            if (!file.isFile) return emptyList()
-            file.readText()
+            ledger.openRead().bufferedReader(Charsets.UTF_8).use { it.readText() }
+        } catch (_: FileNotFoundException) {
+            return@synchronized emptyList()
         } catch (e: Exception) {
-            Log.w(TAG, "读 $FILE_NAME 失败，当成空回收站", e)
-            return emptyList()
+            Log.w(TAG, "读 $FILE_NAME 失败；不对未知照片执行清理", e)
+            return@synchronized emptyList()
         }
-        return decode(text)
+        decode(text)
     }
 
-    /** 整表重写。**不是**逐条 append：坏文件里那些解不出来的条目要在这一写里被丢掉。 */
+    /** 同步落盘、原子替换。写失败时上一个完整版本仍可读。 */
     private fun writeAll(items: List<TrashItem>): Boolean = synchronized(lock) {
+        var out: FileOutputStream? = null
         try {
-            file.writeText(encode(items))
+            out = ledger.startWrite()
+            out.write(encode(items).toByteArray(Charsets.UTF_8))
+            ledger.finishWrite(out)
             true
         } catch (e: Exception) {
-            Log.w(TAG, "写 $FILE_NAME 失败", e)
+            if (out != null) runCatching { ledger.failWrite(out) }
+            Log.w(TAG, "写 $FILE_NAME 失败，保留之前的完整账单", e)
             false
         }
     }
 
-    private fun record(item: TrashItem) {
+    /** read-modify-write 全程持锁：不能先读旧快照，再让别的操作插入一条。 */
+    private fun record(item: TrashItem): Boolean = synchronized(lock) {
         val next = readAll().filterNot { it.trashUri == item.trashUri } + item
-        if (!writeAll(next)) Log.w(TAG, "搬进回收站了，但账单没写进去：${item.displayName}")
+        val saved = writeAll(next)
+        if (!saved) Log.w(TAG, "账单没写入：${item.displayName}")
+        saved
     }
 
-    private fun forget(item: TrashItem) {
+    private fun forget(item: TrashItem): Boolean = synchronized(lock) {
         val next = readAll().filterNot { it.trashUri == item.trashUri }
-        if (!writeAll(next)) Log.w(TAG, "账单没划掉：${item.displayName}")
+        val saved = writeAll(next)
+        if (!saved) Log.w(TAG, "账单没划掉：${item.displayName}")
+        saved
     }
 
     // ── MediaStore ────────────────────────────────────────────────────
@@ -358,7 +380,7 @@ class Trash(context: Context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) return true
         val values = ContentValues().apply { put(MediaStore.Images.Media.IS_PENDING, 0) }
         return try {
-            resolver.update(uri, values, null, null) >= 0
+            resolver.update(uri, values, null, null) > 0
         } catch (e: Exception) {
             Log.w(TAG, "IS_PENDING=0 失败：$uri", e)
             false
@@ -382,8 +404,9 @@ class Trash(context: Context) {
         }
     }
 
-    private fun rowExists(trashUri: String): Boolean {
-        val uri = trashUri.toUriOrNull() ?: return false
+    /** null = 查询失败或无效 URI，绝不作为「已经被删」的证据。 */
+    private fun rowExists(trashUri: String): Boolean? {
+        val uri = trashUri.toUriOrNull() ?: return null
         return try {
             resolver.query(
                 uri,
@@ -391,9 +414,10 @@ class Trash(context: Context) {
                 null,
                 null,
                 null,
-            )?.use { it.count > 0 } ?: false
+            )?.use { it.count > 0 }
         } catch (e: Exception) {
-            false
+            Log.w(TAG, "无法确认回收站行是否还在：$trashUri", e)
+            null
         }
     }
 

@@ -7,7 +7,7 @@
 >
 > 状态：数据层与两个屏幕**已通过 `:app:compileDebugKotlin`**；
 > **没有在设备上验证过**（这台机器上的模拟器一次都没为本功能起过）。
-> 路由接线与 `READ_MEDIA_VIDEO` 由 Lead 统一处理，见 §6、§7。
+> Android 13+ 视频权限已改为视频页按需申请，Android 14+ 区分完整 / 部分授权；未做设备实测。见 §6、§7。
 
 ---
 
@@ -198,13 +198,8 @@ filesDir/video_thumbs/<id>_<边长>_<字节数>.jpg
 
 ### 5.2 没有接的东西（具体到行）
 
-1. **路由**：`AppRoute` 里没有 `Video` / `VideoPlayer`。宿主（Lead）要加两个路由 + `AppNavHost` 两个分支，见 §6。
-2. **`READ_MEDIA_VIDEO`**：`AndroidManifest.xml` 里**没有**这条权限（也没人该在本轮加，
-   见 §7）。所以 `VideoRepository.readAccess()` 在 Android 13+ 上会稳定回 `VideoAccess.MISSING`，
-   网格会老实显示「系统没放行视频」而不是「还没有视频」。
-3. **视频入口**：页首「更多」抽屉里没有"视频"那一格。宿主接线时加。
-4. **设置页「清缓存」不认视频封面**：`VideoThumbs.clear` 写好了但没调用点。
-5. **分页**：`VideoRepository.loadPage(offset)` 写好了，但两个屏幕都只吃"宿主给的一页"。
+1. **设置页「清缓存」不认视频封面**：`VideoThumbs.clear` 写好了但还要核对调用点。
+2. **分页**：`VideoRepository.loadPage(offset)` 写好了，但两个屏幕都只吃"宿主给的一页"。
    网格不自己翻页 —— 视频比照片少得多（一页 400 条），这一版先不做无限滚动。
 
 ### 5.3 已知限制（不是 bug，是设备的）
@@ -233,6 +228,8 @@ fun VideoGrid(
     note: String? = null,
     // 后加的参数，有默认值：不传也能编译，但**建议传**，否则分不出"没放行"和"确实没有"
     access: VideoAccess = VideoAccess.GRANTED,
+    onRequestAccess: (() -> Unit)? = null, // 用户主动触发视频权限 / 部分授权补选
+    readFailed: Boolean = false, // 查询失败的空态不能写成「没有视频」
 )
 
 @Composable
@@ -249,40 +246,31 @@ fun VideoPlayerScreen(
 
 - 建一次 `VideoRepository(context)`（`remember(context) { … }`）；
 - `readAccess()` + `loadPage(0)` 放在 `LaunchedEffect` + `Dispatchers.IO`；
-- `null` = **没读到**（不是"没有视频"）→ 保住上一次的列表 + 说一句"没读到"；
+- `null` = **没读到**（不是"没有视频"）→ `readFailed = true`，显示读取失败的空态；
 - `onSavedFrame` 里 `state.refresh()`（存进 `Pictures/SuiPai` 之后相册那一屏要能看见）。
 
-`VideoAccess` 的值直接喂给 `VideoGrid(access = …)`，三格分别是：
+`VideoAccess` 的值喂给 `VideoGrid(access = …)`，现在明确区分四种状态：
 
-| 值 | 空态说 | 来源 |
+| 值 | 表示 | 行为 |
 | --- | --- | --- |
-| `GRANTED` | "还没有视频" / "正在读视频" | 有权限 |
-| `MISSING` | "系统没放行视频" + 点名 `READ_MEDIA_VIDEO` | 13+ 且没授权 |
-| `UNKNOWN` | 按 `GRANTED` 处理（还没探到） | 探测抛异常 |
+| `GRANTED` | 允许完整视频访问 | 查询并显示可见视频 |
+| `PARTIAL` | Android 14+ 只授权部分照片 / 视频 | 查询可见视频，显示「可见」数量与「补选视频」 |
+| `MISSING` | 未授权视频 | 不查库，显示授权按钮；不误报「没有视频」 |
+| `UNKNOWN` | 权限检查抛异常 | 不查库，提示无法确认 |
 
 ---
 
-## 7. manifest 与权限（**没有动**，等 Lead 决定）
+## 7. manifest 与权限（按需申请）
 
-`AndroidManifest.xml` 目前只有 `READ_MEDIA_IMAGES` + `READ_MEDIA_VISUAL_USER_SELECTED`，
-**没有 `READ_MEDIA_VIDEO`**。后果是具体的：
+`AndroidManifest.xml` 已声明 `READ_MEDIA_VIDEO`，但它**不会在首次照片授权时申请**：
 
-- Android **13（API 33）及以上**：`MediaStore.Video` 不会抛异常，它照样回一个游标，
-  只是里面只剩本应用自己写进去的行（通常是 0 行）。于是"没权限"和"真的没有视频"
-  在数据层长得**一模一样**。`VideoRepository.readAccess()` 就是为这件事存在的。
-- Android **12 及以下**：走 `READ_EXTERNAL_STORAGE`，视频照片一起放行，
-  `videoReadPermission(sdk)` 的 26/32 两格钉住了这条分界。
+1. Android 12L 及以下照片和视频都由 `READ_EXTERNAL_STORAGE` 授权。
+2. Android 13：视频页点击「授权视频」时单独请求 `READ_MEDIA_VIDEO`。
+3. Android 14+：点击「授权视频 / 补选视频」时组合请求 `READ_MEDIA_VIDEO` 与 `READ_MEDIA_VISUAL_USER_SELECTED`。如果系统只放行选中项目，网格不声称这些就是整库。
+4. 视频页从系统设置返回或授权弹窗返回都会重新查询授权及媒体库。拒绝后系统不再弹窗时可进入应用设置。
+5. 隐私中心与关于页已经说明视频权限的用途与触发时机。
 
-要真的能读视频，宿主需要：
-
-1. `AndroidManifest.xml` 加 `<uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />`
-   —— **本轮不许动 manifest**，所以这件事留给 Lead。
-2. 运行时请求那条权限（`videoReadPermission(Build.VERSION.SDK_INT)` 给出名字）。
-3. 隐私页（`PrivacyScreen`）要跟着加一行解释 —— `SettingsUiGuardTest.permissionMismatches`
-   会把 manifest 里每一条没解释的权限判红，这一条**必须同步做**，否则那 630 条里会有红的。
-
-在 1/2/3 完成之前，视频页**能用但读不到别人的视频**：会显示「系统没放行视频」，
-一句假话都不说。这是刻意的形状。
+这修复了以前 Android 13+ 有播放器和列表、却没法访问别的 app 视频的断点。**尚需真机验证** Android 13、14、15 的权限对话框及系统设置返回路径；JVM 回归测试不代表设备验收。
 
 ---
 

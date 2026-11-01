@@ -28,11 +28,10 @@ android {
         applicationId = "com.suipai.app"
         minSdk = 26
         targetSdk = 36
-        // 0.7.0：设计系统 v1 / 路由重构 / 设置中心 / 回收站收藏夹 / 搜索索引
-        // / 一瞬专业版 / 相机专业模式 / 拼图边框漏光 / 回忆幻灯片 / 配方卡投屏
-        // / 重复照片与存储分析。versionCode 必须比上一版大，Play 才允许覆盖上传。
-        versionCode = 7
-        versionName = "0.7.0"
+        // 0.7.1 预览：Android 13+ 视频按需授权与部分授权、回收站原子账单与安全回滚。
+        // versionCode 必须严格递增，才可从 GitHub 上一版测试 APK 原地升级。
+        versionCode = 8
+        versionName = "0.7.1"
         // 配方写盘/读盘要的是真机上的 androidx ExifInterface 行为，JVM 单测跑不到。
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

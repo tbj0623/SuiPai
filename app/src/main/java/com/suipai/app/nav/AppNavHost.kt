@@ -1,7 +1,10 @@
 package com.suipai.app.nav
 
+import android.app.Activity
 import android.content.Context
 import android.net.Uri
+import android.os.Build
+import androidx.core.app.ActivityCompat
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -49,6 +52,7 @@ import com.suipai.app.data.TrashItem
 import com.suipai.app.data.VideoAccess
 import com.suipai.app.data.VideoItem
 import com.suipai.app.data.VideoRepository
+import com.suipai.app.data.videoPermissionRequest
 import com.suipai.app.settings.OnboardingGate
 import com.suipai.app.settings.ReadOnlySource
 import com.suipai.app.settings.SettingAction
@@ -68,6 +72,7 @@ import com.suipai.app.ui.camera.CameraScreen
 import com.suipai.app.ui.collage.CollageScreen
 import com.suipai.app.ui.collections.CollectionsScreen
 import com.suipai.app.ui.common.ShutterFab
+import com.suipai.app.ui.common.openAppSettings
 import com.suipai.app.ui.common.AppBarCell
 import com.suipai.app.ui.common.AppBarRow
 import com.suipai.app.ui.common.AppBarText
@@ -1407,23 +1412,39 @@ private fun VideosSection(
     val repo = remember(context) { VideoRepository(context) }
     var videos by remember { mutableStateOf<List<VideoItem>>(emptyList()) }
     var loading by remember { mutableStateOf(true) }
-    var access by remember { mutableStateOf(VideoAccess.GRANTED) }
+    var readFailed by remember { mutableStateOf(false) }
+    var access by remember { mutableStateOf(VideoAccess.UNKNOWN) }
     var note by remember { mutableStateOf<String?>(null) }
-    // 每点一次「重试」+1：读失败之后总得有一条路重来，而这里没有下拉刷新。
+    var asked by remember { mutableStateOf(false) }
     var epoch by remember { mutableIntStateOf(0) }
+
+    // 视频可选：不能在应用首启的照片授权门里顺手请求这一条。
+    val videoGrantLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions(),
+    ) {
+        asked = true
+        epoch++ // 用户选了「仅部分」或「拒绝」也必须重新判状态。
+    }
+    // 从系统应用设置回来时重新读取；授权可在 app 不运行时被撤销。
+    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) { epoch++ }
 
     LaunchedEffect(epoch) {
         loading = true
-        // 先问授权再查库：顺序反了的话"没授权"会先被读成"库里没有"，
-        // 而那句话一旦写进 note，用户就会以为自己的视频没了。
+        readFailed = false
         access = repo.readAccess()
-        val page = repo.loadPage(offset = 0)
+        // 缺权限时 MediaStore 可能静默回空：这不是视频库为空，不能查询后假装成功。
+        val page = when (access) {
+            VideoAccess.GRANTED, VideoAccess.PARTIAL -> repo.loadPage(offset = 0)
+            VideoAccess.MISSING, VideoAccess.UNKNOWN -> null
+        }
         videos = page.orEmpty()
+        readFailed = (access == VideoAccess.GRANTED || access == VideoAccess.PARTIAL) && page == null
         note = when {
-            page == null -> "没读到视频（系统没答话），稍后再试"
-            page.isEmpty() -> null       // 空列表交给 `VideoGrid` 自己的空态说
-            // 列表不完整时补一句：13+ 上"只看到自己写进去的那几段"正是这一格。
-            access != VideoAccess.GRANTED -> videoAccessHint(access)
+            access == VideoAccess.MISSING -> null // 空态解释，并提供授权按钮。
+            access == VideoAccess.UNKNOWN -> videoAccessHint(access)
+            page == null -> null // 失败空态由 videoEmptyCopy 统一显示。
+            page.isEmpty() -> null
+            access == VideoAccess.PARTIAL -> videoAccessHint(access)
             else -> null
         }
         loading = false
@@ -1436,6 +1457,23 @@ private fun VideosSection(
         onBack = onBack,
         note = note,
         access = access,
+        readFailed = readFailed,
+        onRequestAccess = {
+            val requested = videoPermissionRequest(Build.VERSION.SDK_INT)
+            if (requested.isEmpty()) {
+                epoch++
+            } else if (
+                asked && access == VideoAccess.MISSING &&
+                (context as? Activity)?.let {
+                    !ActivityCompat.shouldShowRequestPermissionRationale(it, requested[0])
+                } == true
+            ) {
+                // 系统明确不再弹授权框时，把用户带到可恢复的应用设置页。
+                openAppSettings(context) { note = it }
+            } else {
+                videoGrantLauncher.launch(requested)
+            }
+        },
     )
 }
 

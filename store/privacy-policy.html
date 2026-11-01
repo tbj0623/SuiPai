@@ -54,6 +54,7 @@
 <ul>
   <li><span class="key">相机</span>：仅在进入拍摄界面时申请，用于取景与拍照。</li>
   <li><span class="key">读取照片</span>（Android 13+ 为 <code>READ_MEDIA_IMAGES</code>，并支持系统的「仅允许访问所选照片」模式）：用于列出相册、编辑与批量整理。</li>
+  <li><span class="key">读取视频</span>（Android 13+ 为 <code>READ_MEDIA_VIDEO</code>）：只在视频页由你点击「授权视频 / 补选视频」时申请，用于播放设备上已授权的视频、分享和提取一帧。Android 14+ 支持系统的部分媒体授权；未被选择的媒体不在列表中。</li>
   <li><span class="key">旧系统存储权限</span>（<code>READ_EXTERNAL_STORAGE</code> ≤ Android 12L、<code>WRITE_EXTERNAL_STORAGE</code> ≤ Android 9）：仅为在旧版本上完成同样的读取与保存。</li>
   <li><span class="key">网络</span>（<code>INTERNET</code>、<code>ACCESS_NETWORK_STATE</code>）：只服务两件事——「互通」在同一局域网内发现附近设备并传输图片；「智能配方」在你按下按钮时，把当前照片的缩略图发往<b>你在应用内挑定的那一家服务商</b>（可选服务商是应用内列出的几家官方接口，不是任意地址）。应用不连接任何自有服务器。</li>
   <li><span class="key">设为壁纸</span>、<span class="key">震动</span>：分别对应「设为壁纸」操作与快门触感反馈，二者由系统直接授予、不弹窗。</li>

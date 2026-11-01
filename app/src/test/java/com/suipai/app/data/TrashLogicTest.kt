@@ -45,6 +45,27 @@ class TrashLogicTest {
         dateTaken = dateTaken,
     )
 
+    @Test
+    fun deleteFailureOrUnknownProviderResultMustNotEraseTrashLedger() {
+        assertTrue(shouldForgetAfterPurge(deleted = true, rowStillExists = null))
+        assertTrue(shouldForgetAfterPurge(deleted = false, rowStillExists = false))
+        assertFalse(shouldForgetAfterPurge(deleted = false, rowStillExists = true))
+        assertFalse(shouldForgetAfterPurge(deleted = false, rowStillExists = null))
+        // 自检：错误的「!exists」判据会把未知(null)误当不存在，导致照片失去恢复入口。
+        assertTrue(shouldForgetAfterPurge(false, null) != shouldForgetAfterPurge(false, false))
+    }
+
+    @Test
+    fun trashMovePersistsLedgerBeforeDeletingOnlyOriginal() {
+        val source = java.io.File("src/main/java/com/suipai/app/data/Trash.kt").readText()
+        val mover = source.substringAfter("suspend fun moveToTrash(").substringBefore("suspend fun restore(")
+        val recordAt = mover.indexOf("if (!record(item))")
+        val deleteAt = mover.indexOf("if (!deleteRow(uri))")
+        assertTrue("必须先成功记账，才能删原片", recordAt >= 0 && deleteAt > recordAt)
+        assertTrue("账单写盘须原子提交，防止断电产生截断 JSON", source.contains("ledger.finishWrite(out)"))
+        assertTrue("MediaStore 发布影响 0 行不是成功", source.contains("resolver.update(uri, values, null, null) > 0"))
+    }
+
     // ── 账单 json ─────────────────────────────────────────────────────
 
     @Test

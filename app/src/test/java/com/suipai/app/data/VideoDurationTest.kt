@@ -194,6 +194,39 @@ class VideoDurationTest {
         assertTrue("自检失效：老写法居然在 33 上也给了新权限名", naive(33) != videoReadPermission(33))
     }
 
+    @Test
+    fun videoAuthorizationOnlyAsksWhenEnteringVideoAndUnderstandsPartialSelection() {
+        assertTrue(videoPermissionRequest(32).isEmpty())
+        assertEquals(
+            listOf("android.permission.READ_MEDIA_VIDEO"),
+            videoPermissionRequest(33).toList(),
+        )
+        assertEquals(
+            listOf("android.permission.READ_MEDIA_VIDEO", "android.permission.READ_MEDIA_VISUAL_USER_SELECTED"),
+            videoPermissionRequest(34).toList(),
+        )
+        assertEquals(VideoAccess.MISSING, videoAccessFor(33, false, false))
+        assertEquals(VideoAccess.GRANTED, videoAccessFor(33, true, false))
+        assertEquals(VideoAccess.MISSING, videoAccessFor(34, false, false))
+        assertEquals(VideoAccess.PARTIAL, videoAccessFor(34, false, true))
+        assertEquals(VideoAccess.PARTIAL, videoAccessFor(34, true, true))
+        assertEquals(VideoAccess.GRANTED, videoAccessFor(34, true, false))
+        // 自检：部分授权绝不能等价于全库授权，未授权也不能变成「没视频」。
+        assertTrue(videoAccessFor(34, false, true) != videoAccessFor(34, true, false))
+    }
+
+    @Test
+    fun partialAndUnknownVideoAccessDoNotClaimTheWholeLibraryIsEmpty() {
+        val partial = videoEmptyCopy(VideoAccess.PARTIAL, loaded = true)
+        val unknown = videoEmptyCopy(VideoAccess.UNKNOWN, loaded = true)
+        assertTrue(partial.title.contains("授权"))
+        assertFalse(partial.title.contains("还没有视频"))
+        assertFalse(unknown.title.contains("还没有视频"))
+        val failed = videoEmptyCopy(VideoAccess.GRANTED, loaded = true, readFailed = true)
+        assertEquals("读取视频失败", failed.title)
+        assertTrue(failed.note?.contains("并未被删除") == true)
+    }
+
     // ── 空态文案 ──────────────────────────────────────────────────────
 
     /**
