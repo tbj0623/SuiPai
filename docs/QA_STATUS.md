@@ -5,7 +5,7 @@
 | 项目 | 当前证据 | 尚未完成 |
 | --- | --- | --- |
 | Android / shared JVM 单测 | 本机执行 `:app:testDebugUnitTest :shared:testDebugUnitTest` 通过；媒体写入事务新增单测单独通过 | 测试不替代真实 MediaStore |
-| Android 主代码 | 编译可用，release 构建检查进行中 | 多种系统版本及设备型号回归 |
+| Android 主代码 | `assembleRelease`、`bundleRelease`、`lintRelease` 本机成功；但正式 keystore 缺失，仅生成未签名 release APK | 正式签名包、不同系统版本及真机回归 |
 | 图片保存失败回滚 | 成功、流失败、发布失败、异常路径的纯 Kotlin 回归测试已通过 | 真机模拟磁盘满/提供方失败 |
 | 相册、相机、一瞬、回收站、搜索 | 已有代码与自动化测试 | 完整手动装机验收未闭环 |
 | 局域网互通 | 共享协议有测试 | 两台真实 Android/iPhone 同 Wi-Fi 互传 |
